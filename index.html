@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="styles/bootstrap.css" />
+  <link rel="stylesheet" href="styles/preload.css" />
+  <link rel="stylesheet" href="styles/bluminvoice.css" />
+
+  <title>home : bluminVoice</title>
+</head>
+
+<body class="bl__home d-flex flex-column justify-content-between">
+  <header class="fixed-top">
+    <div class="collapse bg-dark" id="navbarHeader">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-7 col-md-7 py-4">
+            <h4 class="text-light">About</h4>
+            <p class="text-white-50">
+              It is a customized webApp for BRANDLUMIN. It helps manage
+              clients and billing processes as well as it takes care of the
+              work-in-progress and allows to include billable steps in the
+              billing.
+            </p>
+          </div>
+          <div class="col-sm-5 col-md-4 offset-md-1 py-4">
+            <h4 class="text-warning">
+              Menu&nbsp;&raquo;&raquo;&raquo;&nbsp;...
+            </h4>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="customer-master.html" class="text-white">&raquo;&nbsp;&nbsp;<span
+                    class="font-weight-bold">Customer</span>
+                  Master</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">Accounts</span>
+                  Master</a>
+              </li>
+              <li class="mb-2">
+                <a href="#" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">New</span>
+                  Assignment</a>
+              </li>
+              <li class="mb-2">
+                <a href="change-request.html" class="text-white">&raquo;&nbsp;&nbsp;<span
+                    class="font-weight-bold">Change</span>
+                  Request</a>
+              </li>
+              <li>
+                <a href="#" class="text-white">&raquo;&nbsp;&nbsp;Generate
+                  <span class="font-weight-bold">Invoice</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark">
+      <div class="container-fluid d-flex justify-content-between">
+        <a href="./" class="navbar-brand d-flex align-items-center">
+          <img class="mr-2" src="images/bl-logo.svg" alt="" height="20"
+            style="filter: grayscale(100%) invert(100%) brightness(150%)" />
+          <strong>bluminVoice</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+    <section class="jumbotron text-center rounded-0 bg-warning">
+      <div class="container">
+        <p class="h3">Welcome@bluminVoice</p>
+        <p class="lead">
+          You can choose the next step from the menu given on top-right side
+          of the page.<br class="d-none d-lg-inline" /><span class="d-inline d-lg-none">&nbsp;</span>Two mostly used
+          actions are given here just to help you work
+          faster:
+        </p>
+        <p>
+          <a href="" class="btn btn-success my-2">Generate Invoice</a>
+          <a href="" class="btn btn-primary my-2">New Assignment</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="container bl__home_crf">
+      <h3 class="text-center m-4">Change Request Form</h3>
+      <form class="needs-validation p-4" accept-charset="UTF-8" action="./crf_page.php" method="post" id="form-crf"
+        name="form-crf" novalidate>
+        <div class="form-row">
+          <!-- CUSTOMER -->
+          <div class="form-group col-12">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text bg-warning text-body" for="form-crf-cust">Customer:</label>
+              </div>
+              <select class="custom-select" id="form-crf-cust" name="form-crf-cust" required
+                aria-describedby="form-crf-cust-help" required>
+                <option class="" value="" selected>Choose...</option>
+                <option class="" value="1">ICSI CCGRT</option>
+                <option class="" value="2">ICSI CERT</option>
+                <option class="" value="3">ICSI WIRC</option>
+                <option class="" value="4">Locate365</option>
+              </select>
+            </div>
+            <small id="form-crf-cust-help" class="form-text text-muted text-right">Select the customer.</small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-lg-6">
+            <!-- PROJECT -->
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text bg-warning text-body" for="form-crf-project">Project:</label>
+              </div>
+              <select class="custom-select" id="form-crf-project" name="form-crf-project" required
+                aria-describedby="form-crf-project-help">
+                <option value="" selected>Choose...</option>
+                <option value="1">
+                  Lorem ipsum dolor sit amet consectetur
+                </option>
+                <option value="2">
+                  Reiciendis labore minima natus, sequi nobis
+                </option>
+                <option value="3">
+                  Cumque, placeat iure natus, nulla itaque
+                </option>
+                <option value="4">Exercitationem quaerat quibusdam</option>
+              </select>
+            </div>
+            <small id="form-crf-project-help" class="form-text text-muted text-right">Select the project.</small>
+          </div>
+          <!-- <div class="form-group col-lg-6"> CONTACT 
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text bg-warning text-body" for="form-crf-contact">Contact:</label>
+              </div>
+              <select class="custom-select" id="form-crf-contact" name="form-crf-contact" required aria-describedby="form-crf-contact-help">
+                <option selected>Choose...</option>
+                <option value="1">ICSI CCGRT</option>
+                <option value="2">ICSI CERT</option>
+                <option value="3">ICSI WIRC</option>
+                <option value="4">Locate365</option>
+              </select>
+            </div>
+            <small id="form-crf-contact-help" class="form-text text-muted text-right">Select the contact.</small>
+          </div> -->
+          <div class="form-group col-lg-6">
+            <!-- DATE -->
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text bg-warning text-body" for="form-crf-date">Date:</label>
+              </div>
+              <input type="date" class="form-control" id="form-crf-date" name="form-crf-date"
+                aria-describedby="form-crf-date-help" required />
+            </div>
+            <small id="form-crf-date-help" class="form-text text-muted text-right">form-CRF received date.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- CHANGES -->
+          <label class="sr-only" for="form-crf-desc">Change Requests</label>
+          <textarea class="form-control" id="form-crf-desc" name="form-crf-desc" rows="6" required
+            placeholder="Put the change request(s) here..." aria-describedby="form-crf-desc-help"></textarea>
+          <small id="form-crf-desc-help" class="form-text text-muted text-right">Fill in the change request as detailed
+            as possible.</small>
+        </div>
+        <div class="form-row">
+          <!-- VIA, DESIGN & LAYOUT -->
+          <div class="form-group col-md-4">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text bg-warning text-body" for="form-crf-via">Via:</label>
+              </div>
+              <select class="custom-select" id="form-crf-via" name="form-crf-via" required
+                aria-describedby="form-crf-via-help">
+                <option value="" selected>Choose...</option>
+                <option value="1">Phone</option>
+                <option value="2">Email</option>
+                <option value="3">WhatsApp</option>
+                <option value="4">Other</option>
+              </select>
+            </div>
+            <small id="form-crf-via-help" class="form-text text-muted text-right">Changes received via channel.</small>
+          </div>
+          <div class="form-group col-md-4 col-6">
+            <div class="input-group mb-1 mb-md-0">
+              <div class="input-group-prepend">
+                <label class="input-group-text bg-warning text-body">Design#</label>
+              </div>
+              <input type="text" class="form-control" id="form-crf-desg" placeholder="0" required pattern="\d+" />
+            </div>
+            <small id="form-crf-desg-help" class="form-text text-muted text-right">CRF Design Charge count.</small>
+          </div>
+          <div class="form-group col-md-4 col-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text bg-warning text-body">Layout#</label>
+              </div>
+              <input type="text" class="form-control" id="form-crf-layout" placeholder="0" required pattern="\d+" />
+            </div>
+            <small id="form-crf-layout-help" class="form-text text-muted text-right">CRF Layout Charge count.</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="text-right">
+              <!-- BUTTONS -->
+              <button type="reset" class="btn btn-outline-secondary shadow-sm-dark no-shadow-hover mr-2">
+                Reset
+              </button>
+              <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover">
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="text-white-50 bg-dark mt-5">
+    <div class="container-fluid py-3 d-flex justify-content-between align-items-center">
+      <p class="m-0">
+        &copy;&nbsp;
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        &nbsp;&nbsp;-&nbsp;All rights reserved<span
+          class="d-none d-md-inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br
+          class="d-md-none" />crafted with &#10084; by
+        <a href="https://brandlumin.com" class="text-light" target="_blank" class="fw500">brandlumin</a>
+      </p>
+      <p class="m-0">
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="scripts/preload.js"></script>
+  <script src="scripts/bluminvoice6.js"></script>
+</body>
+
+</html>

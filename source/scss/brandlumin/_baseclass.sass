@@ -1,0 +1,94 @@
+/**
+ *    Placeholders to be used within SAAS
+ *    --> to be used with "+" sign
+ */
+=no-border
+  border: none !important
+=no-outline-shadow
+  outline: none
+  box-shadow: none !important
+
+=no-shadow
+  box-shadow: none !important
+=no-shadow-hover
+  &:hover
+    box-shadow: none !important
+
+=shadow-sm-dark
+  box-shadow: 0 0.125rem 0.25rem transparentize($black, .75)
+
+/** Placeholders End */
+
+/**
+ *    BRANDLUMIN BASE CLASSES
+ */
+
+/* Removing border */
+.no-border
+  border: none !important
+.no-outline-shadow
+  outline: none
+  box-shadow: none !important
+
+/* removing shadows */
+.no-shadow
+  box-shadow: none !important
+.no-shadow-hover
+  &:hover
+    box-shadow: none !important
+
+/* creating dark shadow for shadow-sm */
+.shadow-sm-dark
+<<<<<<< HEAD
+  box-shadow: 0 0.125rem 0.25rem transparentize($black, .75)
+=======
+  box-shadow: 0 0.14rem 0.28rem rgba(0,0,0,0.25) !important
+
+/* medium size shadows */
+.shadow-md
+  box-shadow: 0 .125rem .75rem rgba(0,0,0,0.17) 
+
+/* Removing oulines from input fields */
+input,
+select,
+textarea 
+  +no-outline-shadow
+  &:hover,
+  &:active,
+  &:focus
+    +no-outline-shadow
+  &:active:focus
+    +no-outline-shadow
+
+/* Removing borders from input fields */
+label,
+input,
+select,
+textarea,
+.input-group-prepend
+  +no-border
+
+/* Adding background to input fields */
+.bg-yellow-40p
+  background: lighten(#ff0, 40%) !important
+
+/**
+ *    BASE CLASSES
+ */
+.rounded-lg-x
+  border-radius: .5rem !important
+
+p,
+li,
+ol
+  &:last-of-type
+    margin-bottom: 0
+
+.sticky-footer
+  position: fixed !important
+  bottom: 0 !important
+  width: 100% !important
+
+footer
+  box-shadow: 0 -0.125rem 0.25rem rgba(0,0,0,0.15) 
+>>>>>>> 0ed8f76674f8935305c22582bd2552a0b1980e1e

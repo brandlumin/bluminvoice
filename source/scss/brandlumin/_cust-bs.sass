@@ -1,0 +1,64 @@
+/**
+ *    CUSTOMIZING BOOTSTRAP FOR BRANDLUMIN
+ */
+
+/* Setting HTML and BODY height */
+html, body
+  min-height: 100vh
+
+/* Styling HEADER */
+header #navbarHeader
+  & + .navbar
+    box-shadow: 0 0.125em 0.2em #0006
+  &.show + .navbar
+    box-shadow: 0 0.125em 0.5em #0007
+
+/* Removing oulines from input fields */
+section
+  &:not(:first-of-type)
+    margin-top: 4em
+
+/* Removing oulines from input fields */
+form
+  border-radius: .5em
+  box-shadow: 0 .5em 1.5em transparentize(black, .8)
+  background: $gray-300
+  border: 1px solid lighten($purple, 30)
+  transition: 300ms box-shadow ease
+  &:hover
+    box-shadow: 0 0 .5em -.125em transparentize($green, 0.2)
+    border: 1px solid transparentize($green, 0.7)
+  &:focus-within
+    box-shadow: none
+    border: 1px solid lighten($purple, 30)
+
+/* Removing oulines from input fields */
+input,
+select,
+textarea
+  +no-outline-shadow
+  &:hover,
+  &:active,
+  &:focus
+    +no-outline-shadow
+  &:active:focus
+    +no-outline-shadow
+
+/* Removing borders from input fields */
+label,
+input,
+select,
+textarea,
+.input-group-prepend
+  +no-border
+
+/* Removing BOTTOM MARGIN from last elements */
+p,
+li,
+ol
+  &:last-of-type
+    margin-bottom: 0
+
+/* Setting FOOTER */
+footer
+  box-shadow: 0 0 0.2em #0003

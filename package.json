@@ -1,0 +1,32 @@
+{
+  "name": "bluminvoice",
+  "version": "1.0.0",
+  "description": "brandlumin internal invoicing prototype with es6, build es5 with BOOTSTRAP HTML 5, CSS 3, JS, jQuery, JSON, PHP, SQL",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "Avinash Rai",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-transform-arrow-functions": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
+    "autoprefixer": "^9.8.6",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-livereload": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-strip-comments": "^2.5.2",
+    "gulp-strip-css-comments": "^2.0.0",
+    "gulp-terser": "^1.4.0",
+    "jshint": "^2.12.0"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.1"
+  }
+}
