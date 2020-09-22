@@ -1,203 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="styles/bootstrap.css" />
-  <link rel="stylesheet" href="styles/preload.css" />
-  <link rel="stylesheet" href="styles/bluminvoice.css" />
-
-  <title>CMF : bluminVoice</title>
-</head>
-
-<body class="bl__home d-flex flex-column justify-content-between">
-  <header class="fixed-top">
-    <div class="collapse bg-dark" id="navbarHeader">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-7 col-md-7 py-4">
-            <h4 class="text-light">About</h4>
-            <p class="text-white-50">
-              It is a customized webApp for BRANDLUMIN. It helps manage
-              clients and billing processes as well as it takes care of the
-              work-in-progress and allows to include billable steps in the
-              billing.
-            </p>
-          </div>
-          <div class="col-sm-5 col-md-4 offset-md-1 py-4">
-            <h4 class="text-warning">
-              Menu&nbsp;&raquo;&raquo;&raquo;&nbsp;...
-            </h4>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="customer-master.html" class="text-white">&raquo;&nbsp;&nbsp;<span
-                    class="font-weight-bold">Customer</span>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="styles/bootstrap.css" />
+    <link rel="stylesheet" href="styles/preload.css" />
+    <link rel="stylesheet" href="styles/bluminvoice.css" />
+    <title>CMF : bluminVoice</title>
+  </head>
+  <body class="bl__home d-flex flex-column justify-content-between">
+    <header class="fixed-top">
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-7 col-md-7 py-4">
+              <h4 class="text-light">About</h4>
+              <p class="text-white-50">
+                It is a customized webApp for BRANDLUMIN. It helps manage
+                clients and billing processes as well as it takes care of the
+                work-in-progress and allows to include billable steps in the
+                billing.
+              </p>
+            </div>
+            <div class="col-sm-5 col-md-4 offset-md-1 py-4">
+              <h4 class="text-warning">
+                Menu&nbsp;&raquo;&raquo;&raquo;&nbsp;...
+              </h4>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <a href="customer-master.html" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">Customer</span>
                   Master</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">Accounts</span>
+                </li>
+                <li class="mb-2">
+                  <a href="#" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">Accounts</span>
                   Master</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">New</span>
+                </li>
+                <li class="mb-2">
+                  <a href="#" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">New</span>
                   Assignment</a>
-              </li>
-              <li class="mb-2">
-                <a href="change-request.html" class="text-white">&raquo;&nbsp;&nbsp;<span
-                    class="font-weight-bold">Change</span>
+                </li>
+                <li class="mb-2">
+                  <a href="change-request.html" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">Change</span>
                   Request</a>
-              </li>
-              <li>
-                <a href="#" class="text-white">&raquo;&nbsp;&nbsp;Generate
+                </li>
+                <li>
+                  <a href="#" class="text-white">&raquo;&nbsp;&nbsp;Generate
                   <span class="font-weight-bold">Invoice</span></a>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark">
-      <div class="container-fluid d-flex justify-content-between">
-        <a href="./" class="navbar-brand d-flex align-items-center">
-          <img class="mr-2" src="images/bl-logo.svg" alt="" height="20"
-            style="filter: grayscale(100%) invert(100%) brightness(150%)" />
+      <div class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex justify-content-between">
+          <a href="./" class="navbar-brand d-flex align-items-center">
+          <img class="mr-2" src="images/bl-logo.svg" alt="" height="20" style="filter: grayscale(100%) invert(100%) brightness(150%)" />
           <strong>bluminVoice</strong>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
-    <section class="container bl__home_cmf">
-      <div class="row">
-        <div class="col">
-          <h3 class="text-center m-4">Customer Master Form</h3>
-          <form class="needs-validation p-4" accept-charset="UTF-8" action="./cmf_page.php" method="post" id="form-cmf"
-            name="form-cmf" novalidate>
-            <div class="form-row">
-              <div class="form-group col-12">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text bg-warning text-body" for="form-cmf-name">Customer:</label>
-                  </div>
-                  <input class="form-control" id="form-cmf-name" name="form-cmf-name" required
-                    placeholder="Customer Name" />
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-12">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text bg-warning text-body" for="form-cmf-addr">Address:</label>
-                  </div>
-                  <textarea class="form-control" id="form-cmf-addr" name="form-cmf-addr" rows="3"
-                    placeholder="Address 1*&#10;Address 2*&#10;Address 3" style="resize: none" required></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="form-group mb-1 mb-md-auto col-md-4">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text bg-warning text-body" for="form-cmf-city">City:</label>
-                  </div>
-                  <input class="form-control" id="form-cmf-city" name="form-cmf-city" placeholder="City*" required />
-                </div>
-              </div>
-              <div class="form-group mb-1 mb-md-auto col-md-4">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text bg-warning text-body" for="form-cmf-state">State:</label>
-                  </div>
-                  <input class="form-control" id="form-cmf-state" name="form-cmf-state" placeholder="State*" required />
-                </div>
-              </div>
-              <div class="form-group col-md-4">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text bg-warning text-body" for="form-cmf-pin">PIN:</label>
-                  </div>
-                  <input class="form-control" id="form-cmf-pin" name="form-cmf-pin" placeholder="PIN*" pattern="\d{6}"
-                    required />
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text bg-warning text-body" for="form-cmf-gstin">GSTIN:</label>
-                  </div>
-                  <input class="form-control" id="form-cmf-gstin" name="form-cmf-gstin" required
-                    placeholder="GST Idendification Number*" />
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                <div class="input-group-prepend">
-                  <label class="input-group-text bg-warning text-body mr-3" for="form-cmf-gstin">GST Type:</label>
-                  <div class="form-check form-check-inline mr-3">
-                    <input type="radio" id="form-cmf-cgst" name="form-cmf-gstin" class="form-check-input" value="cgst"
-                      required />
-                    <label class="form-check-label" for="form-cmf-cgst">CGTS</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input type="radio" id="form-cmf-igst" name="form-cmf-gstin" class="form-check-input" value="igst"
-                      required />
-                    <label class="form-check-label" for="form-cmf-igst">IGST</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="text-right">
-                  <!-- BUTTONS -->
-                  <button type="reset" class="btn btn-outline-secondary shadow-sm-dark no-shadow-hover mr-2">
-                    Reset
-                  </button>
-                  <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover">
-                    Create
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
+          </button>
         </div>
       </div>
-    </section>
-  </main>
-
-  <footer class="text-white-50 bg-dark mt-5">
-    <div class="container-fluid py-3 d-flex justify-content-between align-items-center">
-      <p class="m-0">
-        &copy;&nbsp;
-        <script>
-          document.write(new Date().getFullYear());
-        </script>
-        &nbsp;&nbsp;-&nbsp;All rights reserved<span
-          class="d-none d-md-inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br
-          class="d-md-none" />crafted with &#10084; by
-        <a href="https://brandlumin.com" class="text-light" target="_blank" class="fw500">brandlumin</a>
-      </p>
-      <p class="m-0">
-        <a href="#">Back to top</a>
-      </p>
-    </div>
-  </footer>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="scripts/preload.js"></script>
-  <script src="scripts/bluminvoice6.js"></script>
-</body>
-
+    </header>
+    <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
+      <section class="container bl__home_cmf">
+        <div class="row">
+          <div class="col">
+            <h3 class="text-center m-4">Customer Master Form</h3>
+            <form class="needs-validation p-4" accept-charset="UTF-8" action="./cmf_page.php" method="post" id="form-cmf" name="form-cmf" novalidate>
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-cmf-name">Customer:</label>
+                    </div>
+                    <input class="form-control" id="form-cmf-name" name="form-cmf-name" required placeholder="Customer Name" />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-cmf-addr">Address:</label>
+                    </div>
+                    <textarea class="form-control" id="form-cmf-addr" name="form-cmf-addr" rows="3" placeholder="Address 1*&#10;Address 2*&#10;Address 3" style="resize: none" required></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="form-group mb-1 mb-md-auto col-md-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-cmf-city">City:</label>
+                    </div>
+                    <input class="form-control" id="form-cmf-city" name="form-cmf-city" placeholder="City*" required />
+                  </div>
+                </div>
+                <div class="form-group mb-1 mb-md-auto col-md-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-cmf-state">State:</label>
+                    </div>
+                    <input class="form-control" id="form-cmf-state" name="form-cmf-state" placeholder="State*" required />
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-cmf-pin">PIN:</label>
+                    </div>
+                    <input class="form-control" id="form-cmf-pin" name="form-cmf-pin" placeholder="PIN*" pattern="\d{6}" required />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-cmf-gstin">GSTIN:</label>
+                    </div>
+                    <input class="form-control" id="form-cmf-gstin" name="form-cmf-gstin" required placeholder="GST Idendification Number*" />
+                  </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text bg-warning text-body mr-3" for="form-cmf-gstin">GST Type:</label>
+                    <div class="form-check form-check-inline mr-3">
+                      <input type="radio" id="form-cmf-cgst" name="form-cmf-gstin" class="form-check-input" value="cgst" required />
+                      <label class="form-check-label" for="form-cmf-cgst">CGTS</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input type="radio" id="form-cmf-igst" name="form-cmf-gstin" class="form-check-input" value="igst" required />
+                      <label class="form-check-label" for="form-cmf-igst">IGST</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div class="text-right">
+                    <!-- BUTTONS -->
+                    <button type="reset" class="btn btn-outline-secondary shadow-sm-dark no-shadow-hover mr-2">
+                    Reset
+                    </button>
+                    <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover">
+                    Create
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="text-white-50 bg-dark mt-5">
+      <div class="container-fluid py-3 d-flex justify-content-between align-items-center">
+        <p class="m-0">
+          &copy;&nbsp;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          &nbsp;&nbsp;-&nbsp;All rights reserved<span class="d-none d-md-inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br class="d-md-none" />crafted with &#10084; by
+          <a href="https://brandlumin.com" class="text-light" target="_blank" class="fw500">brandlumin</a>
+        </p>
+        <p class="m-0">
+          <a href="#">Back to top</a>
+        </p>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="scripts/preload.js"></script>
+    <script src="scripts/bluminvoice6.js"></script>
+  </body>
 </html>

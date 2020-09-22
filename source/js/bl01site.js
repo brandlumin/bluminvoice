@@ -5,15 +5,12 @@ window.addEventListener("resize", showScreenSize, true);
  *    DOCUMENT READY FUNCTION RUNS AT THE PAGELOAD
  *    @return {Boolean}   default
  */
-<<<<<<< HEAD
-(function ($) {})(jQuery);
-=======
-$(document).ready(function() {
+ (function ($) {
   showScreenSize(); // shows the screen-dimension on-screen
   $("body").css( "padding-top" , $("header").height() ); // setting the header display right
   if ( $("#login").length ) loginPageDisplay(); // setting the login page display
   if ( $(".bl__crf_crf").length ) crfPageDisplay(); // setting the CRF page display
-});
+})(jQuery);
 
 /**
  *    WINDOW RESIZE FUNCTION RUNS WHEN WINDOW'S SIZE CHANGES
@@ -72,4 +69,3 @@ function showScreenSize() {
   
   $("#blSizeWindow").text(()=> $(window).outerWidth() + " x " + $(window).outerHeight());
 }
->>>>>>> 0ed8f76674f8935305c22582bd2552a0b1980e1e
