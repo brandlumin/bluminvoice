@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/bootstrap.css" />
     <link rel="stylesheet" href="styles/preload.css" />
     <link rel="stylesheet" href="styles/bluminvoice.css" />
-    <title>CMF : bluminVoice</title>
+    <title>PMF : bluminVoice</title>
   </head>
 
   <body class="bl__home d-flex flex-column justify-content-between">
@@ -61,18 +61,56 @@
       </div>
     </header>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
-      <section class="container bl__home_cmf">
+      <section class="container bl__home_pmf">
         <div class="row">
           <div class="col">
-            <h3 class="text-center m-4">Customer Master Form</h3>
-            <form class="needs-validation p-4" accept-charset="UTF-8" action="./cmf_page.php" method="post" id="form-cmf" name="form-cmf" novalidate>
+            <h3 class="text-center m-4">Assignment Master Form</h3>
+            <form class="needs-validation p-4" accept-charset="UTF-8" action="./pmf_page.php" method="post" id="form-pmf" name="form-pmf" novalidate>
+              <div class="form-row">
+                <!-- CUSTOMER -->
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-pmf-accm">Customer:</label>
+                    </div>
+                    <select class="custom-select" id="form-pmf-cust" name="form-pmf-cust" required aria-describedby="form-pmf-cust-help" required>
+                      <option class="" value="" selected>Choose...</option>
+                      <option class="" value="1">ICSI CCGRT</option>
+                      <option class="" value="2">ICSI CERT</option>
+                      <option class="" value="3">ICSI WIRC</option>
+                      <option class="" value="4">Locate365</option>
+                    </select>
+                  </div>
+                  <small id="form-pmf-cust-help" class="form-text text-muted text-right">Select the customer.</small>
+                </div>
+              </div>
+              <div class="form-row">
+                <!-- CUSTOMER -->
+                <div class="form-group col-12">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-pmf-accm">Manager:</label>
+                    </div>
+                    <select class="custom-select" id="form-pmf-accm" name="form-pmf-accm" required aria-describedby="form-pmf-accm-help" required>
+                      <option class="" value="" selected>Choose...</option>
+                      <option class="" value="1">CS Ketan Bhalghamiya (Asst. Director)</option>
+                      <option class="" value="2">Mr. Rakesh Goyal (Dept. Director)</option>
+                      <option class="" value="3">Ms. Trupti Karkhanis (HOD)</option>
+                      <option class="" value="4">Mr. Sudhanshu Tewari</option>
+                      <option class="" value="5">CS Sapna Malhotra (Asst. Director)</option>
+                      <option class="" value="6">Ms. Archana Sawant</option>
+                    </select>
+                  </div>
+                  <small id="form-pmf-accm-help" class="form-text text-muted text-right">Select Account Manager or Project SPOC.</small>
+                </div>
+              </div>
               <div class="form-row">
                 <div class="form-group col-12">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-cmf-name">Customer:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-pmf-name">Project:</label>
                     </div>
-                    <input class="form-control" id="form-cmf-name" name="form-cmf-name" required placeholder="Customer Name" />
+                    <input class="form-control" id="form-pmf-name" name="form-pmf-name" required placeholder="Project's Name*" pattern="\w+" />
                   </div>
                 </div>
               </div>
@@ -80,35 +118,19 @@
                 <div class="form-group col-12">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-cmf-addr">Address:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-pmf-desc">Description:</label>
                     </div>
-                    <textarea class="form-control" id="form-cmf-addr" name="form-cmf-addr" rows="3" placeholder="Address 1*&#10;Address 2*&#10;Address 3" style="resize: none" required></textarea>
+                    <textarea class="form-control" id="form-pmf-desc" name="form-pmf-desc" rows="3" placeholder="Project Description" style="resize: none"></textarea>
                   </div>
                 </div>
               </div>
-              <div class="row align-items-center">
-                <div class="form-group mb-1 mb-md-auto col-md-4">
+              <div class="form-row">
+                <div class="form-group col-12">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-cmf-city">City:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-pmf-narr">Narration:</label>
                     </div>
-                    <input class="form-control" id="form-cmf-city" name="form-cmf-city" placeholder="City*" required />
-                  </div>
-                </div>
-                <div class="form-group mb-1 mb-md-auto col-md-4">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-cmf-state">State:</label>
-                    </div>
-                    <input class="form-control" id="form-cmf-state" name="form-cmf-state" placeholder="State*" required />
-                  </div>
-                </div>
-                <div class="form-group col-md-4">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-cmf-pin">PIN:</label>
-                    </div>
-                    <input class="form-control" id="form-cmf-pin" name="form-cmf-pin" placeholder="PIN*" pattern="\d{6}" required />
+                    <textarea class="form-control" id="form-pmf-narr" name="form-pmf-narr" rows="3" placeholder="Internal Narration" style="resize: none"></textarea>
                   </div>
                 </div>
               </div>
@@ -116,22 +138,17 @@
                 <div class="form-group col-md-6">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-cmf-gstin">GSTIN:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-pmf-date">Start Date:</label>
                     </div>
-                    <input class="form-control" id="form-cmf-gstin" name="form-cmf-gstin" required placeholder="GST Idendification Number*" />
+                    <input type="date" class="form-control" id="form-pmf-date" name="form-pmf-date" required />
                   </div>
                 </div>
                 <div class="form-group col-md-6">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text bg-warning text-body mr-3" for="form-cmf-gstin">GST Type:</label>
-                    <div class="form-check form-check-inline mr-3">
-                      <input type="radio" id="form-cmf-cgst" name="form-cmf-gstin" class="form-check-input" value="cgst" required />
-                      <label class="form-check-label" for="form-cmf-cgst">CGTS</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-pmf-city">Invoice#</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                      <input type="radio" id="form-cmf-igst" name="form-cmf-gstin" class="form-check-input" value="igst" required />
-                      <label class="form-check-label" for="form-cmf-igst">IGST</label>
-                    </div>
+                    <input class="form-control" id="form-pmf-city" name="form-pmf-city" disabled="" />
                   </div>
                 </div>
               </div>
@@ -143,7 +160,7 @@
                       Reset
                     </button>
                     <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover">
-                      Create
+                      Create Project
                     </button>
                   </div>
                 </div>
