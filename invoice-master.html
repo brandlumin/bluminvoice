@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/bootstrap.css" />
     <link rel="stylesheet" href="styles/preload.css" />
     <link rel="stylesheet" href="styles/bluminvoice.css" />
-    <title>PMF : bluminVoice</title>
+    <title>IMF : bluminVoice</title>
   </head>
 
   <body class="bl__home d-flex flex-column justify-content-between">
@@ -61,19 +61,19 @@
       </div>
     </header>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
-      <section class="container bl__home_pmf">
+      <section class="container bl__home_imf">
         <div class="row">
           <div class="col">
-            <h3 class="text-center m-4">Assignment Master Form</h3>
-            <form class="needs-validation p-4" accept-charset="UTF-8" action="./pmf_page.php" method="post" id="form-pmf" name="form-pmf" novalidate>
+            <h3 class="text-center m-4">Invoice Master Form</h3>
+            <form class="needs-validation p-4" accept-charset="UTF-8" action="./imf_page.php" method="post" id="form-imf" name="form-imf" novalidate>
               <div class="form-row">
-                <!-- CUSTOMER -->
-                <div class="form-group col-12">
+                <!-- Customer -->
+                <div class="form-group col-md-6">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-pmf-accm">Customer:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-imf-accm">Customer:</label>
                     </div>
-                    <select class="custom-select" id="form-pmf-cust" name="form-pmf-cust" required aria-describedby="form-pmf-cust-help" required>
+                    <select class="custom-select" id="form-imf-cust" name="form-imf-cust" required aria-describedby="form-imf-cust-help" required>
                       <option class="" value="" selected>Choose...</option>
                       <option class="" value="1">ICSI CCGRT</option>
                       <option class="" value="2">ICSI CERT</option>
@@ -81,17 +81,15 @@
                       <option class="" value="4">Locate365</option>
                     </select>
                   </div>
-                  <small id="form-pmf-cust-help" class="form-text text-muted text-right">Select the customer.</small>
+                  <small id="form-imf-cust-help" class="form-text text-muted text-right">Select the customer.</small>
                 </div>
-              </div>
-              <div class="form-row">
-                <!-- CUSTOMER -->
-                <div class="form-group col-12">
+                <!-- Account Manager -->
+                <div class="form-group col-md-6">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-pmf-accm">Manager:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-imf-accm">Manager:</label>
                     </div>
-                    <select class="custom-select" id="form-pmf-accm" name="form-pmf-accm" required aria-describedby="form-pmf-accm-help" required>
+                    <select class="custom-select" id="form-imf-accm" name="form-imf-accm" required aria-describedby="form-imf-accm-help" required>
                       <option class="" value="" selected>Choose...</option>
                       <option class="" value="1">CS Ketan Bhalghamiya (Asst. Director)</option>
                       <option class="" value="2">Mr. Rakesh Goyal (Dept. Director)</option>
@@ -101,66 +99,114 @@
                       <option class="" value="6">Ms. Archana Sawant</option>
                     </select>
                   </div>
-                  <small id="form-pmf-accm-help" class="form-text text-muted text-right">Select Account Manager or Project SPOC.</small>
+                  <small id="form-imf-accm-help" class="form-text text-muted text-right">Select Account Manager or Project SPOC.</small>
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-12">
+                <!-- Project -->
+                <div class="form-group col-md-8">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-pmf-name">Project:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-crf-project">Project:</label>
                     </div>
-                    <input class="form-control" id="form-pmf-name" name="form-pmf-name" required placeholder="Project's Name*" pattern="\w+" />
+                    <select class="custom-select" id="form-crf-project" name="form-crf-project" required aria-describedby="form-crf-project-help">
+                      <option value="" selected>Choose...</option>
+                      <option value="1">
+                        Lorem ipsum dolor sit amet consectetur
+                      </option>
+                      <option value="2">
+                        Reiciendis labore minima natus, sequi nobis
+                      </option>
+                      <option value="3">
+                        Cumque, placeat iure natus, nulla itaque
+                      </option>
+                      <option value="4">Exercitationem quaerat quibusdam</option>
+                    </select>
+                  </div>
+                  <small id="form-crf-project-help" class="form-text text-muted text-right">Select the project.</small>
+                </div>
+                <!-- Invoice -->
+                <div class="form-group col-md-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-imf-city">Invoice#</label>
+                    </div>
+                    <input class="form-control" id="form-imf-city" name="form-imf-city" disabled="disabled" />
                   </div>
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-12">
+                <!-- Start Date -->
+                <div class="form-group col-md-4">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-pmf-desc">Description:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-imf-dtstrt">Start Date:</label>
                     </div>
-                    <textarea class="form-control" id="form-pmf-desc" name="form-pmf-desc" rows="3" placeholder="Project Description" style="resize: none"></textarea>
+                    <input type="date" class="form-control" id="form-imf-dtstrt" name="form-imf-dtstrt" disabled="disabled" />
+                  </div>
+                </div>
+                <!-- End Date -->
+                <div class="form-group col-md-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-imf-dtend">End Date:</label>
+                    </div>
+                    <input type="date" class="form-control" id="form-imf-dtend" name="form-imf-dtend" required />
+                  </div>
+                </div>
+                <!-- Payment Date -->
+                <div class="form-group col-md-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-imf-dtpay">Paid Date:</label>
+                    </div>
+                    <input type="date" class="form-control" id="form-imf-dtpay" name="form-imf-dtpay" disabled="disabled" />
                   </div>
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-12">
+                <!-- Description -->
+                <div class="form-group col-md-6">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-pmf-narr">Narration:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-imf-desc">Description:</label>
                     </div>
-                    <textarea class="form-control" id="form-pmf-narr" name="form-pmf-narr" rows="3" placeholder="Internal Narration" style="resize: none"></textarea>
+                    <textarea class="form-control" id="form-imf-desc" name="form-imf-desc" rows="3" placeholder="Project Description" style="resize: none" disabled="disabled"></textarea>
+                  </div>
+                </div>
+                <!-- Narration -->
+                <div class="form-group col-md-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-imf-narr">Narration:</label>
+                    </div>
+                    <textarea class="form-control" id="form-imf-narr" name="form-imf-narr" rows="3" placeholder="Internal Narration" style="resize: none"></textarea>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-md-6">
+                <!-- Billing Details -->
+                <div class="form-group col">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-pmf-date">Start Date:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-imf-billing">Billing Details:</label>
                     </div>
-                    <input type="date" class="form-control" id="form-pmf-date" name="form-pmf-date" required />
-                  </div>
-                </div>
-                <div class="form-group col-md-6">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-pmf-city">Invoice#</label>
-                    </div>
-                    <input class="form-control" id="form-pmf-city" name="form-pmf-city" disabled="" />
+                    <textarea class="form-control" id="form-imf-billing" name="form-imf-billing" rows="5" placeholder="Details*" style="resize: none" required="required"></textarea>
                   </div>
                 </div>
               </div>
               <div class="row">
+                <!-- Buttons -->
                 <div class="col-12">
                   <div class="text-right">
-                    <!-- BUTTONS -->
                     <button type="reset" class="btn btn-outline-secondary shadow-sm-dark no-shadow-hover mr-2">
                       Reset
                     </button>
+                    <button type="submit" class="btn btn-info shadow-sm-dark no-shadow-hover mr-2" disabled="disabled">
+                      Receive Payment
+                    </button>
                     <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover">
-                      Create Project
+                      Generate Invoice
                     </button>
                   </div>
                 </div>
