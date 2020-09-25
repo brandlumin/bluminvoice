@@ -1,40 +1,43 @@
 /* VARIABLES SETUP - plugins */
 const { dest, gulp, parallel, series, src, watch } = require("gulp"),
-  babel                                            = require("gulp-babel"),
-  concat                                           = require("gulp-concat"),
-  htmlmin                                          = require("gulp-htmlmin"),
-  livereload                                       = require("gulp-livereload"),
-  postcss                                          = require("gulp-postcss"),
-  prefix                                           = require("autoprefixer"),
-  sass                                             = require("gulp-sass"),
-  sourcemaps                                       = require("gulp-sourcemaps"),
-  stripCSS                                         = require("gulp-strip-css-comments"),
-  terser                                           = require("gulp-terser"),
+  babel = require("gulp-babel"),
+  concat = require("gulp-concat"),
+  htmlmin = require("gulp-htmlmin"),
+  livereload = require("gulp-livereload"),
+  postcss = require("gulp-postcss"),
+  prefix = require("autoprefixer"),
+  sass = require("gulp-sass"),
+  sourcemaps = require("gulp-sourcemaps"),
+  stripCSS = require("gulp-strip-css-comments"),
+  terser = require("gulp-terser"),
   /* VARIABLES SETUP - plugins options */
   terserOptions = {
     output: {
-      beautify: false,
-      comments: false,
+      beautify: true,
+      comments: false, // default is FALSE
+      // comments: "/^[!*]/", // default is FALSE
       indent_level: 2,
-      ecma: 2015,
-      quote_style: 0,
+      ecma: 2016,
+      quote_style: 0 // quote style: prefers double quotes
     },
-    ecma: 2015,
+    ecma: 2016,
     keep_fnames: true,
-    mangle: true,
+    mangle: true, // default
     toplevel: false,
     warnings: "verbose",
   }, // https://github.com/terser/terser#minify-options
   babelOptions = {
-    presets: [
+    "presets": [
       "@babel/preset-env",
       {
-        sourceType: "module",
-        compact: "auto" /*default*/,
-        comments: false /*, minified: true*/,
-      },
-    ], // "sourceType": "unambiguous" to kill STRICT
-    plugins: [["@babel/plugin-transform-arrow-functions", { spec: true }]],
+        "sourceType": "unambiguous",
+        "compact": false,
+        "comments": false
+      }
+    ],
+    "plugins": [
+      ["@babel/plugin-transform-arrow-functions", { "spec": true }]
+    ]
   },
   sassOptions = {
     errLogToConsole: true,
@@ -51,10 +54,10 @@ const { dest, gulp, parallel, series, src, watch } = require("gulp"),
     removeAttributeQuotes: true,
     removeComments: true,
     removeEmptyAttributes: true,
-  };
-// postcssOptions = [ prefix({grid: true}) ];
-/* VARIABLES SETUP - files */
-const bootstrapFiles = "source/scss/bootstrap/**/*",
+  },
+  postcssOptions = [prefix({ grid: true })],
+  /* VARIABLES SETUP - files */
+  bootstrapFiles = "source/scss/bootstrap/**/*",
   cssPluginFiles = "source/scss/plugin/**/*",
   styleFiles = "source/scss/brandlumin/**/*",
   jsPluginFiles = [
@@ -68,7 +71,9 @@ const bootstrapFiles = "source/scss/bootstrap/**/*",
 /* FUNCTION DEFINITIONS */
 function preloadJS() {
   return src(jsPluginFiles, { allowEmpty: true })
+    .pipe(sourcemaps.init())
     .pipe(concat("preload.js", { newLine: ";" }))
+    .pipe(sourcemaps.write('.'))
     .pipe(
       dest("site/scripts/").on("finish", function (callback) {
         console.log("PreloadJS created.");
@@ -82,17 +87,17 @@ function workScript() {
     .pipe(
       dest("site/scripts/").on("finish", (callback) => {
         return src("site/scripts/site.js", {
-          allowEmpty: true,
-        }) /*.pipe(sourcemaps.init())*/
-          .pipe(babel(babelOptions))
+            allowEmpty: true,
+          }) /*.pipe(sourcemaps.init())*/
           .pipe(
             concat("bluminvoice5.js", { newLine: ";" })
           ) /*.pipe(sourcemaps.write())*/
+          .pipe(babel(babelOptions))
           .pipe(
             dest("site/scripts/").on("finish", (callback) => {
               return src("site/scripts/site.js", {
-                allowEmpty: true,
-              }) /*.pipe(sourcemaps.init())*/
+                  allowEmpty: true,
+                }) /*.pipe(sourcemaps.init())*/
                 .pipe(terser(terserOptions))
                 .pipe(
                   concat("bluminvoice6.js", { newLine: ";" })
@@ -108,7 +113,8 @@ function workScript() {
 function bootstrapCSS() {
   return src("source/scss/bootstrap/bootstrap.scss", { allowEmpty: true })
     .pipe(sass.sync(sassOptions).on("error", sass.logError))
-    .pipe(postcss([prefix()])) /*.pipe(stripCSS())*/
+    .pipe(postcss([prefix()]))
+    .pipe(stripCSS())
     .pipe(
       dest("site/styles/").on("finish", function (callback) {
         console.log("BootstrapCSS created.");

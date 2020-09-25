@@ -171,7 +171,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-imf-desc">Description:</label>
                     </div>
-                    <textarea class="form-control" id="form-imf-desc" name="form-imf-desc" rows="3" placeholder="Project Description" style="resize: none" disabled="disabled"></textarea>
+                    <textarea class="form-control" id="form-imf-desc" name="form-imf-desc" rows="3" placeholder="Project Description" style="resize: none"></textarea>
                   </div>
                 </div>
                 <!-- Narration -->
@@ -198,17 +198,9 @@
               <div class="row">
                 <!-- Buttons -->
                 <div class="col-12">
-                  <div class="text-right">
-                    <button type="reset" class="btn btn-outline-secondary shadow-sm-dark no-shadow-hover mr-2">
-                      Reset
-                    </button>
-                    <button type="submit" class="btn btn-info shadow-sm-dark no-shadow-hover mr-2" disabled="disabled">
-                      Receive Payment
-                    </button>
-                    <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover">
-                      Generate Invoice
-                    </button>
-                  </div>
+                  <button type="submit" class="btn btn-danger shadow-sm-dark no-shadow-hover" disabled="disabled">Receive Payment</button>
+                  <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover float-right">Generate Invoice</button>
+                  <button type="reset" class="btn btn-outline-secondary shadow-sm-dark no-shadow-hover float-right mr-2">Reset</button>
                 </div>
               </div>
             </form>
@@ -221,7 +213,7 @@
         <p class="m-0">
           &copy;&nbsp;
           <script>
-          document.write( new Date().getFullYear() );
+          document.write(new Date().getFullYear());
           </script>
           &nbsp;&nbsp;-&nbsp;All rights reserved<span class="d-none d-md-inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br class="d-md-none" />crafted with &#10084; by&nbsp;
           <a href="https://brandlumin.com" class="text-light" target="_blank" class="fw500">brandlumin</a>

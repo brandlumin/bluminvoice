@@ -3,26 +3,27 @@
  *    @return {default}
  */
 function showScreenSize() {
-  // While removing showScreenSize, take the following one line into Document.Ready
+  /* Plugged in setting header's height sized top-padding to body */
   $("body").css("paddingTop", (height) => $("header").height());
 
+  /* showScreenSize() starts here */
   if (!$("#blSizeWindow").length)
     $("<div/>", {
       id: "blSizeWindow",
       class: "px-3 py-1 small",
     })
-      .css({
-        position: "fixed",
-        bottom: "10px",
-        right: "10px",
-        backgroundColor: "rgba(255,255,255,.5)",
-        border: "solid 1px rgba(255,255,255,1)",
-        boxShadow: "0 2px 6px rgba(0,0,0,.4)",
-        color: "#333",
-        zIndex: "2000",
-        // display: "none",
-      })
-      .appendTo("body");
+    .css({
+      position: "fixed",
+      bottom: "10px",
+      right: "10px",
+      backgroundColor: "rgba(255,255,255,.5)",
+      border: "solid 1px rgba(255,255,255,1)",
+      boxShadow: "0 2px 6px rgba(0,0,0,.4)",
+      color: "#333",
+      zIndex: "2000",
+      // display: "none",
+    })
+    .appendTo("body");
 
   $("#blSizeWindow").text(
     () => $(window).outerWidth() + " : " + $(window).outerHeight()
@@ -30,7 +31,7 @@ function showScreenSize() {
 }
 
 /**
- *
+ * ALERT WINDOWS SHOWS ON-SCREEN MESSAGES
  * @param {text} msg
  * @param {number} dur
  * @param {text} bgc
@@ -40,10 +41,10 @@ function fAlert(msg = "Alert", dur = 300, bgc = `#FFE082`, tc = `#20232a`) {
   if (bgc == `#FF5733` || bgc == `#27AE60`) tc = `#ffffff`;
   if ($(`#blAlertBox`.length)) $(`#blAlertBox`).hide();
   let box = $(`<div/>`, {
-    // THE ALERT WINDOW
-    id: `blAlertBox`,
-    class: `text-center`,
-  })
+      // THE ALERT WINDOW
+      id: `blAlertBox`,
+      class: `text-center`,
+    })
     .css({
       backgroundColor: bgc,
       border: `5px solid #fff`,
@@ -90,28 +91,25 @@ function fAlert(msg = "Alert", dur = 300, bgc = `#FFE082`, tc = `#20232a`) {
 }
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function ($) {
-  "use strict";
-  window.addEventListener(
-    "load",
-    function () {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName("needs-validation");
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener(
-          "submit",
-          function (event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add("was-validated");
-          },
-          false
-        );
-      });
-    },
-    false
-  );
-})(jQuery);
+window.addEventListener(
+  "load",
+  function () {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName("needs-validation");
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  },
+  false
+);
