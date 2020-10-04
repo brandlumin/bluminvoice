@@ -20,17 +20,19 @@ section
 
 /* Removing oulines from input fields */
 form
+  .text-muted
+    color: $gray-200 !important
   border-radius: .5em
   box-shadow: 0 .5em 1.5em transparentize(black, .8)
-  background: $gray-300
-  border: 1px solid lighten($purple, 30)
+  background: CornflowerBlue
+  border: 1px solid lighten(DodgerBlue, 30)
   transition: 300ms box-shadow ease
   &:hover
-    box-shadow: 0 0 .5em -.125em transparentize($green, 0.2)
+    box-shadow: 0 0 1em -.125em transparentize($green,0.5)
     border: 1px solid transparentize($green, 0.7)
   &:focus-within
     box-shadow: none
-    border: 1px solid lighten($purple, 30)
+    border: 1px solid lighten(DodgerBlue, 30)
 
 /* Removing oulines from input fields */
 input,
@@ -58,6 +60,12 @@ li,
 ol
   &:last-of-type
     margin-bottom: 0
+
+
+/* setting LABELs */
+label
+  min-width: 110px
+
 
 /* Setting FOOTER */
 footer
