@@ -1,4 +1,5 @@
 /**
+ *    Called by .disAttr(action="toggle, enable, disable")
  *    Function to SCREEN through the GIVEN elements, and 
  *    TOGGLE the DISABLED attribute ONLY for the ALLOWED 
  *    BUTTON, INPUT and TEXTAREA tags.
