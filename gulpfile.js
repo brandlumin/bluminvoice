@@ -26,19 +26,6 @@ const { dest, gulp, parallel, series, src, watch } = require("gulp"),
     toplevel: false,
     warnings: "verbose",
   }, // https://github.com/terser/terser#minify-options
-  babelOptions = {
-    "presets": [
-      "@babel/preset-env",
-      {
-        "sourceType": "unambiguous",
-        "compact": false,
-        "comments": false
-      }
-    ],
-    "plugins": [
-      ["@babel/plugin-transform-arrow-functions", { "spec": true }]
-    ]
-  },
   sassOptions = {
     errLogToConsole: true,
     precision: 10,
@@ -58,15 +45,15 @@ const { dest, gulp, parallel, series, src, watch } = require("gulp"),
   postcssOptions = [prefix({ grid: true })],
   /* VARIABLES SETUP - files */
   bootstrapFiles = "source/scss/bootstrap/**/*",
-  cssPluginFiles = "source/scss/plugin/**/*",
-  styleFiles = "source/scss/brandlumin/**/*",
+  blStyleFiles = "source/scss/brandlumin/**/*",
   jsPluginFiles = [
     "source/js/jquery-3.5.1.min.js",
     "source/js/popper.min.js",
     "source/js/bootstrap.min.js",
   ],
-  scriptFiles = "source/js/bl*.*",
+  blScriptFiles = "source/js/bl*.js*",
   frontEndFiles = ["*.html", "*.php"];
+
 
 /* FUNCTION DEFINITIONS */
 function preloadJS() {
@@ -74,66 +61,31 @@ function preloadJS() {
     .pipe(sourcemaps.init())
     .pipe(concat("preload.js", { newLine: ";" }))
     .pipe(sourcemaps.write('.'))
-    .pipe(
-      dest("site/scripts/").on("finish", function (callback) {
-        console.log("PreloadJS created.");
-      })
-    );
+    .pipe(dest("site/scripts/"));
 }
 
 function workScript() {
-  return src(scriptFiles, { allowEmpty: true }) /*.pipe(sourcemaps.init())*/
-    .pipe(concat("site.js")) /*.pipe(sourcemaps.write())*/
+  return src(blScriptFiles, { allowEmpty: true }) /*.pipe(sourcemaps.init())*/
+    .pipe(sourcemaps.init())
+    .pipe(concat("site.js"))
+    // .pipe(sourcemaps.write())
+    .pipe(terser(terserOptions))
     .pipe(
-      dest("site/scripts/").on("finish", (callback) => {
-        return src("site/scripts/site.js", {
-            allowEmpty: true,
-          }) /*.pipe(sourcemaps.init())*/
-          .pipe(
-            concat("bluminvoice5.js", { newLine: ";" })
-          ) /*.pipe(sourcemaps.write())*/
-          .pipe(babel(babelOptions))
-          .pipe(
-            dest("site/scripts/").on("finish", (callback) => {
-              return src("site/scripts/site.js", {
-                  allowEmpty: true,
-                }) /*.pipe(sourcemaps.init())*/
-                .pipe(terser(terserOptions))
-                .pipe(
-                  concat("bluminvoice6.js", { newLine: ";" })
-                ) /*.pipe(sourcemaps.write())*/
-                .pipe(dest("site/scripts/"));
-            })
-          );
-      })
+      concat("script6es.js", { newLine: ";" })
     )
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest("site/scripts/"))
     .pipe(livereload());
 }
 
 function bootstrapCSS() {
   return src("source/scss/bootstrap/bootstrap.scss", { allowEmpty: true })
-    .pipe(sass.sync(sassOptions).on("error", sass.logError))
-    .pipe(postcss([prefix()]))
-    .pipe(stripCSS())
-    .pipe(
-      dest("site/styles/").on("finish", function (callback) {
-        console.log("BootstrapCSS created.");
-      })
-    )
-    .pipe(livereload());
-}
-
-function preloadCSS() {
-  return src("source/scss/plugin/preload.sass", { allowEmpty: true })
     .pipe(sourcemaps.init())
     .pipe(sass.sync(sassOptions).on("error", sass.logError))
     .pipe(postcss([prefix()]))
-    .pipe(sourcemaps.write())
-    .pipe(
-      dest("site/styles/").on("finish", function (callback) {
-        console.log("PreloadCSS created.");
-      })
-    )
+    .pipe(stripCSS())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest("site/styles/"))
     .pipe(livereload());
 }
 
@@ -142,23 +94,27 @@ function workStyle() {
     .pipe(sourcemaps.init())
     .pipe(sass.sync(sassOptions).on("error", sass.logError))
     .pipe(postcss([prefix()])) /*.pipe(stripCSS())*/
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(dest("site/styles/").on("finish", (callback) => livereload.reload()));
+}
+
+function minifyFrontEnd() {
+  return src(frontEndFiles, { allowEmpty: true })
+    .pipe(htmlmin(htmlminOptions))
+    .pipe(dest("site/").on("finish", (callback) => livereload.reload()));
 }
 
 function workFrontEnd() {
   return src(frontEndFiles, { allowEmpty: true })
-    .pipe(htmlmin(htmlminOptions))
     .pipe(dest("site/").on("finish", (callback) => livereload.reload()));
 }
 
 /* WATCH FUNCTION */
 function watchFiles() {
   watch(bootstrapFiles, bootstrapCSS);
-  watch(cssPluginFiles, preloadCSS);
-  watch(styleFiles, workStyle);
+  watch(blStyleFiles, workStyle);
   watch(jsPluginFiles, preloadJS);
-  watch(scriptFiles, workScript);
+  watch(blScriptFiles, workScript);
   watch(frontEndFiles, workFrontEnd);
   console.log(">> Begun watching for changes...");
 }
@@ -176,13 +132,13 @@ function setupServer() {
 /* FINAL EXPORTS */
 exports.default = series(
   bootstrapCSS,
-  preloadCSS,
   preloadJS,
   workStyle,
   workScript,
   workFrontEnd,
   parallel(setupServer, watchFiles)
 );
-exports.styles = series(bootstrapCSS, preloadCSS, workStyle);
+exports.styles = series(bootstrapCSS, workStyle);
 exports.scripts = series(preloadJS, workScript);
 exports.frontend = series(workFrontEnd);
+exports.minifyfrontend = series(minifyFrontEnd);

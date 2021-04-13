@@ -91,6 +91,7 @@ function fAlert(msg = "Alert", dur = 300, bgc = `#FFE082`, tc = `#20232a`) {
 }
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
+// NECCESSARY FOR BOOTSTRAP VALIDATION
 window.addEventListener(
   "load",
   function () {

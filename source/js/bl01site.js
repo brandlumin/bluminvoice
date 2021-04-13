@@ -5,7 +5,10 @@ window.addEventListener("resize", showScreenSize, true);
  *    DOCUMENT READY FUNCTION RUNS AT THE PAGELOAD
  *    @return {Boolean}   default
  */
-(function ($) {})(jQuery);
+jQuery(function ($) {
+  fAlert("DOM Ready", 150);
+  // $('<p/>', { class: 'text-success m-0' }).appendTo('header').text("Paragraph added by jQuery.");
+});
 
 /**
  *    WINDOW RESIZE FUNCTION RUNS WHEN WINDOW'S SIZE CHANGES
