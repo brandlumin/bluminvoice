@@ -52,7 +52,7 @@ const { dest, gulp, parallel, series, src, watch } = require("gulp"),
     "source/js/bootstrap.min.js",
   ],
   blScriptFiles = "source/js/bl*.js*",
-  frontEndFiles = ["*.html", "*.php"];
+  frontEndFiles = ["*.htm*", "*.php"];
 
 
 /* FUNCTION DEFINITIONS */

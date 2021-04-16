@@ -17,6 +17,9 @@
 =shadow-sm-dark
   box-shadow: 0 0.125rem 0.25rem transparentize($black, .75)
 
+=bg-yellow-40p
+  background: lighten(#ff0, 40%) !important
+
 /** Placeholders End */
 
 /**
@@ -44,6 +47,12 @@
 /* medium size shadows */
 .shadow-md
   box-shadow: 0 .125rem .75rem rgba(0,0,0,0.17) 
+
+/* center vertically */
+.center-vertical
+  left: 50%
+  transform: translateX(-50%)
+
 
 /* Removing oulines from input fields */
 input,

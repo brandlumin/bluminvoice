@@ -1,0 +1,20 @@
+[name=subtitle]
+  background: lighten(CornflowerBlue, 20%)
+  color: $gray-700
+  padding: 0.5rem 1rem
+  border-top-left-radius: .25rem
+  border-top-right-radius: .25rem
+  & + .list
+    div
+      cursor: pointer
+      &:hover
+        +bg-yellow-40p
+        +shadow-sm-dark
+.bl__home_cmf
+  // Designing Address input field
+  input[name*="form-cmf-addr"]
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+  label[for*="form-cmf-addr"]
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0

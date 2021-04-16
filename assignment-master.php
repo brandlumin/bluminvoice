@@ -16,53 +16,7 @@
   </head>
 
   <body class="bl__home d-flex flex-column justify-content-between">
-    <header class="fixed-top">
-      <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-7 col-md-7 py-4">
-              <h4 class="text-light">About</h4>
-              <p class="text-white-50">
-                It is a customized webApp for BRANDLUMIN. It helps manage clients and billing processes as well as it takes care of the work-in-progress and allows to include billable steps in the billing.
-              </p>
-            </div>
-            <div class="col-sm-5 col-md-4 offset-md-1 py-4">
-              <h4 class="text-warning">
-                Menu&nbsp;&raquo;&raquo;&raquo;&nbsp;...
-              </h4>
-              <ul class="list-unstyled">
-                <li class="mb-2">
-                  <a href="customer-master.html" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold mr-1">Customer</span>Master</a>
-                </li>
-                <li class="mb-2">
-                  <a href="account-master.html" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold mr-1">Accounts</span>Master</a>
-                </li>
-                <li class="mb-2">
-                  <a href="assignment-master.html" class="text-info">&raquo;&nbsp;&nbsp;<span class="font-weight-bold mr-1">New</span>Assignments</a>
-                </li>
-                <li class="mb-2">
-                  <a href="change-request.html" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold mr-1">Changes</span>Request</a>
-                </li>
-                <li>
-                  <a href="invoice-master.html" class="text-white">&raquo;&nbsp;&nbsp;Generate<span class="font-weight-bold ml-1">Invoices</span></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark">
-        <div class="container-fluid d-flex justify-content-between">
-          <a href="./" class="navbar-brand d-flex align-items-center">
-            <img class="mr-2" src="images/bl-logo.svg" alt="" height="20" style="filter: grayscale(100%) invert(100%) brightness(150%)" />
-            <strong>bluminVoice</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
-    </header>
+    <?php @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="container bl__home_pmf">
         <div class="row">
@@ -203,21 +157,7 @@
         </div>
       </section>
     </main>
-    <footer class="text-white-50 bg-dark mt-5">
-      <div class="container-fluid py-3 d-flex justify-content-between align-items-center">
-        <p class="m-0">
-          &copy;&nbsp;
-          <script>
-          document.write(new Date().getFullYear());
-          </script>
-          &nbsp;&nbsp;-&nbsp;All rights reserved<span class="d-none d-md-inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br class="d-md-none" />crafted with &#10084; by&nbsp;
-          <a href="https://brandlumin.com" class="text-light" target="_blank" class="fw500">brandlumin</a>
-        </p>
-        <p class="m-0">
-          <a href="#">Back to top</a>
-        </p>
-      </div>
-    </footer>
+    <?php @include_once "footer.html" ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="scripts/preload.js"></script>

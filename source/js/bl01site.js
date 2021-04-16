@@ -6,8 +6,8 @@ window.addEventListener("resize", showScreenSize, true);
  *    @return {Boolean}   default
  */
 jQuery(function ($) {
-  fAlert("DOM Ready", 150);
-  // $('<p/>', { class: 'text-success m-0' }).appendTo('header').text("Paragraph added by jQuery.");
+  fAlert("DOM Ready", 30);
+  fNavActive();
 });
 
 /**
