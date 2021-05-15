@@ -1,4 +1,8 @@
-function fNavActive() {
+/**
+ *    [fNavActive description]
+ *    Disables current page link in the navbar
+ */
+function fNavDeactive() {
   let pageTitle, seq;
   pageTitle = $("h3.font-weight-bold").text().replace(/\sform$/i, "").replace(/\s/i, "-").toLowerCase();
   if (pageTitle == "customer-master") seq = 0;

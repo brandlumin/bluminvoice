@@ -7,7 +7,7 @@ window.addEventListener("resize", showScreenSize, true);
  */
 jQuery(function ($) {
   fAlert("DOM Ready", 30);
-  fNavActive();
+  fNavDeactive();
 });
 
 /**

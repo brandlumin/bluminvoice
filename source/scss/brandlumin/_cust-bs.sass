@@ -20,15 +20,25 @@ header #navbarHeader
 
 /* Making "LEAD" font-size responsive */
 .jumbotron
+  margin-top: 0 !important
   .lead
     @media (max-width: 767.98px)
       font-size: 1rem
 
+// main[role=main]
+//   section
+//     &:only-child,
+//     & + section
+//       margin-top: 3rem
+
+
 main[role=main]
   section
-    &:only-child,
+    margin-top: 1rem
+    &:only-child
+      margin-top: 0
     & + section
-      margin-top: 3rem
+      margin-top: 2rem
 
 
 /* Removing oulines from input fields */
@@ -86,3 +96,7 @@ label
 /* Setting FOOTER */
 footer
   box-shadow: 0 0 0.2em #0003
+
+.alert
+  z-index: 2000
+  +shadow-sm-dark

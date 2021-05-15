@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./site.webmanifest">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="styles/bootstrap.css" />
-    <link rel="stylesheet" href="styles/bluminvoice.css" />
-    <title>PMF : bluminVoice</title>
-  </head>
-
-  <body class="bl__home d-flex flex-column justify-content-between">
     <?php @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="container bl__home_pmf">
@@ -30,15 +12,26 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-pmf-accm">Customer:</label>
                     </div>
+              <!-- Here is the URL: https://www.lisenme.com/dynamic-dependent-select-box-using-jquery-ajax-php/ -->
                     <select class="custom-select" id="form-pmf-cust" name="form-pmf-cust" required aria-describedby="form-pmf-cust-help" required>
-                      <option class="" value="" selected>Choose...</option>
-                      <option class="" value="1">ICSI CCGRT</option>
-                      <option class="" value="2">ICSI CERT</option>
-                      <option class="" value="3">ICSI WIRC</option>
-                      <option class="" value="4">Locate365</option>
+                      <?php @include "consql.php";
+                        // get all the customers
+                        $custList = mysqli_query($connection, "SELECT `custID`, `custName` FROM `customerMaster` ORDER BY `custName` ASC");
+                        // Closing DB connection
+                        mysqli_close($connection);
+                        // populating the data into options
+                        if(mysqli_num_rows($custList) > 0 ) {
+                          echo "<option value=0 selected>Select the Customer...</option>";
+                          while($row=mysqli_fetch_array($custList)) {
+                            echo "<option value=$row[custID]>$row[custName]</option>";
+                          }
+                        } else {
+                          echo "<option disabled value=0 selected>Customer not found in the system.</option>";
+                        }
+                      ?>
                     </select>
                   </div>
-                  <small id="form-pmf-cust-help" class="form-text text-muted text-right">Select the customer.</small>
+                  <small id="form-pmf-cust-help" class="form-text text-muted text-right">Select the Customer.</small>
                 </div>
               </div>
               <div class="row">
@@ -49,16 +42,10 @@
                       <label class="input-group-text bg-warning text-body" for="form-pmf-accm">Manager:</label>
                     </div>
                     <select class="custom-select" id="form-pmf-accm" name="form-pmf-accm" required aria-describedby="form-pmf-accm-help" required>
-                      <option class="" value="" selected>Choose...</option>
-                      <option class="" value="1">CS Ketan Bhalghamiya (Asst. Director)</option>
-                      <option class="" value="2">Mr. Rakesh Goyal (Dept. Director)</option>
-                      <option class="" value="3">Ms. Trupti Karkhanis (HOD)</option>
-                      <option class="" value="4">Mr. Sudhanshu Tewari</option>
-                      <option class="" value="5">CS Sapna Malhotra (Asst. Director)</option>
-                      <option class="" value="6">Ms. Archana Sawant</option>
+                      <option value=0 selected>Select the Account Manager...</option>
                     </select>
                   </div>
-                  <small id="form-pmf-accm-help" class="form-text text-muted text-right">Select Account Manager or Project SPOC.</small>
+                  <small id="form-pmf-accm-help" class="form-text text-muted text-right">Select the Account Manager or Project SPOC.</small>
                 </div>
               </div>
               <div class="row">
@@ -158,10 +145,3 @@
       </section>
     </main>
     <?php @include_once "footer.html" ?>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="scripts/preload.js"></script>
-    <script src="scripts/script6es.js"></script>
-  </body>
-
-</html>

@@ -1,18 +1,13 @@
 # bluminvoice
 It is a custom 'personal' project for internal use.
 
-CREATE TABLE `blvoice`.`customerMaster` ( 
-                                         `custCreate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
-                                         `custName` VARCHAR(255) NOT NULL , 
-                                         `custAddr1` VARCHAR(255) NOT NULL , 
-                                         `custAddr2` VARCHAR(255) NOT NULL , 
-                                         `custAddr3` VARCHAR(255) NULL , 
-                                         `custCity` VARCHAR(50) NOT NULL , 
-                                         `custSate` VARCHAR(50) NOT NULL , 
-                                         `custPin` VARCHAR(10) NOT NULL , 
-                                         `custGSTIN` VARCHAR(20) NOT NULL , 
-                                         `custType` VARCHAR(10) NOT NULL COMMENT 'CGST or SGST' , 
-                                         `custID` INT(3) NOT NULL AUTO_INCREMENT , 
-                                         PRIMARY KEY (`custID`), 
-                                         INDEX `CUSTOMERS` (`custName`)
-) ENGINE = InnoDB;
+Customer: borrow from Account Master.
+Manager: Make it from AccountMaster table using Customer dropdown code.
+Project: Name of the project.
+Invoice: Serial number to be booked using excel calculation.
+Description: Highlights of the project, acts as Invoice byline
+Narration: In-house notes to keep in mind.
+Start Date: Should be filled with today's date.
+Quoted: Cost that was agreed upon by both the parties.
+
+-- Make @Design and @Layout rates "Hidden" to extend it to WebApp Developments --

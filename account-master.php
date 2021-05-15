@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./site.webmanifest">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="styles/bootstrap.css" />
-    <link rel="stylesheet" href="styles/bluminvoice.css" />
-    <title>AMF : bluminVoice</title>
-  </head>
-
-  <body class="bl__home d-flex flex-column justify-content-between">
     <?php @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="container bl__home_amf">
@@ -31,11 +13,21 @@
                       <label class="input-group-text bg-warning text-body" for="form-amf-cust">Customer:</label>
                     </div>
                     <select class="custom-select" id="form-amf-cust" name="form-amf-cust" required aria-describedby="form-amf-cust-help" required autofocus="">
-                      <option class="" value="" selected>Choose...</option>
-                      <option class="" value="1">ICSI CCGRT</option>
-                      <option class="" value="2">ICSI CERT</option>
-                      <option class="" value="3">ICSI WIRC</option>
-                      <option class="" value="4">Locate365</option>
+                      <?php
+                        @include "consql.php";
+                        $query1 = "SELECT `custID`, `custName` FROM `customerMaster` ORDER BY `custName` ASC";
+                        $custList = mysqli_query($connection, $query1);
+                        mysqli_close($connection);
+                        if(mysqli_num_rows($custList) > 0 ) {
+                          $custOptions = "<option class='' value='' selected>Choose Customer...</option>";
+                          while($row=mysqli_fetch_array($custList)) {
+                            $custOptions = $custOptions . "<option value='" . $row["custID"] . "'>" . $row["custName"] . "</option>";
+                          }
+                        } else {
+                          $custOptions = "<option disabled value='0' selected>Customer not found in the system.</option>";
+                        }
+                        echo $custOptions;
+                      ?>
                     </select>
                   </div>
                   <small id="form-amf-cust-help" class="form-text text-muted text-right">Select the customer.</small>
@@ -47,7 +39,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-amf-name">Name:</label>
                     </div>
-                    <input class="form-control" id="form-amf-name" name="form-amf-name" required placeholder="Account Person's Name*" pattern="\w+" />
+                    <input class="form-control" id="form-amf-name" name="form-amf-name" required placeholder="Account Person's Name*" pattern="[\s\w]+" />
                   </div>
                 </div>
                 <div class="form-group col-md-5">
@@ -61,11 +53,15 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-12">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-amf-addr">Address:</label>
+                  <div class="input-group d-flex">
+                    <div class="">
+                      <label class="input-group-text bg-warning text-body h-100" for="form-amf-addr1">Address:</label>
                     </div>
-                    <textarea class="form-control" id="form-amf-addr" name="form-amf-addr" rows="3" placeholder="Address 1*&#10;Address 2*&#10;Address 3" style="resize: none" required></textarea>
+                    <div class="flex-grow-1">
+                      <input class="form-control mb-1" id="form-amf-addr1" name="form-amf-addr1" required placeholder="Address 1" />
+                      <input class="form-control mb-1" id="form-amf-addr2" name="form-amf-addr2" required placeholder="Address 2" />
+                      <input class="form-control" id="form-amf-addr3" name="form-amf-addr3" required placeholder="Address 3" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -115,27 +111,56 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <div class="text-right">
-                    <!-- BUTTONS -->
-                    <button type="reset" class="btn btn-outline-light shadow-sm-dark no-shadow-hover mr-2">
-                      Reset
-                    </button>
-                    <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover">
+                  <!-- BUTTONS -->
+                  <a class="btn btn-secondary shadow-sm-dark no-shadow-hover mr-2" id="toggleBtn">Show List</a>
+                  <!-- <div class="text-right"> -->
+                    <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover float-right">
                       Create
                     </button>
-                  </div>
+                    <button type="reset" class="btn btn-info shadow-sm-dark no-shadow-hover mr-3 float-right">
+                      Reset
+                    </button>
+                  <!-- </div> -->
                 </div>
               </div>
             </form>
           </div>
         </div>
+        <?php
+        /**
+         *    This captures the response sent back from cmf_page.php
+         *    and displays the success or failure result accordingly.
+         */
+          if (isset($_GET["success"])) {
+            $opStatus = "<div class='alert alert-success alert-dismissible fade show position-absolute center-vertical' role='alert'>Account Manager has been added.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+          } elseif (isset($_GET["error"])) {
+            $opStatus = "<div class='alert alert-danger alert-dismissible fade show position-absolute center-vertical' role='alert'><b>Error encountered:</b> " . $_GET["error"] . "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+          }
+          if (isset($opStatus)) {echo $opStatus; unset($opStatus);}
+        ?>
+      </section>
+      <section class="container bl__home_amf-list d-none" id="toggleItem">
+        <div class="row">
+          <div class="col">
+            <h4 name="subtitle">List of Account Managers</h4>
+            <div class="d-flex flex-row justify-content-between flex-wrap list">
+              <!-- p-2 mb-2 bg-secondary text-white -->
+              <?php
+                @include "consql.php";
+                $query2 = "SELECT accountMaster.accName, customerMaster.custName FROM accountMaster, customerMaster WHERE accountMaster.custID = customerMaster.custID ORDER BY `custName` ASC";
+                $accList = mysqli_query($connection, $query2);
+                mysqli_close($connection);
+                if(mysqli_num_rows($accList) > 0 ) {
+                  while($row=mysqli_fetch_assoc($accList)) {
+                    echo "<div class='p-2 small'>".$row['accName']." (".$row['custName'].")</div>";
+                 }
+                } else {
+                  echo "Account Manager not found in the system.";
+                }
+              ?>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <?php @include_once "footer.html" ?>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="scripts/preload.js"></script>
-    <script src="scripts/script6es.js"></script>
-  </body>
-
-</html>
