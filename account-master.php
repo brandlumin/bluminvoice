@@ -1,3 +1,4 @@
+    <title>AMF : bluminvoice</title>
     <?php @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="container bl__home_amf">
@@ -15,11 +16,16 @@
                     <select class="custom-select" id="form-amf-cust" name="form-amf-cust" required aria-describedby="form-amf-cust-help" required autofocus="">
                       <?php
                         @include "consql.php";
-                        $query1 = "SELECT `custID`, `custName` FROM `customerMaster` ORDER BY `custName` ASC";
-                        $custList = mysqli_query($connection, $query1);
+                        // Customer List for the Dropdown
+                        $custListQuery = "SELECT `custID`, `custName` FROM `customerMaster` ORDER BY `custName` ASC";
+                        $custList = mysqli_query($connection, $custListQuery);
+                        // Account Managers List for the listing
+                        $accListQuery = "SELECT accountMaster.accName, customerMaster.custName FROM accountMaster, customerMaster WHERE accountMaster.custID = customerMaster.custID ORDER BY `custName` ASC";
+                        $accList = mysqli_query($connection, $accListQuery);
+                        // Closing the connection
                         mysqli_close($connection);
                         if(mysqli_num_rows($custList) > 0 ) {
-                          $custOptions = "<option class='' value='' selected>Choose Customer...</option>";
+                          $custOptions = "<option value='' selected>Choose Customer...</option>";
                           while($row=mysqli_fetch_array($custList)) {
                             $custOptions = $custOptions . "<option value='" . $row["custID"] . "'>" . $row["custName"] . "</option>";
                           }
@@ -128,7 +134,7 @@
         </div>
         <?php
         /**
-         *    This captures the response sent back from cmf_page.php
+         *    This captures the response sent back from amf_page.php
          *    and displays the success or failure result accordingly.
          */
           if (isset($_GET["success"])) {
@@ -146,10 +152,10 @@
             <div class="d-flex flex-row justify-content-between flex-wrap list">
               <!-- p-2 mb-2 bg-secondary text-white -->
               <?php
-                @include "consql.php";
-                $query2 = "SELECT accountMaster.accName, customerMaster.custName FROM accountMaster, customerMaster WHERE accountMaster.custID = customerMaster.custID ORDER BY `custName` ASC";
-                $accList = mysqli_query($connection, $query2);
-                mysqli_close($connection);
+                // @include "consql.php";
+                // $accListQuery = "SELECT accountMaster.accName, customerMaster.custName FROM accountMaster, customerMaster WHERE accountMaster.custID = customerMaster.custID ORDER BY `custName` ASC";
+                // $accList = mysqli_query($connection, $accListQuery);
+                // mysqli_close($connection);
                 if(mysqli_num_rows($accList) > 0 ) {
                   while($row=mysqli_fetch_assoc($accList)) {
                     echo "<div class='p-2 small'>".$row['accName']." (".$row['custName'].")</div>";

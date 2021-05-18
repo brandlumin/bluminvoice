@@ -1,3 +1,4 @@
+    <title>HOME : bluminvoice</title>
     <?php @include_once "header.html" ?>
     <main role="main">
       <section class="jumbotron text-center rounded-0 bg-warning mb-0" style="box-shadow: 0 4px 4px rgba(0,0,0,.25)">

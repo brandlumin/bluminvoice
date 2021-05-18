@@ -12,14 +12,14 @@
     mysqli_close($connection);
     // populating the data into options
     if(mysqli_num_rows($accList) > 0 ) {
-      echo "<option value=0 selected>Select the Account Manager or Project SPOC...</option>";
+      echo "<option value='' disabled selected>Select the Account Manager or Project SPOC...</option>";
       while($row=mysqli_fetch_array($accList)) {
         echo "<option value=$row[accID]>$row[accName]</option>";
       }
     } else {
-      echo "<option disabled value=0 selected>Account Manager not found in the system.</option>";
+      echo "<option value='' disabled selected>Account Manager not found in the system.</option>";
     }
   } else {
-    echo "<option value=0 selected>Select the Account Manager...</option>";
+    echo "<option value='' disabled selected>Select the Account Manager...</option>";
   }
 ?>

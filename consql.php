@@ -11,7 +11,8 @@ $connection = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 if (!$connection) {
   // the following code is working perfectly. commented to extend the usage from within the codes.
   // die("Could not connect due to:<br /><b>" . mysqli_connect_error() ."</b><br/>error code (" . mysqli_connect_errno() . ")");
-  echo "<script type=text/javascript>console.log('Failed to connect to database.')</script>";
+  echo "Error Code: ".mysqli_connect_errno();
+  // echo "<script type='text/javascript'>console.log($error)</script>";
 } else { 
   echo "<script type=text/javascript>console.log('Database connected.')</script>"; 
 }

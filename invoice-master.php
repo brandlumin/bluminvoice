@@ -1,3 +1,4 @@
+    <title>IMF : bluminvoice</title>
     <?php @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="container bl__home_imf">
@@ -6,63 +7,21 @@
             <form class="needs-validation p-4" accept-charset="UTF-8" action="./imf_page.php" method="post" id="form-imf" name="form-imf" novalidate>
               <h3 class="text-center mb-4 text-white font-weight-bold">Invoice Master Form</h3>
               <div class="form-row">
-                <!-- Customer -->
-                <div class="form-group col-md-6">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-imf-accm">Customer:</label>
-                    </div>
-                    <select class="custom-select" id="form-imf-cust" name="form-imf-cust" required aria-describedby="form-imf-cust-help" required>
-                      <option class="" value="" selected>Choose...</option>
-                      <option class="" value="1">ICSI CCGRT</option>
-                      <option class="" value="2">ICSI CERT</option>
-                      <option class="" value="3">ICSI WIRC</option>
-                      <option class="" value="4">Locate365</option>
-                    </select>
-                  </div>
-                  <small id="form-imf-cust-help" class="form-text text-muted text-right">Select the customer.</small>
-                </div>
-                <!-- Account Manager -->
-                <div class="form-group col-md-6">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-imf-accm">Manager:</label>
-                    </div>
-                    <select class="custom-select" id="form-imf-accm" name="form-imf-accm" required aria-describedby="form-imf-accm-help" required>
-                      <option class="" value="" selected>Choose...</option>
-                      <option class="" value="1">CS Ketan Bhalghamiya (Asst. Director)</option>
-                      <option class="" value="2">Mr. Rakesh Goyal (Dept. Director)</option>
-                      <option class="" value="3">Ms. Trupti Karkhanis (HOD)</option>
-                      <option class="" value="4">Mr. Sudhanshu Tewari</option>
-                      <option class="" value="5">CS Sapna Malhotra (Asst. Director)</option>
-                      <option class="" value="6">Ms. Archana Sawant</option>
-                    </select>
-                  </div>
-                  <small id="form-imf-accm-help" class="form-text text-muted text-right">Select Account Manager or Project SPOC.</small>
-                </div>
-              </div>
-              <div class="form-row">
                 <!-- Project -->
                 <div class="form-group col-md-8">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-crf-project">Project:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-imf-project">Project:</label>
                     </div>
-                    <select class="custom-select" id="form-crf-project" name="form-crf-project" required aria-describedby="form-crf-project-help">
-                      <option value="" selected>Choose...</option>
-                      <option value="1">
-                        Lorem ipsum dolor sit amet consectetur
-                      </option>
-                      <option value="2">
-                        Reiciendis labore minima natus, sequi nobis
-                      </option>
-                      <option value="3">
-                        Cumque, placeat iure natus, nulla itaque
-                      </option>
-                      <option value="4">Exercitationem quaerat quibusdam</option>
-                    </select>
+                    <input type="text" class="form-control" id="form-imf-project" name="form-imf-project" placeholder="Project's Name*" />
                   </div>
-                  <small id="form-crf-project-help" class="form-text text-muted text-right">Select the project.</small>
+                  <!-- Search List -->
+                  <div id="search-box" class="search-box p-3 rounded-lg" style="display: none;">
+                    <h5 class="text-primary">Search Results</h5>
+                    <hr>
+                    <div id="search-list" class="search-list"></div>
+                  </div>
+                  <input name="form-imf-projectID" placeholder="Project ID" hidden />
                 </div>
                 <!-- Invoice -->
                 <div class="form-group col-md-4">
@@ -70,8 +29,41 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-imf-city">Invoice#</label>
                     </div>
-                    <input class="form-control" id="form-imf-city" name="form-imf-city" disabled="disabled" />
+                    <input class="form-control" id="form-imf-city" name="form-imf-city" disabled="disabled" placeholder="Invoice#" />
                   </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <!-- Customer -->
+                <div class="form-group col-md-7">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-imf-cust">Customer:</label>
+                    </div>
+                    <input class="form-control" id="form-imf-cust" name="form-imf-cust" required readonly placeholder="Customer Name*" />
+                  </div>
+                  <input name="form-imf-custID" placeholder="Customer ID" hidden />
+                </div>
+                <!-- Account Manager -->
+                <div class="form-group col-md-5">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-warning text-body" for="form-imf-accm">Manager:</label>
+                    </div>
+                    <input class="form-control" id="form-imf-accm" name="form-imf-accm" required readonly placeholder="Account Manager Name*" />
+                    <!-- <select class="custom-select" id="form-imf-accm" name="form-imf-accm" required>
+                      <option class="" value="" selected>Select the Account Manager...</option>
+                      <option class="" value="5">CS Sapna Malhotra (Asst. Director)</option>
+                    </select> -->
+                  </div>
+                  <input name="form-imf-accmID" placeholder="Account Manager ID" hidden />
+                </div>
+              </div>
+              <div class="row">
+                <!-- Separators -->
+                <div class="col">
+                  <hr class="m-0 border-light">
+                  <hr class="mt-0 mb-3 border-light">
                 </div>
               </div>
               <div class="form-row">
@@ -90,7 +82,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-imf-dtend">End Date:</label>
                     </div>
-                    <input type="date" class="form-control" id="form-imf-dtend" name="form-imf-dtend" required />
+                    <input type="date" class="form-control" id="form-imf-dtend" name="form-imf-dtend" required value="<?php echo date('Y-m-d'); ?>" />
                   </div>
                 </div>
                 <!-- Payment Date -->

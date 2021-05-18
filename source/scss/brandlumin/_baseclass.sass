@@ -11,11 +11,20 @@
 =no-shadow
   box-shadow: none !important
 =no-shadow-hover
-  &:hover
+  &:hover,
+  &:active,
+  &:focus
+    box-shadow: none !important
+  &:active:focus
+    box-shadow: none !important
+  &:focus-within
     box-shadow: none !important
 
 =shadow-sm-dark
   box-shadow: 0 0.125rem 0.25rem transparentize($black, .75)
+
+=shadow-md
+  box-shadow: 0 .125rem .75rem rgba(0,0,0,0.17) 
 
 =bg-yellow-40p
   background: lighten(#ff0, 40%) !important
@@ -37,7 +46,13 @@
 .no-shadow
   box-shadow: none !important
 .no-shadow-hover
-  &:hover
+  &:hover,
+  &:active,
+  &:focus
+    box-shadow: none !important
+  &:active:focus
+    box-shadow: none !important
+  &:focus-within
     box-shadow: none !important
 
 /* creating dark shadow for shadow-sm */
@@ -48,6 +63,14 @@
 .shadow-md
   box-shadow: 0 .125rem .75rem rgba(0,0,0,0.17) 
 
+/* small size text-shadows */
+.text-shadow-sm
+  text-shadow: 0 .25rem .25rem rgba(0,0,0,0.17) 
+
+/* medium size text-shadows */
+.text-shadow-md
+  text-shadow: 0 .25rem .5rem rgba(0,0,0,0.27) 
+
 /* center vertically */
 .center-vertical
   left: 50%
@@ -57,6 +80,8 @@
 /* Removing oulines from input fields */
 input,
 select,
+button,
+.btn,
 textarea 
   +no-outline-shadow
   &:hover,

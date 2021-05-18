@@ -1,5 +1,4 @@
 /**
- *    [fNavActive description]
  *    Disables current page link in the navbar
  */
 function fNavDeactive() {

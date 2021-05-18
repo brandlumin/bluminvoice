@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="./site.webmanifest">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="styles/bootstrap.css" />
-    <link rel="stylesheet" href="styles/bluminvoice.css" />
-    <title>Login : bluminVoice</title>
-  </head>
-
-  <body class="bl__home d-flex flex-column justify-content-between">
+    <title>LOGIN : bluminvoice</title>
     <?php @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="jumbotron bg-transparent bl__home_login">
@@ -45,10 +28,3 @@
       </section>
     </main>
     <?php @include_once "footer.html" ?>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="scripts/preload.js"></script>
-    <script src="scripts/script6es.js"></script>
-  </body>
-
-</html>

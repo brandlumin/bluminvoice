@@ -4,7 +4,7 @@
 $fAmfCust = $_POST["form-amf-cust"]; $fAmfName = $_POST["form-amf-name"]; $fAmfDesig = $_POST["form-amf-desig"]; $fAmfAddr1 = $_POST["form-amf-addr1"]; $fAmfAddr2 = $_POST["form-amf-addr2"]; $fAmfAddr3 = $_POST["form-amf-addr3"]; $fAmfCity = $_POST["form-amf-city"]; $fAmfState = $_POST["form-amf-state"]; $fAmfPin = $_POST["form-amf-pin"]; $fAmfPhones = $_POST["form-amf-phones"]; $fAmfEmail = $_POST["form-amf-email"];
 
 /**
- *    INSERTING CUSTOMER INTO THE DATABASE
+ *    INSERTING ASSIGNMENT INTO THE DATABASE
  */
 
 // setting the query

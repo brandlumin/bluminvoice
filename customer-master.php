@@ -1,3 +1,4 @@
+    <title>CMF : bluminvoice</title>
     <?php @include_once "header.html" ?>
     <main role="main" class="customer-master container flex-fill d-flex flex-column justify-content-center mt-3">
       <section class="container bl__home_cmf">
@@ -120,8 +121,10 @@
               <!-- p-2 mb-2 bg-secondary text-white -->
               <?php
                 @include "consql.php";
-                $query = "SELECT `custName`, `custCity` FROM `customerMaster` ORDER BY `custName` ASC";
-                $custList = mysqli_query($connection, $query);
+                // Customer List for the Dropdown
+                $custListQuery = "SELECT `custName`, `custCity` FROM `customerMaster` ORDER BY `custName` ASC";
+                $custList = mysqli_query($connection, $custListQuery);
+                // Closing the connection
                 mysqli_close($connection);
                 if(mysqli_num_rows($custList) > 0 ) {
                   while($row=mysqli_fetch_assoc($custList)) {

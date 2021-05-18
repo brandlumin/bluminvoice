@@ -46,15 +46,17 @@ form
   .text-muted
     color: $gray-200 !important
   border-radius: .5em
-  box-shadow: 0 .5em 1.5em transparentize(black, .8)
   background: CornflowerBlue
   border: 1px solid lighten(DodgerBlue, 30)
   transition: 300ms box-shadow ease
+  box-shadow: 0 .2em .7em transparentize(black, 0.8)
   &:hover
-    box-shadow: 0 0 1em -.125em transparentize($green,0.5)
+    box-shadow: 0 0 .7em -.125em transparentize($green,0.5)
     border: 1px solid transparentize($green, 0.7)
-  &:focus-within
-    box-shadow: none
+  &:focus-within,
+  &:active,
+  &:focus
+    box-shadow: none !important
     border: 1px solid lighten(DodgerBlue, 30)
 
 /* Removing oulines from input fields */
@@ -64,9 +66,9 @@ textarea
   +no-outline-shadow
   &:hover,
   &:active,
-  &:focus
-    +no-outline-shadow
-  &:active:focus
+  &:focus,
+  &:active:focus,
+  &:focus-within
     +no-outline-shadow
 
 /* Removing borders from input fields */

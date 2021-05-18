@@ -10,6 +10,7 @@
       &:hover
         +bg-yellow-40p
         +shadow-sm-dark
+
 .bl__home_cmf,
 .bl__home_amf
   // Designing Address input field
@@ -19,3 +20,23 @@
   input[name*="addr"]
     border-top-left-radius: 0
     border-bottom-left-radius: 0
+
+.search-box
+  z-index: 1
+  position: absolute
+  background: #f8f9fa
+  max-height: 50vH
+  overflow-y: auto
+  box-shadow: 0 .25rem .5rem #00000033
+  
+.search-list
+  p 
+    cursor: pointer
+    margin: 0
+    padding: 0.5rem 1rem
+    &:hover
+      background: $gray-200
+    &.text-danger
+      pointer-events: none
+      &:hover
+        cursor: default
