@@ -101,7 +101,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-pmf-start-date">Start Date:</label>
                     </div>
-                    <input type="date" class="form-control" id="form-pmf-start-date" name="form-pmf-start-date" required value="<?php echo date('Y-m-d'); ?>"/>
+                    <input type="date" class="form-control" id="form-pmf-start-date" name="form-pmf-start-date" required value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d'); ?>"/>
                   </div>
                 </div>
                 <!-- Quoted Amount -->

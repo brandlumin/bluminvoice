@@ -17,7 +17,7 @@ function fPHPDataDisplay(valObj) {
         $("[name=generate]").toggleEnDis("disable").removeClass("btn-outline-light");
       }
     }).val(function () {
-      if (valObj.assignment.isInvoiced == 0) $("#form-imf-dtend, #form-imf-billing").toggleRO("rw");
+      if (valObj.assignment.isInvoiced == 0) $("#form-imf-dtend, #form-imf-billing").toggleRO("rw").attr("min", valObj.assignment.prjStartDate);
       return valObj.assignment.prjEndDate;
     });
     $("#form-imf-desc").val(valObj.assignment.prjDesc);
@@ -53,7 +53,7 @@ function fPHPDataDisplay(valObj) {
     $("#form-imf-billing").val(valObj.invoice.prjBillDetails);
     $("#form-imf-dtpay").val(function () {
       if ((valObj.assignment.isInvoiced == 1) && (valObj.invoice.isPaid == 0)) {
-        $(this).toggleRO("rw");
+        $(this).toggleRO("rw").attr("min", valObj.assignment.prjEndDate);
       }
       return valObj.invoice.prjPaidDate;
     });

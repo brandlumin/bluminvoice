@@ -43,7 +43,7 @@
                 <div class="form-group col-md-7">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <label class="input-group-text bg-warning text-body" for="form-amf-name">Name:</label>
+                      <label class="input-group-text bg-warning text-body" for="form-amf-name">Manager:</label>
                     </div>
                     <input class="form-control" id="form-amf-name" name="form-amf-name" required placeholder="Account Person's Name*" pattern="[\s\w]+" />
                   </div>
@@ -61,7 +61,7 @@
                 <div class="form-group col-12">
                   <div class="input-group d-flex">
                     <div class="">
-                      <label class="input-group-text bg-warning text-body h-100" for="form-amf-addr1">Address:</label>
+                      <label class="input-group-text bg-warning text-body h-100" for="form-amf-addr1">Billing<br/>Address:</label>
                     </div>
                     <div class="flex-grow-1">
                       <input class="form-control mb-1" id="form-amf-addr1" name="form-amf-addr1" required placeholder="Address 1*" />

@@ -11,16 +11,16 @@
             faster:
           </p>
           <p>
-            <a href="./invoice-master" class="btn btn-success my-2 mr-3">Generate Invoice</a>
-            <a href="./assignment-master" class="btn btn-primary my-2">New Assignment</a>
+            <a href="./invoice-master.php" class="btn btn-success my-2 mr-3">Generate Invoice</a>
+            <a href="./assignment-master.php" class="btn btn-primary my-2">New Assignment</a>
           </p>
         </div>
       </section>
       <section class="container bl__home_crf">
-        <section class="container bl__home_crf-search">
+        <section class="container bl__home_crf-search mt-0">
           <div class="row">
             <div class="col-md-8 offset-md-2">
-              <form class="p-1 mt-3 mb-0 bg-transparent shadow-sm" accept-charset="UTF-8" id="form-crf-searchform" name="form-crf" autocomplete="off" novalidate onkeydown="return event.key != 'Enter';">
+              <form class="p-1 my-0 bg-transparent shadow-sm" accept-charset="UTF-8" id="form-crf-searchform" name="form-crf" autocomplete="off" novalidate onkeydown="return event.key != 'Enter';">
                 <!-- <label class="sr-only" for="form-crf-search">Project:</label> -->
                 <div class="input-group">
                   <input type="text" class="form-control" id="form-crf-search" name="form-crf-search" autofocus placeholder="Which assignment to search?" />
@@ -73,7 +73,7 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text bg-warning text-body" for="form-crf-date">Date:</label>
                   </div>
-                  <input type="date" class="form-control" id="form-crf-date" name="form-crf-date" aria-describedby="form-crf-date-help" required value="<?php echo date('Y-m-d'); ?>" />
+                  <input type="date" class="form-control" id="form-crf-date" name="form-crf-date" aria-describedby="form-crf-date-help" required value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d'); ?>" />
                 </div>
                 <small id="form-crf-date-help" class="form-text text-muted text-right">CRF received date.</small>
               </div>
