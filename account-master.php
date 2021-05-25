@@ -64,9 +64,9 @@
                       <label class="input-group-text bg-warning text-body h-100" for="form-amf-addr1">Address:</label>
                     </div>
                     <div class="flex-grow-1">
-                      <input class="form-control mb-1" id="form-amf-addr1" name="form-amf-addr1" required placeholder="Address 1" />
-                      <input class="form-control mb-1" id="form-amf-addr2" name="form-amf-addr2" required placeholder="Address 2" />
-                      <input class="form-control" id="form-amf-addr3" name="form-amf-addr3" required placeholder="Address 3" />
+                      <input class="form-control mb-1" id="form-amf-addr1" name="form-amf-addr1" required placeholder="Address 1*" />
+                      <input class="form-control mb-1" id="form-amf-addr2" name="form-amf-addr2" required placeholder="Address 2*" />
+                      <input class="form-control" id="form-amf-addr3" name="form-amf-addr3" placeholder="Address 3" />
                     </div>
                   </div>
                 </div>

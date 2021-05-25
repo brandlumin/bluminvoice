@@ -2,7 +2,7 @@
   $fCrfCust = $_POST["form-crf-cust"]; $fCrfCustID = $_POST["form-crf-custID"]; $fCrfProjectID = $_POST["form-crf-projectID"]; $fCrfProject = $_POST["form-crf-project"]; $fCrfDate = $_POST["form-crf-date"]; $fCrfDesc = $_POST["form-crf-desc"]; $fCrfAmount = $_POST["form-crf-amount"];
 
   /**
-   *    INSERTING ASSIGNMENT INTO THE DATABASE
+   *    INSERTING CHANGE-REQUEST INTO THE DATABASE
    *    SELECT  FROM ``
    *    
    */

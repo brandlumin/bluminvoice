@@ -15,14 +15,14 @@ jQuery(function ($) {
     fPMFpageAJAX();
     fPMFInvoiceNo();
   }
-  if ((/^crf/i).test(pgTitle)) {
+  if ((/^crf/i).test(pgTitle) || (/^home/i).test(pgTitle)) {
     fCRFLiveSearchWidth();
     fCRFLiveSearch();
   }
-  /*if ((/^imf/i).test(pgTitle)) {
+  if ((/^imf/i).test(pgTitle)) {
     fIMFLiveSearchWidth();
     fIMFLiveSearch();
-  }*/
+  }
 });
 
 /**
@@ -31,11 +31,10 @@ jQuery(function ($) {
  */
 $(window).resize(() => {
   let pgTitle = $(document).attr('title');
-  if ((/^crf/i).test(pgTitle)) {
+  if ((/^crf/i).test(pgTitle) || (/^home/i).test(pgTitle)) {
     fCRFLiveSearchWidth();
   }
-  /*if ((/^imf/i).test(pgTitle)) {
-  fIMFLiveSearchWidth();
-  fIMFLiveSearch();
-}*/
+  if ((/^imf/i).test(pgTitle)) {
+    fIMFLiveSearchWidth();
+  }
 });

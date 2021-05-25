@@ -7,21 +7,8 @@
   // Getting the project ID
   preg_match('/(\d+)$/', $fPmfInvoiceID, $matches); $fPmfProjID = $matches[1];
 
-  /* ECHOING CAPTURED VALUES
-  echo 
-    "fPmfCustID: " . $fPmfCustID . nl2br("\r\n") .
-    "fPmfAccID: " . $fPmfAccID . nl2br("\r\n") .
-    "fPmfName: " . $fPmfName . nl2br("\r\n") .
-    "fPmfProjID: " . $fPmfProjID . nl2br("\r\n") .
-    "fPmfInvoiceID: " . $fPmfInvoiceID . nl2br("\r\n") .
-    "fPmfDesc: " . $fPmfDesc . nl2br("\r\n") .
-    "fPmfNarr: " . $fPmfNarr . nl2br("\r\n") .
-    "fPmfStartDate: " . $fPmfStartDate . nl2br("\r\n") .
-    "fPmfCostQuoted: " . $fPmfCostQuoted . nl2br("\r\n") . nl2br("\r\n");
-  */
-
   /**
-   *    INSERTING ASSIGNMENT INTO THE DATABASE
+   *    INSERTING ASSIGNMENT / PROJECT INTO THE DATABASE
    *    SELECT  FROM ``
    *    
    */

@@ -3,7 +3,7 @@
 
   if(isset($_REQUEST["term"])) {
     // Prepare a select statement
-    $searchQuery = "SELECT A.prjName, A.prjID, C.custName, C.custID FROM assgMaster A INNER JOIN customerMaster C ON A.custID = C.custID WHERE A.prjName LIKE ?";
+    $searchQuery = "SELECT A.prjName, A.prjID, C.custName, C.custID FROM assgMaster A INNER JOIN customerMaster C ON A.custID = C.custID WHERE A.IsInvoiced = 0 AND A.prjName LIKE ?";
 
       if($statement = mysqli_prepare($connection, $searchQuery)) {
       // Bind variables to the prepared statement as parameters
