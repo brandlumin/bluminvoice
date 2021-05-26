@@ -2,12 +2,15 @@
  *    Disables current page link in the navbar
  */
 function fNavDeactive() {
-  let pageTitle, seq;
-  pageTitle = $("h3.font-weight-bold").text().replace(/\sform$/i, "").replace(/\s/i, "-").toLowerCase();
-  if (pageTitle == "customer-master") seq = 0;
-  if (pageTitle == "accounts-master") seq = 1;
-  if (pageTitle == "assignment-master") seq = 2;
-  if (pageTitle == "change-request" && !($(".jumbotron").length)) seq = 3;
-  if (pageTitle == "invoice-master") seq = 4;
-  if (seq >= 0 && seq <= 4) $("header ul.list-unstyled li").eq(seq).find('a').attr("class", "text-info").removeAttr("href");
+  let pgTitle = document.title,
+    seq;
+  if ((/^CMF/i).test(pgTitle)) seq = 0;
+  if ((/^AMF/i).test(pgTitle)) seq = 1;
+  if ((/^PMF/i).test(pgTitle)) seq = 2;
+  if ((/^CRF/i).test(pgTitle)) seq = 3;
+  if ((/^IMF/i).test(pgTitle)) seq = 4;
+
+  let oEl = $("header ul.list-unstyled li").eq(seq).find('a');
+  $("</p>").html($(oEl).html()).addClass("text-warning").insertAfter(oEl);
+  oEl.remove();
 }

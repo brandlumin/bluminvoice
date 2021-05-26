@@ -1,3 +1,4 @@
+<?php session_start(); if (!isset($_SESSION['idfy'])) header("Location: index.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="styles/bootstrap.css" />
     <link rel="stylesheet" href="styles/bluminvoice.css" />
-    <title>AMF : bluminVoice</title>
   </head>
 
   <body class="bl__home d-flex flex-column justify-content-between">
@@ -43,8 +43,11 @@
                 <li class="mb-2">
                   <a href="change-request.php" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold mr-1">Changes</span>Request</a>
                 </li>
-                <li>
+                <li class="mb-2">
                   <a href="invoice-master.php" class="text-white">&raquo;&nbsp;&nbsp;Generate<span class="font-weight-bold ml-1">Invoices</span></a>
+                </li>
+                <li>
+                  <a href="logout.php" class="text-white">&raquo;&nbsp;&nbsp;<span class="font-weight-bold">Logout</span> from here..</a>
                 </li>
               </ul>
             </div>

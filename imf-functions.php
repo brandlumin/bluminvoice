@@ -19,40 +19,6 @@ switch ($work)
     echo "You have used it in a wrong way! Please check deeply.";
 }
 
-function receivePayment(/*$value="", $recDate=""*/)
-{
-  if(isset($_REQUEST["value"])) $value = $_REQUEST["value"];
-  if(isset($_REQUEST["recDate"])) $recDate = $_REQUEST["recDate"];
-
-    /**
-     *    INSERTING INVOICE INTO THE DATABASE
-     *    SELECT  FROM ``
-     *    
-     */
-    // setting the query
-
-    $invMasterQuery = "UPDATE `invoiceMaster` SET `prjPaidDate`= '$recDate', `isPaid`=1 WHERE `prjID`= '$value'";
-
-    // establishing connection
-    @include "consql.php";
-
-    // firing the assignment UPDATE query through connection
-    $invResponse = mysqli_query($connection, $invMasterQuery); 
-
-    // Closing DB connection
-    mysqli_close($connection);
-
-    // Check result if successful
-    if ($invResponse) {
-      // if successful
-      $paymentStatus="payment received";
-    } else {
-      // if unsuccessful
-      $paymentStatus = "error=" . mysqli_connect_error(). " " .mysqli_error($connection);
-    }
-    echo json_encode($paymentStatus);
-
-}
 
 /**
  *    INVOICE-MASTER-FORM DATA
