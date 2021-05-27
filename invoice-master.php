@@ -99,7 +99,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text bg-warning text-body" for="form-imf-dtend">End Date:</label>
                 </div>
-                <input type="date" class="form-control" id="form-imf-dtend" name="form-imf-dtend" readonly="readonly" max="<?php echo date('Y'); ?>"/>
+                <input type="date" class="form-control" id="form-imf-dtend" name="form-imf-dtend" readonly="readonly" max="<?php echo date('Y-m-d'); ?>"/>
               </div>
             </div>
             <!-- Payment Date -->
@@ -108,7 +108,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text bg-warning text-body" for="form-imf-dtpay">Paid Date:</label>
                 </div>
-                <input type="date" class="form-control" id="form-imf-dtpay" name="form-imf-dtpay" readonly="readonly" max="<?php echo date('Y'); ?>"/>
+                <input type="date" class="form-control" id="form-imf-dtpay" name="form-imf-dtpay" readonly="readonly" max="<?php echo date('Y-m-d'); ?>"/>
               </div>
             </div>
           </div>

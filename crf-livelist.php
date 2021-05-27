@@ -3,7 +3,7 @@
 
   if(isset($_REQUEST["term"])) {
     // Prepare a select statement
-    $searchQuery = "SELECT A.prjName, A.prjID, C.custName, C.custID FROM assgMaster A INNER JOIN customerMaster C ON A.custID = C.custID WHERE A.IsInvoiced = 0 AND A.prjName LIKE ?";
+    $searchQuery = "SELECT A.`prjName`, A.`prjID`, A.`prjStartDate`, A.`prjInvoiceID`, C.`custName`, C.`custID` FROM assgMaster A INNER JOIN customerMaster C ON A.`custID` = C.`custID` WHERE A.`IsInvoiced` = 0 AND A.`prjName` LIKE ?";
 
       if($statement = mysqli_prepare($connection, $searchQuery)) {
       // Bind variables to the prepared statement as parameters
@@ -20,7 +20,7 @@
         if(mysqli_num_rows($result) > 0) {
           // Fetch result rows as an associative array
           while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            echo "<p proj-id='$row[prjID]' cust-id='$row[custID]' cust-name='$row[custName]'>$row[prjName]</p>";
+            echo "<p proj-id='$row[prjID]' proj-dt='$row[prjStartDate]' cust-id='$row[custID]' cust-name='$row[custName]' proj-in='$row[prjInvoiceID]'>$row[prjName]</p>";
           }
         } else {
           echo "<p onclick='return false;' class=text-danger>No matches found</p>";

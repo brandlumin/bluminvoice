@@ -42,7 +42,7 @@ function fIMFLiveSearch() {
       .done(function (prjDetails) {
         if (prjDetails) {
           let jsonArrayedObject = $.parseJSON(prjDetails); // Parsing (or breaking) the array to access the object.
-          console.log(jsonArrayedObject);
+          // console.log(jsonArrayedObject);
           /* printing all the keys
           for (let aKey in jsonArrayedObject) {
             for (let bKey in jsonArrayedObject[aKey]) {
@@ -81,5 +81,4 @@ function fResetForm() {
     $('#form-imf-proj[type="text"]').toggleRO("rw");
     return "";
   });
-  console.log("The form has been refreshed.");
 }
