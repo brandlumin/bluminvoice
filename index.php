@@ -1,7 +1,7 @@
 <?php
 include 'consql.php';
 session_start();
-// error_reporting(0);
+/*<input type="username" class="form-control text-center border-bottom mb-2" placeholder="username" id="username" name="username" value="<?php //(isset($password)) ? $_POST['password'] : ''; ?>" required />*/
 
 if (isset($_SESSION['idfy'])) {
     header("Location: welcome.php"); // if successful: goto this page
@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['idfy'] = $row['idfy'];
     header("Location: welcome.php");
   } else {
-    echo "<script>fAlert('Ehh!!<br />Wrong credentials.',2400);</script>";
+    // ERROR MESSAGE has been shifted after the button in HTML
   }
 }
 ?>
@@ -36,8 +36,7 @@ if (isset($_POST['submit'])) {
     <title>LOGIN : bluminvoice</title>
   </head>
 
-  <body class="bl__home d-flex flex-column justify-content-between">
-    <?php // @include_once "header.html" ?>
+  <body class="bl__home d-flex flex-column justify-content-between bg-primary">
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="jumbotron bg-transparent bl__home_login">
         <div class="row">
@@ -49,19 +48,19 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="row mx-5 my-3">
                 <div class="col-12 text-center">
-                  <!-- <input type="text" class="form-control text-center border-bottom mb-2" placeholder="username" id="username" name="username" value="<?php /*(isset($username)) ? $username : '';*/ ?>" required /> -->
                   <input type="password" class="form-control text-center border-bottom" placeholder="p@s$W0rD*" id="password" name="password" value="<?php (isset($password)) ? $_POST['password'] : ''; ?>" required />
                 </div>
               </div>
               <div class="row mx-5 mt-5 mb-5">
                 <div class="col-12 text-center">
                   <button name="submit" class="btn btn-primary btn-block no-shadow-hover">Login</button>
-                  <p class="login-register-text mt-2">Don't have an account? <a href="be_a_part.php">Register Here</a>.</p>
+                  <?php //echo "<p class='login-register-text mt-2'>Don't have an account? <a href='be_a_part.php'>Register Here</a>.</p>" ?>
                 </div>
               </div>
             </form>
           </div>
         </div>
+        <?php if ( !isset($_SESSION['idfy']) && isset($_POST['submit']) ) echo "<div class='alert alert-danger alert-dismissible fade show position-absolute center-vertical' role='alert' id='alert'><center class='text-center font-weight-bold'>Error encountered:</center>Please enter your password carefully.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"; ?>
       </section>
     </main>
     <?php @include_once "footer.html" ?>

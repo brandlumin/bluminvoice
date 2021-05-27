@@ -16,20 +16,19 @@ if (isset($_POST['submit'])) {
       $result = mysqli_query($connection, $registerQuery); // connection
       mysqli_close($connection); // connection closed
       if ($result) {
-        echo "<script>fAlert('Login created successfully.<br />Please login now.',2400);</script>";
-        $idfy = ""; $_POST['password'] = ""; $_POST['cpassword'] = "";
-        header("Location: login.php");
+        $validity = 1;
+        // SUCCESS MESSAGE has been shifted after the button in HTML
       } else {
-        echo "<script>fAlert('Ehh!!<br />Something went wrong. Please retry.',2400);</script>";
-        echo "<script>alert('Woops! Something Wrong Went.')</script>";
+        $validity = 2;
+        // ERROR MESSAGE has been shifted after the button in HTML
       }
     } else {
-      echo "<script>fAlert('Ehh!!<br />This user already exists.',2400);</script>";
-      echo "<script>alert('Woops! Email Already Exists.')</script>";
+      $validity = 3;
+      // ERROR MESSAGE has been shifted after the button in HTML
     } 
   } else {
-    echo "<script>fAlert('Ehh!!<br />Passwords do not match.',2400);</script>";
-    echo "<script>alert('Password Not Matched.')</script>";
+    $validity = 4;
+    // ERROR MESSAGE has been shifted after the button in HTML
   }
 }
 ?>
@@ -49,7 +48,7 @@ if (isset($_POST['submit'])) {
     <title>Register : bluminvoice</title>
   </head>
 
-  <body class="bl__home d-flex flex-column justify-content-between">
+  <body class="bl__home d-flex flex-column justify-content-between bg-dark">
     <?php // @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="jumbotron bg-transparent bl__home_login">
@@ -75,6 +74,18 @@ if (isset($_POST['submit'])) {
             </form>
           </div>
         </div>
+        <?php
+          if (isset($validity) && $validity == 1) {
+            echo "<div class='alert alert-success alert-dismissible fade show position-absolute center-vertical' role='alert'><center class='text-center font-weight-bold'>Login created successfully.</center>Please go back to the <a href='./'>login page</a> now.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+            // header("Location: login.php");
+          } elseif (isset($validity) && $validity == 2) {
+            echo "<div class='alert alert-danger alert-dismissible fade show position-absolute center-vertical' role='alert'><center class='text-center font-weight-bold'>Error encountered:</center>Something went wrong. Please retry.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+          } elseif (isset($validity) && $validity == 3) {
+            echo "<div class='alert alert-danger alert-dismissible fade show position-absolute center-vertical' role='alert'><center class='text-center font-weight-bold'>Error encountered:</center>This user already exists. Please choose a different user.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+          } elseif (isset($validity) && $validity == 4) {
+            echo "<div class='alert alert-danger alert-dismissible fade show position-absolute center-vertical' role='alert'><center class='text-center font-weight-bold'>Error encountered:</center>Passwords did not match in the form.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+          }
+        ?>
       </section>
     </main>
     <?php @include_once "footer.html" ?>
