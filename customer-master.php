@@ -1,6 +1,6 @@
     <title>CMF : bluminvoice</title>
     <?php @include_once "header.html" ?>
-    <main role="main" class="customer-master container flex-fill d-flex flex-column justify-content-center mt-3">
+    <main role="main" class="customer-master container flex-fill d-flex flex-column justify-content-center">
       <section class="container bl__home_cmf">
         <div class="row">
           <div class="col">

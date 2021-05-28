@@ -48,10 +48,10 @@ if (isset($_POST['submit'])) {
     <title>Register : bluminvoice</title>
   </head>
 
-  <body class="bl__home d-flex flex-column justify-content-between bg-dark">
+  <body class="bl__home d-flex flex-column justify-content-between bg-secondary">
     <?php // @include_once "header.html" ?>
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
-      <section class="jumbotron bg-transparent bl__home_login">
+      <section class="bl__home_login">
         <div class="row">
           <div class="col-sm-6 offset-sm-3">
             <form autocomplete="off" class="needs-validation rounded-lg bg-light" accept-charset="UTF-8" action="" method="post" id="form-login" name="form-login" novalidate>

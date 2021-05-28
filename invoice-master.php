@@ -1,6 +1,6 @@
 <title>IMF : bluminvoice</title>
 <?php @include_once "header.html" ?>
-<main role="main" class="container flex-fill d-flex flex-column justify-content-center mt-4">
+<main role="main" class="container flex-fill d-flex flex-column justify-content-center">
   <section class="container bl__home_imf">
     <div class="row">
       <div class="col">
@@ -79,8 +79,9 @@
           <div class="row">
             <!-- Separators -->
             <div class="col">
-              <hr class="m-0 border-light">
-              <hr class="mt-0 mb-3 border-light">
+              <!-- <hr class="m-0 border-light"> -->
+              <!-- <hr class="mt-0 mb-3 border-light"> -->
+              <hr class="mt-0" style="border-top: 1px dashed #dee2e6">
             </div>
           </div>
           <div class="form-row">
@@ -194,7 +195,7 @@
             <div class="col-12">
               <button type="submit" name="payment" class="btn btn-danger" formaction="./imf_page_payment.php" disabled="disabled">Receive Payment</button>
               <button type="submit" name="generate" class="btn btn-success float-right" disabled="disabled">Generate</button>
-              <button type="reset" name="reset" class="btn btn-outline-light float-right mr-2" onclick="fResetForm();">Reset</button>
+              <button type="reset" name="reset" class="btn btn-info mr-3 float-right" onclick="fResetForm();">Reset</button>
             </div>
           </div>
         </form>

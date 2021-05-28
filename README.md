@@ -1,16 +1,6 @@
 # bluminvoice
 It is a custom 'personal' project for internal use.
 
-RESOURCE:
-How to call a specific function in a PHP script via Ajax?
-https://stackoverflow.com/questions/6371857/how-to-call-a-specific-function-in-a-php-script-via-ajax
-
->> isInvoiced = FALSE,
-  Disable the PAID_DATE, and -- done
-  upon giving the END_DATE, enable the 'Generate' button. -- done
->> isInvoiced = TRUE && isPaid = FALSE,
-  upon giving the PAID_DATE, enable the 'Receive Payment' button.
-
 METHOD TO SHOW RECEIVED JSON DATA FROM PHP
 ------------------------------------------
 console.log(prjDetails); // Proof that the returned object is encapsulated into an array here.

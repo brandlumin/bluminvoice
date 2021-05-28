@@ -1,7 +1,7 @@
     <title>HOME : bluminvoice</title>
     <?php @include_once "header.html" ?>
     <main role="main">
-      <section class="jumbotron text-center rounded-0 bg-warning mb-0" style="box-shadow: 0 4px 4px rgba(0,0,0,.25)">
+      <section class="jumbotron text-center rounded-0 bg-warning mt-n4" style="box-shadow: 0 5px 7px -5px rgba(0,0,0,.7)">
         <div class="container">
           <p class="h3">Welcome@bluminVoice</p>
           <p class="lead">
@@ -16,7 +16,7 @@
           </p>
         </div>
       </section>
-      <section class="container bl__home_crf mb-3">
+      <section class="container bl__home_crf">
         <div class="row">
           <div class="col">
             <form class="needs-validation p-4" accept-charset="UTF-8" action="./crf_page.php" method="post" id="form-crf" name="form-crf" novalidate>

@@ -1,11 +1,12 @@
-window.addEventListener("load", showScreenSize, false);
-window.addEventListener("resize", showScreenSize, true);
+// window.addEventListener("load", showScreenSize, false);
+// window.addEventListener("resize", showScreenSize, true);
 
 /**
  *    DOCUMENT READY FUNCTION RUNS AT THE PAGELOAD
  *    @return {Boolean}   default
  */
 jQuery(function ($) {
+  $("[role=main").css({ marginTop: $("header").outerHeight() });
   let pgTitle = document.title;
   if (!(/^login/i).test(pgTitle) && !(/^register/i).test(pgTitle)) {
     fNavDeactive();
