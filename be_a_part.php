@@ -1,34 +1,34 @@
 <?php
 include 'consql.php';
 session_start();
-// error_reporting(0);
+/* error_reporting(0); */
 
 if (isset($_SESSION['idfy'])) {
-  header("Location: login.php"); // if successful: goto this page
+  header("Location: login.php"); /* if successful: goto this page */
 }
 if (isset($_POST['submit'])) {
-  $idfy = $_POST['username']; $password = md5($_POST['password']); $cpassword = md5($_POST['cpassword']); // variables
+  $idfy = $_POST['username']; $password = md5($_POST['password']); $cpassword = md5($_POST['cpassword']); /* variables */
   if ($password == $cpassword) {
-    $validDupQuery = "SELECT * FROM `whoCanAccess` WHERE `idfy`='$idfy'"; // query
-    $doesExist = mysqli_query($connection, $validDupQuery); // connection
-    if (mysqli_num_rows($doesExist) == 0) { // does not exist
-      $registerQuery = "INSERT INTO `whoCanAccess`(`idfy`, `supportive`) VALUES ('$idfy', '$password')"; // query
-      $result = mysqli_query($connection, $registerQuery); // connection
-      mysqli_close($connection); // connection closed
+    $validDupQuery = "SELECT * FROM `whoCanAccess` WHERE `idfy`='$idfy'"; /* query */
+    $doesExist = mysqli_query($connection, $validDupQuery); /* connection */
+    if (mysqli_num_rows($doesExist) == 0) { /* does not exist */
+      $registerQuery = "INSERT INTO `whoCanAccess`(`idfy`, `supportive`) VALUES ('$idfy', '$password')"; /* query */
+      $result = mysqli_query($connection, $registerQuery); /* connection */
+      mysqli_close($connection); /* connection closed */
       if ($result) {
         $validity = 1;
-        // SUCCESS MESSAGE has been shifted after the button in HTML
+        /* SUCCESS MESSAGE has been shifted after the button in HTML */
       } else {
         $validity = 2;
-        // ERROR MESSAGE has been shifted after the button in HTML
+        /* ERROR MESSAGE has been shifted after the button in HTML */
       }
     } else {
       $validity = 3;
-      // ERROR MESSAGE has been shifted after the button in HTML
+      /* ERROR MESSAGE has been shifted after the button in HTML */
     } 
   } else {
     $validity = 4;
-    // ERROR MESSAGE has been shifted after the button in HTML
+    /* ERROR MESSAGE has been shifted after the button in HTML */
   }
 }
 ?>
@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
   </head>
 
   <body class="bl__home d-flex flex-column justify-content-between bg-secondary">
-    <?php // @include_once "header.html" ?>
+    <?php /* @include_once "header.html" ?> */
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="bl__home_login">
         <div class="row">
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
         <?php
           if (isset($validity) && $validity == 1) {
             echo "<div class='alert alert-success alert-dismissible fade show position-absolute center-vertical' role='alert'><center class='text-center font-weight-bold'>Login created successfully.</center>Please go back to the <a href='./'>login page</a> now.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-            // header("Location: login.php");
+            /* header("Location: login.php"); */
           } elseif (isset($validity) && $validity == 2) {
             echo "<div class='alert alert-danger alert-dismissible fade show position-absolute center-vertical' role='alert'><center class='text-center font-weight-bold'>Error encountered:</center>Something went wrong. Please retry.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
           } elseif (isset($validity) && $validity == 3) {

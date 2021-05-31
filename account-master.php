@@ -16,13 +16,13 @@
                     <select class="custom-select" id="form-amf-cust" name="form-amf-cust" required aria-describedby="form-amf-cust-help" required autofocus="">
                       <?php
                         @include "consql.php";
-                        // Customer List for the Dropdown
+                        /* Customer List for the Dropdown */
                         $custListQuery = "SELECT `custID`, `custName` FROM `customerMaster` ORDER BY `custName` ASC";
                         $custList = mysqli_query($connection, $custListQuery);
-                        // Account Managers List for the listing
+                        /* Account Managers List for the listing */
                         $accListQuery = "SELECT accountMaster.accName, customerMaster.custName FROM accountMaster, customerMaster WHERE accountMaster.custID = customerMaster.custID ORDER BY `custName` ASC";
                         $accList = mysqli_query($connection, $accListQuery);
-                        // Closing the connection
+                        /* Closing the connection */
                         mysqli_close($connection);
                         if(mysqli_num_rows($custList) > 0 ) {
                           $custOptions = "<option value='' selected>Choose Customer...</option>";
@@ -152,10 +152,10 @@
             <div class="d-flex flex-row justify-content-between flex-wrap list">
               <!-- p-2 mb-2 bg-secondary text-white -->
               <?php
-                // @include "consql.php";
-                // $accListQuery = "SELECT accountMaster.accName, customerMaster.custName FROM accountMaster, customerMaster WHERE accountMaster.custID = customerMaster.custID ORDER BY `custName` ASC";
-                // $accList = mysqli_query($connection, $accListQuery);
-                // mysqli_close($connection);
+                /* @include "consql.php"; */
+                /* $accListQuery = "SELECT accountMaster.accName, customerMaster.custName FROM accountMaster, customerMaster WHERE accountMaster.custID = customerMaster.custID ORDER BY `custName` ASC"; */
+                /* $accList = mysqli_query($connection, $accListQuery); */
+                /* mysqli_close($connection); */
                 if(mysqli_num_rows($accList) > 0 ) {
                   while($row=mysqli_fetch_assoc($accList)) {
                     echo "<div class='p-2 small'>".$row['accName']." (".$row['custName'].")</div>";

@@ -1,7 +1,7 @@
 <?php
 include 'consql.php';
 session_start();
-/*<input type="username" class="form-control text-center border-bottom mb-2" placeholder="username" id="username" name="username" value="<?php //(isset($password)) ? $_POST['password'] : ''; ?>" required />*/
+/*<input type="username" class="form-control text-center border-bottom mb-2" placeholder="username" id="username" name="username" value="<?php (isset($password)) ? $_POST['password'] : ''; ?>" required />*/
 
 if (isset($_SESSION['idfy'])) {
     header("Location: welcome.php"); // if successful: goto this page
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="row mx-5 my-3">
                 <div class="col-12 text-center">
-                  <input type="password" class="form-control text-center border-bottom" placeholder="p@s$W0rD*" id="password" name="password" value="<?php (isset($password)) ? $_POST['password'] : ''; ?>" required />
+                  <input type="password" class="form-control text-center border-bottom" placeholder="p@s$W0rD*" id="password" name="password" value="<?php (isset($password)) ? $_POST['password'] : ''; ?>" autofocus required />
                 </div>
               </div>
               <div class="row mx-5 mt-5 mb-5">

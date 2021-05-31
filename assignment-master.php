@@ -16,16 +16,16 @@
                     <!-- SOURCE: Here is the URL: https://www.lisenme.com/dynamic-dependent-select-box-using-jquery-ajax-php/ -->
                     <select class="custom-select" id="form-pmf-cust" name="form-pmf-cust" required aria-describedby="form-pmf-cust-help" required>
                       <?php @include "consql.php";
-                        // get all the customers
+                        /* get all the customers */
                         $custList = mysqli_query($connection, "SELECT `custID`, `custName` FROM `customerMaster` ORDER BY `custName` ASC");
-                        // get invoiceCount for later Use
+                        /* get invoiceCount for later Use */
                         $projList = mysqli_query($connection, "SELECT DISTINCT `prjID` FROM `assgMaster`");
 
-                        $projNewSerial = mysqli_num_rows($projList) + 62; // this '62' is starting of this year
-                        // Closing DB connection
+                        $projNewSerial = mysqli_num_rows($projList) + 62; /* this '62' is starting of this year */
+                        /* Closing DB connection */
                         mysqli_close($connection);
                         
-                        // populating the data into options
+                        /* populating the data into options */
                         if(mysqli_num_rows($custList) > 0 ) {
                           echo "<option value='' selected>Select the Customer...</option>";
                           while($row=mysqli_fetch_array($custList)) {

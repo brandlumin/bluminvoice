@@ -23,9 +23,9 @@
                       <label class="input-group-text bg-warning text-body h-100" for="form-cmf-addr1">Address:</label>
                     </div>
                     <div class="flex-grow-1">
-                      <input class="form-control mb-1" id="form-cmf-addr1" name="form-cmf-addr1" required placeholder="Address 1" />
-                      <input class="form-control mb-1" id="form-cmf-addr2" name="form-cmf-addr2" required placeholder="Address 2" />
-                      <input class="form-control" id="form-cmf-addr3" name="form-cmf-addr3" required placeholder="Address 3" />
+                      <input class="form-control mb-1" id="form-cmf-addr1" name="form-cmf-addr1" required placeholder="Address 1*" />
+                      <input class="form-control mb-1" id="form-cmf-addr2" name="form-cmf-addr2" required placeholder="Address 2*" />
+                      <input class="form-control" id="form-cmf-addr3" name="form-cmf-addr3" placeholder="Address 3" />
                     </div>
                   </div>
                 </div>
@@ -75,10 +75,6 @@
                     <div class="form-check form-check-inline mr-3">
                       <input type="radio" id="form-cmf-igst" name="form-cmf-gst-type" class="form-check-input" value="igst" required />
                       <label class="form-check-label text-white" for="form-cmf-igst"><b>I</b>-GST</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input type="radio" id="form-cmf-utgst" name="form-cmf-gst-type" class="form-check-input" value="utgst" required />
-                      <label class="form-check-label text-white" for="form-cmf-utgst"><b>UT</b>-GST</label>
                     </div>
                   </div>
                 </div>

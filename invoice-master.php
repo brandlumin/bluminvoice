@@ -1,5 +1,5 @@
 <title>IMF : bluminvoice</title>
-<?php @include_once "header.html" ?>
+<?php @include_once "header.html"; ?>
 <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
   <section class="container bl__home_imf">
     <div class="row">
@@ -59,7 +59,7 @@
                 </div>
                 <input class="form-control" id="form-imf-cust" name="form-imf-cust" required readonly="readonly" placeholder="Customer Name*" />
               </div>
-              <input name="form-imf-custID" placeholder="Customer ID" HIDDEN/>
+              <?php // echo <input name="form-imf-custID" placeholder="Customer ID" HIDDEN/> ?>
             </div>
             <!-- Account Manager -->
             <div class="form-group col-md-5">
@@ -69,11 +69,10 @@
                 </div>
                 <input class="form-control" id="form-imf-acct" name="form-imf-acct" required readonly="readonly" placeholder="Account Manager Name*" />
                 <!-- <select class="custom-select" id="form-imf-acct" name="form-imf-acct" required>
-                  <option class="" value="" selected>Select the Account Manager...</option>
-                  <option class="" value="5">CS Sapna Malhotra (Asst. Director)</option>
+                  <option class="" value="n" selected>Select the Account Manager...</option>
                 </select> -->
               </div>
-              <input name="form-imf-acctID" placeholder="Account Manager ID" HIDDEN/>
+              <?php // echo <input name="form-imf-acctID" placeholder="Account Manager ID" HIDDEN/> ?>
             </div>
           </div>
           <div class="row">
@@ -195,10 +194,24 @@
             <div class="col-12">
               <button type="submit" name="payment" class="btn btn-danger" formaction="./imf_page_payment.php" disabled="disabled">Receive Payment</button>
               <button type="submit" name="generate" class="btn btn-success float-right" disabled="disabled">Generate</button>
-              <button type="reset" name="reset" class="btn btn-info mr-3 float-right" onclick="fResetForm();">Reset</button>
+              <button type="reset" name="reset" class="btn btn-info mr-3 float-right">Reset</button>
             </div>
           </div>
         </form>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header bg-success shadow-sm">
+            <h5 class="modal-title text-white text-shadow-xs font-weight-bold" id="detailModalLabel">HEADING</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+        </div>
       </div>
     </div>
   </section>

@@ -1,5 +1,5 @@
 /* VARIABLES SETUP - plugins */
-const { dest, gulp, parallel, series, src, watch } = require("gulp"),
+const { dest, gulp, parallel, series, src, lastRun, watch } = require("gulp"),
   babel = require("gulp-babel"),
   concat = require("gulp-concat"),
   htmlmin = require("gulp-htmlmin"),
@@ -96,15 +96,10 @@ function workStyle() {
     .pipe(dest("site/styles/").on("finish", (callback) => livereload.reload()));
 }
 
-function minifyFrontEnd() {
-  return src(frontEndFiles, { allowEmpty: true })
+function workMinifyFrontEnd() {
+  return src(frontEndFiles, { allowEmpty: true, since: lastRun(workMinifyFrontEnd) })
     .pipe(htmlmin(htmlminOptions))
     .pipe(dest("site/").on("finish", (callback) => livereload.reload()));
-}
-
-function workFrontEnd() {
-  return src(frontEndFiles, { allowEmpty: true })
-    .pipe(htmlmin(htmlminOptions)).pipe(dest("site/").on("finish", (callback) => livereload.reload()));
 }
 
 /* WATCH FUNCTION */
@@ -113,7 +108,7 @@ function watchFiles() {
   watch(blStyleFiles, workStyle);
   watch(jsPluginFiles, preloadJS);
   watch(blScriptFiles, workScript);
-  watch(frontEndFiles, workFrontEnd);
+  watch(frontEndFiles, workMinifyFrontEnd);
   console.log(">> Begun watching for changes...");
 }
 
@@ -133,10 +128,10 @@ exports.default = series(
   preloadJS,
   workStyle,
   workScript,
-  minifyFrontEnd,
+  workMinifyFrontEnd,
   parallel(setupServer, watchFiles)
 );
 exports.styles = series(bootstrapCSS, workStyle);
 exports.scripts = series(preloadJS, workScript);
-exports.frontend = series(workFrontEnd);
-exports.minifyfrontend = series(minifyFrontEnd);
+exports.frontend = series(workMinifyFrontEnd);
+exports.workMinifyfrontend = series(workMinifyFrontEnd);

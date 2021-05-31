@@ -2,63 +2,65 @@
  *    IMF LIVESEARCH-AJAX
  */
 function fIMFLiveSearch() {
-  $('#form-imf-proj[type="text"]').on("keyup", function () { // extracted "input" event from "ON"
-    // Get input value on change 
-    let inputVal = $(this).val();
-    if (inputVal.length) {
-      $.get("imf-functions.php", { work: "findProjectForInvoice", value: inputVal }).done(function (projects) {
-        // Display the returned projects in browser
-        if (projects) {
+  /* extracted "input" event from "ON" */
+  $("#form-imf-proj").on('keyup', function () {
+    let cLiveSearchID = $(this).val();
+    if (cLiveSearchID.length) {
+      // run ajax call
+      $.get('./imf-functions.php', { task: "QuickList", prjSearch: cLiveSearchID })
+        .done(function (projects) {
+          /* Display the returned projects in browser */
           $("#search-box").slideDown(300, "linear", function () {
             $("#search-list").html(projects);
           });
-        }
-      });
+        });
     } else {
-      // hiding the dropdown upon emptying the search field
-      $("#search-box").slideUp(300, "linear", function () {
-        $("#search-list").empty();
-      });
+      /* hiding the dropdown upon emptying the search field */
+      fHideSearchBox();
     }
   });
 
-  // Set search input value on click of result item
-  $("#search-list").on("click", "p", function () {
-    fResetForm();
-    // form data to be used while working the IMF
-    $("#form-imf-invoice").val($(this).attr("invo-id"));
-    // ...additionally, this remains hidden
-    $("[name=form-imf-projID]").val($(this).attr("proj-id"));
-    $("[name=form-imf-custID]").val($(this).attr("cust-id"));
-    $("[name=form-imf-acctID]").val($(this).attr("acct-id"));
+  /* Set search input value on click of result item */
+  $("#search-list").on("click", 'p', function (event) {
 
-    // form data to be shown ONLY
-    $("#form-imf-proj").val($(this).text());
-    $("#form-imf-cust").val($(this).attr("cust-name"));
-    $("#form-imf-acct").val($(this).attr("acct-name"));
+    /* CONTENT ZOOM POP-OUT */
+    $("#form-imf-desc, #form-imf-narr, #form-imf-crfhistory, #form-imf-billing").css("cursor", "zoom-in").on("click", function (event) {
+      event.preventDefault();
+      /* $(this) works as caller */
+      let thisElName = $(this)[0].name,
+        thisElID = $(this),
+        wTitle = $("label[for=" + thisElName + "]").text(),
+        wContent = thisElID.val();
 
-    /* FETCH REMAINING DATA FROM PHP CALL */
-    $.get("imf-functions.php", { work: "findProjectDetailForInvoice", value: $(this).attr("proj-id") })
-      .done(function (prjDetails) {
-        if (prjDetails) {
-          let jsonArrayedObject = $.parseJSON(prjDetails); // Parsing (or breaking) the array to access the object.
-          // console.log(jsonArrayedObject);
-          /* printing all the keys
-          for (let aKey in jsonArrayedObject) {
-            for (let bKey in jsonArrayedObject[aKey]) {
-              console.log(bKey);
+      $('#detailModal .modal-title').text(wTitle);
+      $('#detailModal .modal-body').text((wContent.length) ? wContent : "-- empty --").css('whiteSpace', 'pre-line');
+      $('#detailModal').modal();
+    });
+
+
+    $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
+    $("form input, form textarea").val("").not("#form-imf-proj").toggleRO("ro");
+    $("#form-imf-proj").val(() => event.target.innerText);
+    fHideSearchBox();
+    let nLiveSearchID = event.target.attributes[0].nodeValue;
+    $.getJSON("./imf-functions.php", { task: "FullList", prjSearch: nLiveSearchID })
+      .done(function (jsonPrjDetails) {
+        /* SHOWING REEIVED DATA => console.log(jsonPrjDetails); */
+        if (jsonPrjDetails) {
+          /* printing all the keys */
+          for (let aKey in jsonPrjDetails) {
+            /* SHOWING ALL THE OBJECTS ONE-BY-ONE => console.log(aKey, ":", jsonPrjDetails[aKey]); */
+            for (let bKey in jsonPrjDetails[aKey]) {
+              /* SHOWING ALL THE KEYS ONLY => console.log(aKey + "." + bKey); */
+              /* SHOWING ALL THE KEYS WITH VALUES => console.log(aKey + "." + bKey + ": " + jsonPrjDetails[aKey][bKey]); */
             }
-          } */
-          fPHPDataDisplay(jsonArrayedObject);
+          }
+          /* ACTIVATE THE FORM */
+          /* fPHPDataDisplay(jsonPrjDetails); */
+          fIMFFormFill(jsonPrjDetails);
         }
-      }, "json")
-      .done(function () {
-        // hiding the dropdown
-        $("#search-box").slideUp(300, "linear", function () {
-          $("#search-list").empty();
-          $("#form-imf-desc").focus();
-        });
-      });
+      })
+      .done(fHideSearchBox);
   });
 }
 
@@ -67,18 +69,19 @@ function fIMFLiveSearch() {
  */
 function fIMFLiveSearchWidth() {
   $("#search-box").css("width", getWidth => $("#form-imf-proj").closest('.input-group').outerWidth());
+  $("button[type=reset]").on("click", function () {
+    $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
+    $("form input, form textarea").val("").not("#form-imf-proj").toggleRO("ro");
+  });
 }
 
 /**
- *    reset/refresh the form before every search-display
- *    @return   resets the form as desired
+ *    IMF LIVESEARCH--HIDE-SEARCH-BOX
+ *    @return {[type]} [description]
  */
-function fResetForm() {
-  // event.preventDefault();
-  $("input, textarea").val(function () {
-    $(this).toggleRO("ro");
-    $("form button:not([type=reset])").toggleEnDis("disable");
-    $('#form-imf-proj[type="text"]').toggleRO("rw");
-    return "";
+function fHideSearchBox() {
+  /* hiding the dropdown upon emptying the search field */
+  $("#search-box").slideUp(300, "linear", function () {
+    $("#search-list").empty();
   });
 }

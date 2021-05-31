@@ -1,30 +1,24 @@
 <?php
   $fImfProjID = $_POST["form-imf-projID"]; $fImfDtpay = $_POST["form-imf-dtpay"]; 
+  
+  /* setting the query */
+  $invMasterQuery = "UPDATE `invoiceMaster` SET `prjPaidDate`= '$fImfDtpay', `isPaid`=1 WHERE `prjID`= '$fImfProjID'";
 
-    /**
-     *    INSERTING INVOICE INTO THE DATABASE
-     *    SELECT  FROM ``
-     *    
-     */
-    // setting the query
+  /* establishing connection */
+  @include "consql.php";
 
-    $invMasterQuery = "UPDATE `invoiceMaster` SET `prjPaidDate`= '$fImfDtpay', `isPaid`=1 WHERE `prjID`= '$fImfProjID'";
+  /* firing the assignment UPDATE query through connection */
+  $invResponse = mysqli_query($connection, $invMasterQuery); 
 
-    // establishing connection
-    @include "consql.php";
+  /* Closing DB connection */
+  mysqli_close($connection);
 
-    // firing the assignment UPDATE query through connection
-    $invResponse = mysqli_query($connection, $invMasterQuery); 
-
-    // Closing DB connection
-    mysqli_close($connection);
-
-    // Check result if successful
-    if ($invResponse) {
-      // if successful
-      header("location: invoice-master.php?payment=received");
-    } else {
-      // if unsuccessful
-      header("location: invoice-master.php?error=".mysqli_connect_error(). " " .mysqli_error($connection));
-    }
+  /* Check result if successful */
+  if ($invResponse) {
+    /* if successful */
+    header("location: invoice-master.php?payment=received");
+  } else {
+    /* if unsuccessful */
+    header("location: invoice-master.php?error=".mysqli_connect_error(). " " .mysqli_error($connection));
+  }
 ?>
