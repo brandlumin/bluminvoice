@@ -102,6 +102,30 @@ label
   label
     min-width: unset
 
+
+.custom-radio
+  /* This is the default state */
+  .custom-control-label
+    &::before
+      background-color: dodgerblue
+      box-shadow: inset -1px 2px 0 4px transparentize($black, 0.85)
+  /* This is the checked state */
+  .custom-control-input
+    &:checked ~ .custom-control-label::before,
+    &:checked ~ .custom-control-label::after
+      border-radius: 50%
+      background-color: $green 
+      /* this bg image SVG is just a circle, you can replace it with any valid SVG code */
+      // background-image: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E)
+    /* active state i.e. displayed while the mouse is being pressed down */
+    &:active ~ .custom-control-label::before
+      color: $white
+      background-color: lighten($green, 15%)
+      /* the shadow; displayed while the element is in focus */
+    &:focus ~ .custom-control-label::before 
+      box-shadow: 0 0 0 2px transparentize($green, .85)
+
+
 /* Setting FOOTER */
 footer
   box-shadow: 0 0 0.2em #0003

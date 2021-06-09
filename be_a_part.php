@@ -49,12 +49,12 @@ if (isset($_POST['submit'])) {
   </head>
 
   <body class="bl__home d-flex flex-column justify-content-between bg-secondary">
-    <?php /* @include_once "header.html" ?> */
+    <?php /* @include_once "header.html" */ ?> 
     <main role="main" class="container flex-fill d-flex flex-column justify-content-center">
       <section class="bl__home_login">
         <div class="row">
           <div class="col-sm-6 offset-sm-3">
-            <form autocomplete="off" class="needs-validation rounded-lg bg-light" accept-charset="UTF-8" action="" method="post" id="form-login" name="form-login" novalidate>
+            <form autocomplete="off" class="rounded-lg bg-light" accept-charset="UTF-8" action="" method="post" id="form-login" name="form-login">
               <img class="mx-auto d-block mt-5" src="images/bl-logo.svg" alt="" height="50px" />
               <div class="mx-5 my-4">
                 <h5 class="text-center">Registration: Invoicing System</h5>

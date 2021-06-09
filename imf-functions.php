@@ -3,13 +3,13 @@
 if(isset($_REQUEST["task"])) {
   $task = $_REQUEST["task"];
 } else {
-  echo json_encode(array("ERROR"=>"brandlumin reports that TASK was passed to this module."));
+  echo json_encode(array("ERROR"=>"brandlumin reports that TASK was not passed to this module."));
   return;
 }
 if(isset($_REQUEST["prjSearch"])) {
   $value = $_REQUEST["prjSearch"];
 } else {
-  echo json_encode(array("ERROR"=>"brandlumin reports that PROJECT was passed to this module."));
+  echo json_encode(array("ERROR"=>"brandlumin reports that PROJECT was not passed to this module."));
   return;
 }
 

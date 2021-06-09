@@ -23,6 +23,9 @@ jQuery(function ($) {
       fIMFLiveSearchWidth();
       fIMFLiveSearch();
     }
+    if ((/^apr/i).test(pgTitle)) {
+      fAPRSetupRadios();
+    }
   }
 });
 

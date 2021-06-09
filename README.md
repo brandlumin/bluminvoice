@@ -1,8 +1,8 @@
 # bluminvoice
 It is a custom 'personal' project for internal use.
 
-METHOD TO SHOW RECEIVED JSON DATA FROM PHP
-------------------------------------------
+## METHOD TO SHOW RECEIVED JSON DATA FROM PHP
+---------------------------------------------
 
 console.log(prjDetails); // Proof that the returned object is encapsulated into an array here.
 let jsonArrayedObject = $.parseJSON(prjDetails); // Parsing (or breaking) the array to access the object.
@@ -13,11 +13,6 @@ $(jsonArrayedObject).each(function (index, value) { // Iterate over array to acc
   });
 });
 
-SELECT C.changeReq, C.changeDate, C.changeAmount, I.prjTotalBill, I.prjBillingDetails, I.prjPaidDate
-FROM invoiceMaster I
-INNER JOIN changeMaster C
-ON I.prjID = C.prjID
-WHERE I.prjID = 63
 ------------------------------------------
 
 TABLE STRUCTURES
@@ -90,32 +85,5 @@ invoiceMaster;
 +----------------+---------------+------+-----+---------+-------+
 ------------------------------------------
 
-NOTES:
----------
-
-IDEA:
-SET group_concat_max_len = 2048;
-SELECT person_id, 
-       GROUP_CONCAT(hobbies ORDER BY hobbies ASC SEPARATOR ', ')
-FROM peoples_hobbies
-GROUP BY person_id;
-
-
-OLD:
-SELECT A.prjName PROJECT, A.prjInvoiceID INVOICE, B.custName CUSTOMER, C.accName MANAGER, A.prjStartDate STARTED, A.prjEndDate ENDED, A.isInvoiced, A.prjDesc DESCRIPTION, A.prjNarr NARRATION, A.prjCostQuoted QUOTED, B.custType FROM assgMaster A JOIN customerMaster B USING (custID) JOIN accountMaster C USING (accID) WHERE prjID =
-
-
-NEW:
-SELECT 
-A.prjID, A.prjName PROJECT, A.prjInvoiceID INVOICE, B.custName CUSTOMER, C.accName MANAGER, 
-A.prjStartDate STARTED, A.prjEndDate ENDED, A.isInvoiced, A.prjDesc DESCRIPTION, 
-A.prjNarr NARRATION, A.prjCostQuoted QUOTED, B.custType,
-D.invDate, D.prjTotalBill TOTAL, D.prjBillDetails BILLING
-FROM assgMaster A 
-JOIN customerMaster B 
-USING (custID) 
-JOIN accountMaster C 
-USING (accID) 
-LEFT JOIN invoiceMaster D 
-USING (prjID)
-WHERE prjID = 67
+### NOTES:
+----------

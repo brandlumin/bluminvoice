@@ -27,7 +27,7 @@
   box-shadow: 0 .125rem .75rem rgba(0,0,0,0.17) 
 
 =bg-yellow-40p
-  background: lighten(#ff0, 40%) !important
+  background: lighten($yellow, 40%) !important
 
 /** Placeholders End */
 
@@ -46,6 +46,7 @@
 .no-shadow
   box-shadow: none !important
 .no-shadow-hover
+  transition: 0.3s all ease-out
   &:hover,
   &:active,
   &:focus
@@ -105,7 +106,7 @@ textarea,
 
 /* Adding background to input fields */
 .bg-yellow-40p
-  background: lighten(#ff0, 40%) !important
+  background: lighten($yellow, 40%) !important
 
 /**
  *    BASE CLASSES
@@ -123,6 +124,17 @@ ol
   position: fixed !important
   bottom: 0 !important
   width: 100% !important
+
+
+[pointer]
+  cursor: pointer
+
+[zoomIn]
+  cursor: zoom-in
+
+[zoomOut]
+  cursor: zoom-out
+
 
 footer
   box-shadow: 0 -0.125rem 0.25rem rgba(0,0,0,0.15) 

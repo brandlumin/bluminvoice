@@ -16,16 +16,30 @@ function fIMFFormFill(valObj) {
 
     $("#form-imf-dtstrt").val(valObj.fullPrjInv.STARTED); /* STARTED */
     $("#form-imf-dtend").on("click, change", function (e) {
-      /* Enabling Invoice Generation upon Ending the project i.e. Filling the 'End Date' */
-      if ($(this).val()) {
+      let thisMax = $(this).attr("max"),
+        thisMin = $(this).attr("min"),
+        thisVal = $(this).val();
+      if (new Date(thisVal) <= new Date(thisMax) && new Date(thisMin) <= new Date(thisVal)) {
+        /* Enabling Invoice Generation BUTTON upon Ending the project i.e. Filling the 'End Date' */
         $("[name=generate]").toggleEnDis("enable").addClass("btn-outline-light");
       } else {
         $("[name=generate]").toggleEnDis("disable").removeClass("btn-outline-light");
       }
     }).val(function () {
-      if (valObj.fullPrjInv.isInvoiced == 0) $("#form-imf-dtend, #form-imf-billing").toggleRO("rw").attr("min", valObj.fullPrjInv.STARTED);
+      if (valObj.fullPrjInv.isInvoiced == 0) $("#form-imf-dtend").toggleRO("rw").attr("min", valObj.fullPrjInv.STARTED);
       return valObj.fullPrjInv.ENDED;
     });
+    $("#form-imf-dtpay").on("click, change", function (e) {
+      let thisMax = $(this).attr("max"),
+        thisMin = $(this).attr("min"),
+        thisVal = $(this).val();
+      if (new Date(thisVal) <= new Date(thisMax) && new Date(thisMin) <= new Date(thisVal)) {
+        /* Enabling Payment Receipt BUTTON upon receiving the payment i.e. Filling the 'Paid Date' */
+        $("form [name=payment]").toggleEnDis("enable").addClass("btn-outline-light");
+      } else {
+        $("form [name=payment]").toggleEnDis("disable").removeClass("btn-outline-light");
+      }
+    }).attr('min', dtPay => valObj.fullPrjInv.ENDED);
     $("#form-imf-desc").val(valObj.fullPrjInv.DESCRIPTION);
     $("#form-imf-narr").val(valObj.fullPrjInv.NARRATION);
     $("#form-imf-qprice").val(valObj.fullPrjInv.QUOTED);
@@ -45,14 +59,6 @@ function fIMFFormFill(valObj) {
     $("#form-imf-crfhistory").val(function () {
       valObj.fullChanges.chgHistory = valObj.fullChanges.chgHistory.replace(/[-\s]+$/g, "");
       return valObj.fullChanges.chgHistory;
-    });
-    $("#form-imf-dtpay").on("click, change", function (e) {
-      /* Enabling Payment Receipt upon receiving the payment i.e. Filling the 'Paid Date' */
-      if ($(this).val()) {
-        $("form [name=payment]").toggleEnDis("enable").addClass("btn-outline-light");
-      } else {
-        $("form [name=payment]").toggleEnDis("disable").removeClass("btn-outline-light");
-      }
     });
   }
 

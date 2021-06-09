@@ -9,6 +9,7 @@ function fNavDeactive() {
   if ((/^PMF/i).test(pgTitle)) seq = 2;
   if ((/^CRF/i).test(pgTitle)) seq = 3;
   if ((/^IMF/i).test(pgTitle)) seq = 4;
+  if ((/^APR/i).test(pgTitle)) seq = 5;
 
   let oEl = $("header ul.list-unstyled li").eq(seq).find('a');
   $("</p>").html($(oEl).html()).addClass("text-warning").insertAfter(oEl);

@@ -16,7 +16,7 @@ function fIMFLiveSearch() {
         });
     } else {
       /* hiding the dropdown upon emptying the search field */
-      fHideSearchBox();
+      fHideIMFSearchBox();
     }
   });
 
@@ -33,7 +33,8 @@ function fIMFLiveSearch() {
         wContent = thisElID.val();
 
       $('#detailModal .modal-title').text(wTitle);
-      $('#detailModal .modal-body').text((wContent.length) ? wContent : "-- empty --").css('whiteSpace', 'pre-line');
+      $('#detailModal .modal-body').text((wContent.length) ? wContent : "-- empty --");
+      if (thisElName.match(/billing/)) { $('#detailModal .modal-body').addClass("text-monospace").css('whiteSpace', 'pre'); } else { $('#detailModal .modal-body').removeClass("text-monospace").css('whiteSpace', 'pre-wrap'); }
       $('#detailModal').modal();
     });
 
@@ -41,7 +42,7 @@ function fIMFLiveSearch() {
     $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
     $("form input, form textarea").val("").not("#form-imf-proj").toggleRO("ro");
     $("#form-imf-proj").val(() => event.target.innerText);
-    fHideSearchBox();
+    fHideIMFSearchBox();
     let nLiveSearchID = event.target.attributes[0].nodeValue;
     $.getJSON("./imf-functions.php", { task: "FullList", prjSearch: nLiveSearchID })
       .done(function (jsonPrjDetails) {
@@ -56,11 +57,10 @@ function fIMFLiveSearch() {
             }
           }
           /* ACTIVATE THE FORM */
-          /* fPHPDataDisplay(jsonPrjDetails); */
           fIMFFormFill(jsonPrjDetails);
         }
       })
-      .done(fHideSearchBox);
+      .done(fHideIMFSearchBox);
   });
 }
 
@@ -79,7 +79,7 @@ function fIMFLiveSearchWidth() {
  *    IMF LIVESEARCH--HIDE-SEARCH-BOX
  *    @return {[type]} [description]
  */
-function fHideSearchBox() {
+function fHideIMFSearchBox() {
   /* hiding the dropdown upon emptying the search field */
   $("#search-box").slideUp(300, "linear", function () {
     $("#search-list").empty();
