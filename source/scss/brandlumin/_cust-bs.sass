@@ -126,9 +126,42 @@ label
       box-shadow: 0 0 0 2px transparentize($green, .85)
 
 
+
+.custom-switch
+  .custom-control-label
+    color: $gray-200 !important
+    &::before
+      left: -3.25rem
+      width: 2.75rem
+      border: 1px solid $white !important
+      background-color: $gray-400 !important
+      box-shadow: inset -1px 0 4px transparentize($black, 0.6), 0 0 3px transparentize($white, 0.4) !important
+    &::after
+      left: calc(-3.25rem + 2px)
+      background-color: $gray-200 !important
+      box-shadow: 2px 0 4px transparentize($black, 0.7) !important
+  .custom-control-input
+    &:checked
+      & ~ .custom-control-label
+        color: $white !important
+        text-shadow: 0 .125rem .125rem rgba(0,0,0,0.27) 
+        &::before
+          border-color: $white !important
+          background-color: $green !important
+          box-shadow: inset 1px 0 4px transparentize($black, 0.6), 0 0 3px transparentize($white, 0.4) !important
+        &::after
+          background-color: $white !important
+          transform: translateX(1.75rem) !important
+          box-shadow: -2px 0 4px transparentize($black, 0.7) !important
+    &:focus ~ .custom-control-label::before
+      box-shadow: inset 1px 0 4px transparentize($black, 0.6), 0 0 3px transparentize($white, 0.4) !important
+
+
+
+
 /* Setting FOOTER */
 footer
-  box-shadow: 0 0 0.2em #0003
+  box-shadow: 0 0 0.2em transparentize($black, 0.7)
 
 .alert
   z-index: 2000

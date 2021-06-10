@@ -58,6 +58,15 @@
                 </div>
               </div>
               <div class="form-row">
+                <div class="col mb-2">
+                  <div class="custom-control custom-switch text-center">
+                    <span class="mr-5 pr-2 text-light" pointer onclick="$(this).siblings('input').click()">Use Separate Address</span>
+                    <input type="checkbox" class="custom-control-input" id="form-amf-usecustaddr" name="form-amf-usecustaddr" checked="checked">
+                    <label class="custom-control-label" for="form-amf-usecustaddr" pointer>Use Customer's Address</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="form-group col-12">
                   <div class="input-group d-flex">
                     <div class="">

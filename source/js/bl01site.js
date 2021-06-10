@@ -11,6 +11,9 @@ jQuery(function ($) {
   if (!(/^login/i).test(pgTitle) && !(/^register/i).test(pgTitle)) {
     fNavDeactive();
     fEnableToggler();
+    if ((/^home/i).test(pgTitle) || (/^cmf/i).test(pgTitle) || (/^amf/i).test(pgTitle)) {
+      if ($("#form-amf-usecustaddr").length) fInitialFunctions();
+    }
     if ((/^pmf/i).test(pgTitle)) {
       fPMFpageAJAX();
       fPMFInvoiceNo();
