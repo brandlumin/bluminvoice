@@ -192,9 +192,10 @@
           <div class="row">
             <!-- Buttons -->
             <div class="col-12">
-              <button type="submit" name="payment" class="btn btn-danger" formaction="./imf_page_payment.php" disabled="disabled">Receive Payment</button>
-              <button type="submit" name="generate" class="btn btn-success float-right" disabled="disabled">Generate</button>
-              <button type="reset" name="reset" class="btn btn-info mr-3 float-right">Reset</button>
+              <hr class="bl-seperator">
+              <button type="submit" name="payment" class="btn btn-danger no-shadow-hover" formaction="./imf_page_payment.php" disabled="disabled">Receive Payment</button>
+              <button type="submit" name="generate" class="btn btn-success no-shadow-hover float-right" disabled="disabled">Generate</button>
+              <button type="reset" name="reset" class="btn btn-primary no-shadow-hover mr-3 float-right">Reset</button>
             </div>
           </div>
         </form>

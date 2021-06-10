@@ -30,7 +30,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row align-items-center">
+              <div class="form-row align-items-center">
                 <div class="form-group mb-1 mb-md-auto col-md-4">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -56,7 +56,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="form-row">
                 <div class="form-group col-md-6">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -79,18 +79,13 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="form-row">
                 <div class="col-12">
+                  <hr class="bl-seperator">
                   <!-- BUTTONS -->
-                  <a class="btn btn-secondary shadow-sm-dark no-shadow-hover mr-2" id="toggleBtn">Show List</a>
-                  <!-- <div class="text-right"> -->
-                    <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover float-right">
-                      Create
-                    </button>
-                    <button type="reset" class="btn btn-info shadow-sm-dark no-shadow-hover mr-3 float-right">
-                      Reset
-                    </button>
-                  <!-- </div> -->
+                  <a class="btn btn-secondary no-shadow-hover" id="toggleBtn">Show List</a>
+                  <button type="submit" class="btn btn-success no-shadow-hover float-right">Create</button>
+                  <button type="reset" class="btn btn-primary no-shadow-hover mr-3 float-right">Reset</button>
                 </div>
               </div>
             </form>

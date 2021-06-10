@@ -89,8 +89,8 @@
                   </div>
                 </div>
                 <div class="form-group col-md-4">
-                  <button type="submit" class="btn btn-success float-right">Create</button>
-                  <button type="reset" class="btn btn-info mr-3 float-right">Reset</button>
+                  <button type="submit" class="btn btn-success no-shadow-hover float-right">Create</button>
+                  <button type="reset" class="btn btn-primary no-shadow-hover mr-3 float-right">Reset</button>
                   <!-- </div> -->
                 </div>
               </div>

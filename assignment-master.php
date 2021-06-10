@@ -116,12 +116,9 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-success shadow-sm-dark no-shadow-hover float-right">
-                      Create
-                    </button>
-                    <button type="reset" class="btn btn-info shadow-sm-dark no-shadow-hover mr-3 float-right">
-                      Reset
-                    </button>
+                  <hr class="bl-seperator">
+                  <button type="submit" class="btn btn-success no-shadow-hover float-right">Create</button>
+                  <button type="reset" class="btn btn-primary no-shadow-hover mr-3 float-right">Reset</button>
                   <!-- </div> -->
                 </div>
               </div>
