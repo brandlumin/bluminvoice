@@ -75,14 +75,6 @@
               <?php // echo <input name="form-imf-acctID" placeholder="Account Manager ID" HIDDEN/> ?>
             </div>
           </div>
-          <div class="row">
-            <!-- Separators -->
-            <div class="col">
-              <!-- <hr class="m-0 border-light"> -->
-              <!-- <hr class="mt-0 mb-3 border-light"> -->
-              <hr class="mt-0" style="border-top: 1px dashed #dee2e6">
-            </div>
-          </div>
           <div class="form-row">
             <!-- Start Date -->
             <div class="form-group col-md-4">
@@ -119,7 +111,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text bg-warning text-body" for="form-imf-desc">Description:</label>
                 </div>
-                <textarea class="form-control" id="form-imf-desc" name="form-imf-desc" rows="3" placeholder="Project Description" style="resize: none" readonly="readonly"></textarea>
+                <textarea class="form-control" id="form-imf-desc" name="form-imf-desc" rows="2" placeholder="Project Description" style="resize: none" readonly="readonly"></textarea>
               </div>
             </div>
             <!-- Narration -->
@@ -128,7 +120,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text bg-warning text-body" for="form-imf-narr">Narration:</label>
                 </div>
-                <textarea class="form-control" id="form-imf-narr" name="form-imf-narr" rows="3" placeholder="Internal Narration" style="resize: none" readonly="readonly"></textarea>
+                <textarea class="form-control" id="form-imf-narr" name="form-imf-narr" rows="2" placeholder="Internal Narration" style="resize: none" readonly="readonly"></textarea>
               </div>
             </div>
           </div>
