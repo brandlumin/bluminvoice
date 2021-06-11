@@ -5,7 +5,7 @@
     <form class="needs-validation p-4" accept-charset="UTF-8" action="./apr_page_register.php" method="post" id="form-apr" name="form-apr" novalidate>
       <h3 class="text-center mb-4 text-white font-weight-bold">Project Reports</h3>
       <!-- Radio Buttons -->
-      <div class="form-row mb-4 p-2 text-center font-weight-bold rounded-top shadow-sm-dark no-shadow-hover bl__home_apr-choice">
+      <div class="form-row mb-3 p-2 text-center font-weight-bold rounded-top shadow-sm-dark no-shadow-hover bl__home_apr-choice">
         <div class="col-4 offset-2 col-md-3 offset-md-0 mb-md-0 mb-1">
           <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" id="searchByProject" name="searchBy" value="Project" class="custom-control-input" checked="checked">
@@ -86,12 +86,6 @@
           <?php // echo <input name="form-apr-acctID" placeholder="Account Manager ID" HIDDEN/> ?>
         </div>
       </div>
-      <div class="row">
-        <!-- Separators -->
-        <div class="col">
-          <hr class="mt-0" style="border-top: 1px dashed #dee2e6">
-        </div>
-      </div>
       <div class="form-row">
         <!-- Start Date -->
         <div class="form-group col-md-4">
@@ -140,7 +134,7 @@
             <div class="input-group-prepend">
               <label class="input-group-text bg-warning text-body" for="form-apr-desc">Description:</label>
             </div>
-            <textarea class="form-control" id="form-apr-desc" name="form-apr-desc" rows="3" placeholder="Project Description" style="resize: none" readonly="readonly"></textarea>
+            <textarea class="form-control" id="form-apr-desc" name="form-apr-desc" rows="2" placeholder="Project Description" style="resize: none" readonly="readonly"></textarea>
           </div>
         </div>
         <!-- Narration -->
@@ -149,7 +143,7 @@
             <div class="input-group-prepend">
               <label class="input-group-text bg-warning text-body" for="form-apr-narr">Narration:</label>
             </div>
-            <textarea class="form-control" id="form-apr-narr" name="form-apr-narr" rows="3" placeholder="Internal Narration" style="resize: none" readonly="readonly"></textarea>
+            <textarea class="form-control" id="form-apr-narr" name="form-apr-narr" rows="2" placeholder="Internal Narration" style="resize: none" readonly="readonly"></textarea>
           </div>
         </div>
       </div>
