@@ -40,7 +40,7 @@ function fIMFLiveSearch() {
 
 
     $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
-    $("form input, form textarea").val("").not("#form-imf-proj").toggleRO("ro");
+    $("form input, form textarea").val("").removeAttr("min max").not("#form-imf-proj").toggleRO("ro");
     $("#form-imf-proj").val(() => event.target.innerText);
     fHideIMFSearchBox();
     let nLiveSearchID = event.target.attributes[0].nodeValue;
@@ -71,7 +71,7 @@ function fIMFLiveSearchWidth() {
   $("#search-box").css("width", getWidth => $("#form-imf-proj").closest('.input-group').outerWidth());
   $("button[type=reset]").on("click", function () {
     $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
-    $("form input, form textarea").val("").not("#form-imf-proj").toggleRO("ro");
+    $("form input, form textarea").val("").removeAttr("min max").not("#form-imf-proj").toggleRO("ro");
   });
 }
 

@@ -26,8 +26,16 @@ function fIMFFormFill(valObj) {
         $("[name=generate]").toggleEnDis("disable").removeClass("btn-outline-light");
       }
     }).val(function () {
-      if (valObj.fullPrjInv.isInvoiced == 0) $("#form-imf-dtend").toggleRO("rw").attr("min", valObj.fullPrjInv.STARTED);
-      return valObj.fullPrjInv.ENDED;
+      if (valObj.fullPrjInv.isInvoiced == 0) { /* IF NOT INVOICED */
+        if (valObj.hasOwnProperty("fullChanges") && valObj.fullChanges.chgHistory != '') { /* AND HAS CHANGES TOO */
+          let capture = valObj.fullChanges.chgHistory.match(/\d+-\d+-\d+/gm),
+            minDtPay = capture[capture.length - 1];
+          $("#form-imf-dtend").toggleRO("rw").attr("min", minDtPay);
+        } else { /* HAS NO CHANGES */
+          $("#form-imf-dtend").toggleRO("rw").attr("min", valObj.fullPrjInv.STARTED);
+        }
+      }
+      return valObj.fullPrjInv.ENDED; /* default return (even IF INVOICED) */
     });
     $("#form-imf-dtpay").on("click, change", function (e) {
       let thisMax = $(this).attr("max"),
