@@ -51,7 +51,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-crf-date">Date:</label>
                     </div>
-                    <input type="date" class="form-control" id="form-crf-date" name="form-crf-date" aria-describedby="form-crf-date-help" required value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d'); ?>" readonly="readonly"/>
+                    <input type="date" class="form-control" id="form-crf-date" name="form-crf-date" aria-describedby="form-crf-date-help" required max="<?php echo date('Y-m-d'); ?>" readonly="readonly"/>
                   </div>
                   <small id="form-crf-date-help" class="form-text text-muted text-right">CRF received date.</small>
                 </div>

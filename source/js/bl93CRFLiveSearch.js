@@ -6,7 +6,7 @@ function fCRFLiveSearch() {
     // Get input value on change 
     let inputVal = $(this).val();
     if (inputVal.length) {
-      $.get("crf-livelist.php", { term: inputVal }).done(function (data) {
+      $.get("./crf-livelist.php", { term: inputVal, task: "DropDown" }).done(function (data) {
         // Display the returned data in browser
         if (data) {
           $("#search-box").slideDown(300, "linear", function () {
@@ -35,7 +35,22 @@ function fCRFLiveSearch() {
     $("#form-crf-cust").val($(this).attr("cust-name")); // filling cust-name
     $("#form-crf-project").val($(this).text()); // filling search-input OR proj-name
     $("#form-crf-invoice").val($(this).attr("proj-in")); // filling invoice number
-    $("#form-crf-date").attr("min", $(this).attr("proj-dt")).change(); // setting minimum date
+    let prjDate = $(this).attr("proj-dt"),
+      projectID = $(this).attr("proj-id");
+
+    function setEndDate() {
+      $.get("./crf-livelist.php", { term: projectID, task: "LastDate" })
+        .done(function (data) {
+          if (data) {
+            console.log(data);
+            $("#form-crf-date").attr("min", data);
+          } else {
+            console.log(prjDate);
+            $("#form-crf-date").attr("min", prjDate);
+          }
+        });
+    }
+    setEndDate(); // setting minimum date
 
     // enabling the form
     $("#form-crf-date, #form-crf-desc, #form-crf-amount").toggleRO("rw");
@@ -63,7 +78,8 @@ function fResetForm() {
   // event.preventDefault();
   $("input, textarea").val(function () {
     $(this).toggleRO("ro");
-    $('#form-crf-project[type="text"]').toggleRO("rw");
+    $("#form-crf-project").toggleRO("rw");
+    $("#form-crf-date").removeAttr("min");
     return "";
   });
 }
