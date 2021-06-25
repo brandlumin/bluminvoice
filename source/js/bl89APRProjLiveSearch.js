@@ -28,8 +28,8 @@ function fAPRProjLiveSearch() {
     $("#form-apr-proj").val(() => event.target.innerText); /* displaying the project name */
     fDisappearDropdown("project");
     let nLiveSearchID = event.target.attributes[0].nodeValue;
-    $.getJSON("./apr-functions.php", { task: "projFullDetail", prjSearch: nLiveSearchID })
-      .done(function (jsonPrjDetails) {
+    $.getJSON({ url: "./apr-functions.php", beforeSend: fSpinner }, { task: "projFullDetail", prjSearch: nLiveSearchID })
+      .then(function (jsonPrjDetails) {
         if (jsonPrjDetails) {
           for (let aKey in jsonPrjDetails) {
             for (let bKey in jsonPrjDetails[aKey]) {}
@@ -37,7 +37,10 @@ function fAPRProjLiveSearch() {
           /* ACTIVATE THE FORM */
           fAPRFormFill(jsonPrjDetails);
         }
-      })
-      .done(fDisappearDropdown("project"));
+      }, fSpinner)
+      .done(() => {
+        fDisappearDropdown("project");
+        fSpinner();
+      });
   });
 }

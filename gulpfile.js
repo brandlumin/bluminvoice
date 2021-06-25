@@ -13,7 +13,7 @@ const { dest, gulp, parallel, series, src, lastRun, watch } = require("gulp"),
   /* VARIABLES SETUP - plugins options */
   terserOptions = {
     output: {
-      beautify: false, // true,
+      beautify: true,
       comments: false, // default is FALSE
       // comments: "/^[!*]/", // default is FALSE
       indent_level: 2,

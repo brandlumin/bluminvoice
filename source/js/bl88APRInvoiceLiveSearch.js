@@ -27,8 +27,8 @@ function fAPRInvoiceLiveSearch() {
     $("form input[type='text'], form input[type='date'], form textarea").val("").not("#form-apr-invoice").toggleRO("ro");
     fDisappearDropdown("invoice");
     let nLiveSearchID = $(this).attr("proj-id");
-    $.getJSON("./apr-functions.php", { task: "projFullDetail", prjSearch: nLiveSearchID })
-      .done(function (jsonPrjDetails) {
+    $.getJSON({ url: "./apr-functions.php", beforeSend: fSpinner }, { task: "projFullDetail", prjSearch: nLiveSearchID })
+      .then(function (jsonPrjDetails) {
         if (jsonPrjDetails) {
           for (let aKey in jsonPrjDetails) {
             for (let bKey in jsonPrjDetails[aKey]) {}
@@ -36,7 +36,10 @@ function fAPRInvoiceLiveSearch() {
           /* ACTIVATE THE FORM */
           fAPRFormFill(jsonPrjDetails);
         }
-      })
-      .done(fDisappearDropdown("invoice"));
+      }, fSpinner)
+      .done(() => {
+        fDisappearDropdown("invoice");
+        fSpinner();
+      });
   });
 }

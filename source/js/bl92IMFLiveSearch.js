@@ -16,51 +16,29 @@ function fIMFLiveSearch() {
         });
     } else {
       /* hiding the dropdown upon emptying the search field */
-      fHideIMFSearchBox();
+      fIMFHideSearchBox();
     }
   });
 
   /* Set search input value on click of result item */
   $("#search-list").on("click", 'p', function (event) {
 
-    /* CONTENT ZOOM POP-OUT */
-    $("#form-imf-desc, #form-imf-narr, #form-imf-crfhistory, #form-imf-billing").css("cursor", "zoom-in").on("click", function (event) {
-      event.preventDefault();
-      /* $(this) works as caller */
-      let thisElName = $(this)[0].name,
-        thisElID = $(this),
-        wTitle = $("label[for=" + thisElName + "]").text(),
-        wContent = thisElID.val();
+    function beforeSendCleanup() {
+      fSpinner();
+      $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
+      $("form input, form textarea").val("").removeClass("text-danger").removeAttr("min").not("#form-imf-proj").toggleRO("ro");
+      $("#form-imf-proj").val(() => event.target.innerText);
+      fIMFHideSearchBox();
+    }
 
-      $('#detailModal .modal-title').text(wTitle);
-      $('#detailModal .modal-body').text((wContent.length) ? wContent : "-- empty --");
-      if (thisElName.match(/billing/)) { $('#detailModal .modal-body').addClass("text-monospace").css('whiteSpace', 'pre'); } else { $('#detailModal .modal-body').removeClass("text-monospace").css('whiteSpace', 'pre-wrap'); }
-      $('#detailModal').modal();
-    });
-
-
-    $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
-    $("form input, form textarea").val("").removeAttr("min max").not("#form-imf-proj").toggleRO("ro");
-    $("#form-imf-proj").val(() => event.target.innerText);
-    fHideIMFSearchBox();
     let nLiveSearchID = event.target.attributes[0].nodeValue;
-    $.getJSON("./imf-functions.php", { task: "FullList", prjSearch: nLiveSearchID })
-      .done(function (jsonPrjDetails) {
-        /* SHOWING REEIVED DATA => console.log(jsonPrjDetails); */
+    $.getJSON({ url: "./imf-functions.php", beforeSend: beforeSendCleanup }, { task: "FullList", prjSearch: nLiveSearchID })
+      .then(function (jsonPrjDetails) {
         if (jsonPrjDetails) {
-          /* printing all the keys */
-          for (let aKey in jsonPrjDetails) {
-            /* SHOWING ALL THE OBJECTS ONE-BY-ONE => console.log(aKey, ":", jsonPrjDetails[aKey]); */
-            for (let bKey in jsonPrjDetails[aKey]) {
-              /* SHOWING ALL THE KEYS ONLY => console.log(aKey + "." + bKey); */
-              /* SHOWING ALL THE KEYS WITH VALUES => console.log(aKey + "." + bKey + ": " + jsonPrjDetails[aKey][bKey]); */
-            }
-          }
-          /* ACTIVATE THE FORM */
-          fIMFFormFill(jsonPrjDetails);
+          fIMFFormFill(jsonPrjDetails); /* ACTIVATE THE FORM */
         }
-      })
-      .done(fHideIMFSearchBox);
+      }, fSpinner)
+      .done(fSpinner);
   });
 }
 
@@ -69,9 +47,10 @@ function fIMFLiveSearch() {
  */
 function fIMFLiveSearchWidth() {
   $("#search-box").css("width", getWidth => $("#form-imf-proj").closest('.input-group').outerWidth());
+  /* SETTING THE RESET BUTTON'S FUNCTIONALITY HERE JUST BECUASE OF AALAS */
   $("button[type=reset]").on("click", function () {
     $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
-    $("form input, form textarea").val("").removeAttr("min max").not("#form-imf-proj").toggleRO("ro");
+    $("form input, form textarea").val("").removeClass("text-danger").removeAttr("min").not("#form-imf-proj").toggleRO("ro");
   });
 }
 
@@ -79,7 +58,7 @@ function fIMFLiveSearchWidth() {
  *    IMF LIVESEARCH--HIDE-SEARCH-BOX
  *    @return {[type]} [description]
  */
-function fHideIMFSearchBox() {
+function fIMFHideSearchBox() {
   /* hiding the dropdown upon emptying the search field */
   $("#search-box").slideUp(300, "linear", function () {
     $("#search-list").empty();

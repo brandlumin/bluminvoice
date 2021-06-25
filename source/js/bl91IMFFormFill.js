@@ -3,6 +3,21 @@
  */
 function fIMFFormFill(valObj) {
 
+  /* CONTENT ZOOM POP-OUT */
+  $("#form-imf-desc, #form-imf-narr, #form-imf-crfhistory, #form-imf-billing").css("cursor", "zoom-in").on("click", function (event) {
+    event.preventDefault();
+    /* $(this) works as caller */
+    let thisElName = $(this)[0].name,
+      thisElID = $(this),
+      wTitle = $("label[for=" + thisElName + "]").text(),
+      wContent = thisElID.val();
+
+    $('#detailModal .modal-title').text(wTitle);
+    $('#detailModal .modal-body').text((wContent.length) ? wContent : "-- empty --");
+    if (thisElName.match(/billing/)) { $('#detailModal .modal-body').addClass("text-monospace").css('whiteSpace', 'pre'); } else { $('#detailModal .modal-body').removeClass("text-monospace").css('whiteSpace', 'pre-wrap'); }
+    $('#detailModal').modal();
+  });
+
   /* Setting 'zero' to NULL values */
   if (!valObj.fullPrjInv.TOTAL) valObj.fullPrjInv.TOTAL = 0;
   if (!valObj.fullChanges.chgAmount) valObj.fullChanges.chgAmount = 0;
@@ -15,14 +30,17 @@ function fIMFFormFill(valObj) {
     $("#form-imf-acct").val(valObj.fullPrjInv.MANAGER); /* MANAGER */
 
     $("#form-imf-dtstrt").val(valObj.fullPrjInv.STARTED); /* STARTED */
-    $("#form-imf-dtend").on("click, change", function (e) {
-      let thisMax = $(this).attr("max"),
-        thisMin = $(this).attr("min"),
-        thisVal = $(this).val();
+    $("#form-imf-dtend").on("click change", function (e) {
+      let self = $(this),
+        thisMax = self.attr("max"),
+        thisMin = self.attr("min"),
+        thisVal = self.val();
       if (new Date(thisVal) <= new Date(thisMax) && new Date(thisMin) <= new Date(thisVal)) {
         /* Enabling Invoice Generation BUTTON upon Ending the project i.e. Filling the 'End Date' */
+        self.removeClass("text-danger");
         $("[name=generate]").toggleEnDis("enable").addClass("btn-outline-light");
       } else {
+        self.addClass("text-danger");
         $("[name=generate]").toggleEnDis("disable").removeClass("btn-outline-light");
       }
     }).val(function () {
@@ -37,14 +55,17 @@ function fIMFFormFill(valObj) {
       }
       return valObj.fullPrjInv.ENDED; /* default return (even IF INVOICED) */
     });
-    $("#form-imf-dtpay").on("click, change", function (e) {
-      let thisMax = $(this).attr("max"),
-        thisMin = $(this).attr("min"),
-        thisVal = $(this).val();
+    $("#form-imf-dtpay").on("click change", function (e) {
+      let self = $(this),
+        thisMax = self.attr("max"),
+        thisMin = self.attr("min"),
+        thisVal = self.val();
       if (new Date(thisVal) <= new Date(thisMax) && new Date(thisMin) <= new Date(thisVal)) {
         /* Enabling Payment Receipt BUTTON upon receiving the payment i.e. Filling the 'Paid Date' */
+        self.removeClass("text-danger");
         $("form [name=payment]").toggleEnDis("enable").addClass("btn-outline-light");
       } else {
+        self.addClass("text-danger");
         $("form [name=payment]").toggleEnDis("disable").removeClass("btn-outline-light");
       }
     }).attr('min', dtPay => valObj.fullPrjInv.ENDED);

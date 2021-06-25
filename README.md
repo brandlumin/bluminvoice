@@ -87,3 +87,5 @@ invoiceMaster;
 
 ### NOTES:
 ----------
+comment correction
+^(\s*)(//\s+)(.*)$ ==> $1/* $3 */

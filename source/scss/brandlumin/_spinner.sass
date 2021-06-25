@@ -1,0 +1,53 @@
+@keyframes pulse
+  from
+    opacity: 1
+    transform: scale(1.15)
+
+  to
+    opacity: .05
+    transform: scale(0.75)
+
+.spinner-box
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  background: transparent
+  z-index: 3
+
+  .pulse-container
+    display: flex
+    justify-content: space-between
+    background-color: $white
+    padding: 0.75rem 2rem
+    box-shadow:  0 0.25rem 1rem transparentize($black, .9)
+
+    > div:not(:last-child)
+      margin-right: 1.5rem
+
+    .pulse-bubble
+      width: 1rem
+      height: 1rem
+      border-radius: 50%
+      background-color: indigo
+      filter: blur(0.5px)
+      box-shadow: 0 1px 3px transparentize($black, 0.85)
+
+    .pulse-bubble-1
+      animation: pulse .4s ease 0s infinite alternate
+      background-color: var(--success)
+      // background-color: lawngreen
+
+    .pulse-bubble-2
+      animation: pulse .4s ease .2s infinite alternate
+      background-color: var(--warning)
+      // background-color: yellow
+
+    .pulse-bubble-3
+      animation: pulse .4s ease .4s infinite alternate
+      background-color: var(--danger)
+      // background-color: red
