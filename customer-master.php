@@ -112,10 +112,10 @@
               <!-- p-2 mb-2 bg-secondary text-white -->
               <?php
                 @include "consql.php";
-                // Customer List for the Dropdown
+                /* Customer List for the Dropdown */
                 $custListQuery = "SELECT `custName`, `custCity` FROM `customerMaster` ORDER BY `custName` ASC";
                 $custList = mysqli_query($connection, $custListQuery);
-                // Closing the connection
+                /* Closing the connection */
                 mysqli_close($connection);
                 if(mysqli_num_rows($custList) > 0 ) {
                   while($row=mysqli_fetch_assoc($custList)) {

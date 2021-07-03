@@ -4,19 +4,19 @@ session_start();
 /*<input type="username" class="form-control text-center border-bottom mb-2" placeholder="username" id="username" name="username" value="<?php (isset($password)) ? $_POST['password'] : ''; ?>" required />*/
 
 if (isset($_SESSION['idfy'])) {
-    header("Location: welcome.php"); // if successful: goto this page
+    header("Location: bluminvoice.php"); /* if successful: goto this page */
 }
 if (isset($_POST['submit'])) {
-  /*$username = $_POST['username'];*/ $password = md5($_POST['password']); // variables
-  $validationQuery = "SELECT * FROM `whoCanAccess` WHERE `supportive`='$password' /*AND `idfy`='$username'*/ "; // query
-  $result = mysqli_query($connection, $validationQuery); // connection
-  mysqli_close($connection); // connection closed
-  if (mysqli_num_rows($result) > 0) { // OOP: if ($result->num_rows > 0) {
+  /*$username = $_POST['username'];*/ $password = md5($_POST['password']); /* variables */
+  $validationQuery = "SELECT * FROM `whoCanAccess` WHERE `supportive`='$password' /*AND `idfy`='$username'*/ "; /* query */
+  $result = mysqli_query($connection, $validationQuery); /* connection */
+  mysqli_close($connection); /* connection closed */
+  if (mysqli_num_rows($result) > 0) { 
     $row = mysqli_fetch_assoc($result);
     $_SESSION['idfy'] = $row['idfy'];
-    header("Location: welcome.php");
+    header("Location: bluminvoice.php");
   } else {
-    // ERROR MESSAGE has been shifted after the button in HTML
+    /* ERROR MESSAGE has been shifted after the button in HTML */
   }
 }
 ?>
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
               <div class="row mx-5 mt-5 mb-5">
                 <div class="col-12 text-center">
                   <button name="submit" class="btn btn-primary btn-block no-shadow-hover">Login</button>
-                  <?php //echo "<p class='login-register-text mt-2'>Don't have an account? <a href='be_a_part.php'>Register Here</a>.</p>" ?>
+                  <?php /* echo "<p class='login-register-text mt-2'>Don't have an account? <a href='be_a_part.php'>Register Here</a>.</p>" */ ?>
                 </div>
               </div>
             </form>

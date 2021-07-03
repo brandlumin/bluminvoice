@@ -13,39 +13,17 @@ header #navbarHeader
   &.show + .navbar
     box-shadow: 0 0.125em 0.5em #0007
 
-/* Removing oulines from input fields */
-// section
-//   &:not(:first-of-type)
-//     margin-top: 5em
-
 /* Making "LEAD" font-size responsive */
 .jumbotron
   .lead
     @media (max-width: 767.98px)
       font-size: 1rem
 
-// main[role=main]
-//   section
-//     &:only-child,
-//     & + section
-//       margin-top: 3rem
-
-
 main[role=main]
   padding: 1.5rem 0
   section
     & + section
       margin-top: 1.5rem
-
-
-    // &:last-of-type
-      // margin-bottom: 1.5rem
-    // margin-top: 0
-    // margin-bottom: 0 // 1.5rem
-    // &:only-child
-      // margin-top: 0
-      // margin-bottom: 0
-
 
 /* Removing oulines from input fields */
 form
@@ -116,7 +94,6 @@ label
       border-radius: 50%
       background-color: $green 
       /* this bg image SVG is just a circle, you can replace it with any valid SVG code */
-      // background-image: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E)
     /* active state i.e. displayed while the mouse is being pressed down */
     &:active ~ .custom-control-label::before
       color: $white

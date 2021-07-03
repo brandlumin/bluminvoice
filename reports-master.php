@@ -73,7 +73,7 @@
             </div>
             <input type="text" class="form-control" id="form-apr-cust" name="form-apr-cust" required readonly="readonly" placeholder="Customer Name*" />
           </div>
-          <?php // echo <input name="form-apr-custID" placeholder="Customer ID" HIDDEN/> ?>
+          <?php /* echo <input name="form-apr-custID" placeholder="Customer ID" HIDDEN/> */ ?>
         </div>
         <!-- Account Manager -->
         <div class="form-group col-md-5">
@@ -83,7 +83,7 @@
             </div>
             <input type="text" class="form-control" id="form-apr-acct" name="form-apr-acct" required readonly="readonly" placeholder="Account Manager Name*" />
           </div>
-          <?php // echo <input name="form-apr-acctID" placeholder="Account Manager ID" HIDDEN/> ?>
+          <?php /* echo <input name="form-apr-acctID" placeholder="Account Manager ID" HIDDEN/> */ ?>
         </div>
       </div>
       <div class="form-row">

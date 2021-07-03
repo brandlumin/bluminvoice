@@ -1,16 +1,10 @@
 /**
  *      POPUP MESSAGE FUNCTION TO NOTIFY USERS
  *      @param  {String} message THE MESSAGE TO DISPLAY
- *      @param  {Integer} stayDur THE DURATION TO STAY
+ *      @param  {Integer} stayDur THE DURATION TO STAY/"sticky"
  *      @param  {Interger} speed   SPEED OF TRANSITION
  *      @return {Boolean}         True
  */
-
-///////////////////////////////////////
-// METHOD OF USING THIS POPUP PLUGIN //
-// fPopup (message, stayDur, speed) ///
-// WHERE ONLY message IS MANDATORY. ///
-///////////////////////////////////////
 function fPopup(message, stayDur, speed) {
 
   /* REMOVE ANY STUCK POPUP */
@@ -35,7 +29,7 @@ function fPopup(message, stayDur, speed) {
       justifyContent: "center",
       alignItems: "center",
       display: "flex",
-      // flex: "1",
+      /* flex: "1", */
     },
 
     msgBoxStyles = {
@@ -69,5 +63,6 @@ function fPopup(message, stayDur, speed) {
   /* ACTION: BRINGING IN THE POPUP */
   inPop(speed);
   /* ACTION: STAYING FOR DURATION AND TAKING OUT THE POPUP*/
-  setTimeout(function () { outPop(speed).remove(); }, stayDur || 2000);
+  (stayDur !== "sticky") && setTimeout(function () { outPop(speed).remove(); }, stayDur || 2000);
+  (stayDur === "sticky") && $(document).click(() => outPop(500).remove()); /* click anywhere to dismiss */
 }

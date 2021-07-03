@@ -33,12 +33,12 @@ function fCRFLiveSearch() {
 
     $.get("./crf-livelist.php", { term: projD, task: "LastDate" })
       .then(function (lastDate) {
-        $("[name=form-crf-custID]").val($el.attr("cust-id")); // filling cust-id
-        $("[name=form-crf-projectID]").val($el.attr("proj-id")); // filling proj-id
+        $("[name=form-crf-custID]").val($el.attr("cust-id")); /* filling cust-id */
+        $("[name=form-crf-projectID]").val($el.attr("proj-id")); /* filling proj-id */
 
-        $("#form-crf-cust").val($el.attr("cust-name")); // filling cust-name
-        $("#form-crf-project").val($el.text()); // filling search-input OR proj-name
-        $("#form-crf-invoice").val($el.attr("proj-in")); // filling invoice number
+        $("#form-crf-cust").val($el.attr("cust-name")); /* filling cust-name */
+        $("#form-crf-project").val($el.text()); /* filling search-input OR proj-name */
+        $("#form-crf-invoice").val($el.attr("proj-in")); /* filling invoice number */
         $("#form-crf-date").attr("min", () => lastDate || prjDate);
         /* optional for #form-crf-date above
         /* if (lastDate) $("#form-crf-date").attr("min", lastDate);
@@ -53,7 +53,7 @@ function fCRFLiveSearch() {
           $("#form-crf-desc").focus();
         });
         fSpinner();
-      }); // setting minimum date
+      }); /* setting minimum date */
   });
 }
 

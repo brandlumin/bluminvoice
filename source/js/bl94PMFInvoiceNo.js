@@ -29,14 +29,15 @@ function fPMFpageAJAX(argument) {
  *    the basis of project counts
  */
 function fPMFInvoiceNo(argument) {
-  // function to add left padding
+  /* function to add left padding */
   function pad(str, max) {
     str = str.toString();
     return str.length < max ? pad("0" + str, max) : str;
   }
 
-  // creating the variable
-  let x = "BL20/Q4-61", // this is what we want it to look like
+  /* creating the variable */
+  let x = "BL20/Q4-61",
+    /* this is what we want it to look like */
     invTag = "BL",
     invDate = new Date(),
     invYear = invDate.getFullYear(),
@@ -45,6 +46,6 @@ function fPMFInvoiceNo(argument) {
     invNo = pad($("#form-pmf-invoice").attr("default"), 2),
     invSerial = invTag + (/\d{2}$/).exec(invYear) + "/Q" + invQuarter + "-" + invNo;
 
-  // pushing value to the form
+  /* pushing value to the form */
   $("#form-pmf-invoice").val(invSerial).change();
 }

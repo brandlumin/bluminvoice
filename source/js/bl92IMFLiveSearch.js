@@ -6,7 +6,7 @@ function fIMFLiveSearch() {
   $("#form-imf-proj").on('keyup', function () {
     let cLiveSearchID = $(this).val();
     if (cLiveSearchID.length) {
-      // run ajax call
+      /* run ajax call */
       $.get('./imf-functions.php', { task: "QuickList", prjSearch: cLiveSearchID })
         .done(function (projects) {
           /* Display the returned projects in browser */

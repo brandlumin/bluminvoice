@@ -9,7 +9,7 @@
 jQuery.prototype.toggleEnDis = function (action = "toggle") {
   return this.filter("button, input, textarea").each(function () {
     let providedEl = $(this);
-    // providedEl.text("TARGETTED"); TESTING PURPOSE
+    /* providedEl.text("TARGETTED"); TESTING PURPOSE */
     if (action === "enable") providedEl.removeAttr("disabled");
     if (action === "disable") providedEl.attr("disabled", "disabled");
     if (action === "toggle") {
@@ -31,7 +31,7 @@ jQuery.prototype.toggleEnDis = function (action = "toggle") {
 jQuery.prototype.toggleRO = function (action = "toggle") {
   return this.filter("input, textarea").each(function () {
     let providedEl = $(this);
-    // providedEl.text("TARGETTED"); TESTING PURPOSE
+    /* providedEl.text("TARGETTED"); TESTING PURPOSE */
     if (action === "ro") providedEl.attr("readonly", "readonly");
     if (action === "rw") providedEl.removeAttr("readonly");
     if (action === "toggle") {

@@ -17,11 +17,10 @@ function fAPRSetupRadios(argument) {
         break;
       case "Ended":
         fAPREndedLiveSearch();
-        // fAlert("Caution<br/>This module has not yet begun.", 1200);
         break;
     }
   });
-  fAPRProjLiveSearch();
+  fAPRProjLiveSearch(); /* Run as default */
 }
 
 
@@ -30,9 +29,10 @@ function fAPRSetupRadios(argument) {
  */
 function fResetAPRpage() {
   $("[id^='search-box']").slideUp(300, "linear", function () {
-    $("[id^='search-list']").empty();
-  });
-  $("[id^='form-apr']").removeClass("text-danger").val("").toggleRO("ro");
+    $("[id^='search-list']").empty().off("click", "p");
+  }); /* Hide all search-boxes and disable their clicks */
+  $("[id^='form-apr']").off().removeClass("text-danger").val("").toggleRO("ro"); /* Disable, remove danger-classes, all values and toggle all fields to RO */
+  $("#form-apr-desc, #form-apr-narr, #form-apr-crfhistory, #form-apr-billing").css("cursor", "auto").off(); /* Disable zoom-in feature for blank records upon reset */
 }
 
 
@@ -44,7 +44,7 @@ function fDisappearDropdown(searchBy) {
   let parentBox = "#search-box-" + searchBy,
     childBox = "#search-list-" + searchBy,
     hideIt = $(parentBox).slideUp(300, "linear", function () {
-      $(childBox).empty();
+      $(childBox).empty().off("click", "p");
     });
 }
 

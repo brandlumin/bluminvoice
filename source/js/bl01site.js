@@ -1,5 +1,5 @@
-// window.addEventListener("load", showScreenSize, false);
-// window.addEventListener("resize", showScreenSize, true);
+/* window.addEventListener("load", showScreenSize, false); */
+/* window.addEventListener("resize", showScreenSize, true);*/
 
 /**
  *    DOCUMENT READY FUNCTION RUNS AT THE PAGELOAD

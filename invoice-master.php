@@ -59,7 +59,7 @@
                 </div>
                 <input class="form-control" id="form-imf-cust" name="form-imf-cust" required readonly="readonly" placeholder="Customer Name*" />
               </div>
-              <?php // echo <input name="form-imf-custID" placeholder="Customer ID" HIDDEN/> ?>
+              <?php /* echo <input name="form-imf-custID" placeholder="Customer ID" HIDDEN/> */ ?>
             </div>
             <!-- Account Manager -->
             <div class="form-group col-md-5">
@@ -72,7 +72,7 @@
                   <option class="" value="n" selected>Select the Account Manager...</option>
                 </select> -->
               </div>
-              <?php // echo <input name="form-imf-acctID" placeholder="Account Manager ID" HIDDEN/> ?>
+              <?php /* echo <input name="form-imf-acctID" placeholder="Account Manager ID" HIDDEN/> */ ?>
             </div>
           </div>
           <div class="form-row">
