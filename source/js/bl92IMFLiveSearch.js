@@ -2,55 +2,49 @@
  *    IMF LIVESEARCH-AJAX
  */
 function fIMFLiveSearch() {
+
+  const $page = new IMFAPRpageObject("#search-box", "#search-list", "imf");
+
   /* extracted "input" event from "ON" */
-  $("#form-imf-proj").on('keyup', function () {
+  $page.$_project.off("keyup").on("keyup", function () {
     let cLiveSearchID = $(this).val();
     if (cLiveSearchID.length) {
       /* run ajax call */
-      $.get('./imf-functions.php', { task: "QuickList", prjSearch: cLiveSearchID })
-        .done(function (projects) {
+      $.getJSON({ url: './imf-functions.php', beforeSend: fSpinner, complete: fSpinner }, { task: "QuickList", prjSearch: cLiveSearchID })
+        .done(function (jsonProjNameSearchIMF) {
+          /* Disabling CONTENT ZOOM POP-OUT */
+          $page.$_form.find("#form-imf-desc, #form-imf-narr, #form-imf-crfhistory, #form-imf-billing").css("cursor", "auto").off("click");
           /* Display the returned projects in browser */
-          $("#search-box").slideDown(300, "linear", function () {
-            $("#search-list").html(projects);
+          $page.$_searchBox.slideDown(300, "linear", function () {
+            $page.$_searchList.html(jsonProjNameSearchIMF);
           });
         });
     } else {
       /* hiding the dropdown upon emptying the search field */
-      fIMFHideSearchBox();
+      fIMFHideSearchBox($page);
     }
   });
 
   /* Set search input value on click of result item */
-  $("#search-list").on("click", 'p', function (event) {
+  $page.$_searchList.off("click").on("click", 'p', function (event) {
+
+    let nLiveSearchID = event.target.attributes[0].nodeValue;
+    $.getJSON({ url: "./imf-functions.php", beforeSend: beforeSendCleanup, complete: fSpinner }, { task: "FullList", prjSearch: nLiveSearchID })
+      .done(function (jsonPrjDetailsIMF) {
+        if (jsonPrjDetailsIMF.hasOwnProperty('fullPrjInv')) {
+          fIMFFormFill(jsonPrjDetailsIMF, $page); /* ACTIVATE THE FORM */
+        } else {
+          fPopup("<strong>:: SYSTEM ERROR ::</strong><br/> Please ensure a working internet connection.<br />If that is working fine and you continue to receive this error then please report it.", "sticky");
+        }
+      });
 
     function beforeSendCleanup() {
       fSpinner();
       $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
-      $("form input, form textarea").val("").removeClass("text-danger").removeAttr("min").not("#form-imf-proj").toggleRO("ro");
-      $("#form-imf-proj").val(() => event.target.innerText);
-      fIMFHideSearchBox();
+      $("form input, form textarea").val("").removeClass("text-danger").removeAttr("min").not($page.$_project).toggleRO("ro");
+      $page.$_project.val(() => event.target.innerText);
+      fIMFHideSearchBox($page);
     }
-
-    let nLiveSearchID = event.target.attributes[0].nodeValue;
-    $.getJSON({ url: "./imf-functions.php", beforeSend: beforeSendCleanup }, { task: "FullList", prjSearch: nLiveSearchID })
-      .then(function (jsonPrjDetails) {
-        if (jsonPrjDetails) {
-          fIMFFormFill(jsonPrjDetails); /* ACTIVATE THE FORM */
-        }
-      }, fSpinner)
-      .done(fSpinner);
-  });
-}
-
-/**
- *    IMF LIVESEARCH--RESULT-BOX-WIDTH
- */
-function fIMFLiveSearchWidth() {
-  $("#search-box").css("width", getWidth => $("#form-imf-proj").closest('.input-group').outerWidth());
-  /* SETTING THE RESET BUTTON'S FUNCTIONALITY HERE JUST BECUASE OF AALAS */
-  $("button[type=reset]").on("click", function () {
-    $("form [type=submit]").toggleEnDis("disable").removeClass("btn-outline-light");
-    $("form input, form textarea").val("").removeClass("text-danger").removeAttr("min").not("#form-imf-proj").toggleRO("ro");
   });
 }
 
@@ -58,9 +52,25 @@ function fIMFLiveSearchWidth() {
  *    IMF LIVESEARCH--HIDE-SEARCH-BOX
  *    @return {[type]} [description]
  */
-function fIMFHideSearchBox() {
+function fIMFHideSearchBox($page) {
+
   /* hiding the dropdown upon emptying the search field */
-  $("#search-box").slideUp(300, "linear", function () {
-    $("#search-list").empty();
+  $page.$_searchBox.slideUp(300, "linear", function () {
+    $page.$_searchList.empty();
+  });
+}
+
+/**
+ *    IMF LIVESEARCH--RESULT-BOX-WIDTH
+ */
+function fIMFLiveSearchWidth() {
+  let $_form = $("form"),
+    $_searchBox = $("#search-box", $_form),
+    $_project = $("#form-imf-proj", $_form);
+  $_searchBox.css("width", getWidth => $_project.closest('.input-group').outerWidth());
+  /* SETTING THE RESET BUTTON'S FUNCTIONALITY HERE JUST BECUASE OF AALAS */
+  $("form button[type='reset']").off("click").on("click", function () {
+    $("form [type='submit']").toggleEnDis("disable").removeClass("btn-outline-light");
+    $("form input, form textarea").val("").removeClass("text-danger").removeAttr("min").not($_project).toggleRO("ro");
   });
 }

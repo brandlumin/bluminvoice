@@ -1,25 +1,20 @@
 <?php
-if(isset($_REQUEST["task"])) {
+if (isset($_REQUEST["task"])) {
   $task = $_REQUEST["task"];
-} else {
-  echo json_encode(array("ERROR"=>"brandlumin reports that TASK was not passed to this module."));
-  return;
-}
-if(isset($_REQUEST["term"])) {
-  $value = $_REQUEST["term"];
-} else {
-  echo json_encode(array("ERROR"=>"brandlumin reports that PROJECT was not passed to this module."));
-  return;
-}
-
+  if (isset($_REQUEST["term"])) {
+    $value = $_REQUEST["term"];
+  }
   if ($task == "DropDown") {
     dropDown($value);
   } elseif ($task == "LastDate") {
     lastDate($value);
-  } else {
-    echo json_encode(array("ERROR"=>"brandlumin reports that some error occured."));
-    return;
   }
+} else {
+  if (!empty($_POST)) callSave();
+  else header("location: change-request.php?error=It was an invalid operation.");
+}
+
+  
 
   function dropDown($value) {
     require 'consql.php';
@@ -39,12 +34,13 @@ if(isset($_REQUEST["term"])) {
 
         /* Check number of rows in the result set */
         if(mysqli_num_rows($result) > 0) {
+          $projList = "";
           /* Fetch result rows as an associative array */
           while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            echo "<p proj-id='$row[prjID]' proj-dt='$row[prjStartDate]' cust-id='$row[custID]' cust-name='$row[custName]' proj-in='$row[prjInvoiceID]'>$row[prjName]</p>";
+            $projList .= "<p proj-id='$row[prjID]' proj-dt='$row[prjStartDate]' cust-id='$row[custID]' cust-name='$row[custName]' proj-in='$row[prjInvoiceID]'>$row[prjName]</p>";
           }
         } else {
-          echo "<p onclick='return false;' class=text-danger>No matches found</p>";
+          $projList .= "<p onclick='return false;' class=text-danger>No matches found</p>";
         }
       } else {
         echo "ERROR: Could not able to execute $searchQuery. " . mysqli_error($connection);
@@ -55,6 +51,8 @@ if(isset($_REQUEST["term"])) {
     mysqli_stmt_close($statement);
     /* Closing DB connection */
     mysqli_close($connection);
+    /* returning the JSON */
+    echo json_encode($projList);
   }
 
   function lastDate($value) {
@@ -66,7 +64,34 @@ if(isset($_REQUEST["term"])) {
     }
     /* Closing DB connection */
     mysqli_close($connection);
-    echo $chgDate;
+    echo json_encode($chgDate);
+  }
+
+  function callSave() {
+    echo "Here is the SAVE Module.";
+    $fCrfCust = $_POST["form-crf-cust"]; $fCrfProjectID = $_POST["form-crf-projectID"]; $fCrfProject = $_POST["form-crf-project"]; $fCrfDate = $_POST["form-crf-date"]; $fCrfDesc = $_POST["form-crf-desc"]; $fCrfAmount = $_POST["form-crf-amount"];
+
+    /* setting the query */
+    $query = "INSERT INTO changeMaster(prjID, changeReq, changeDate, changeAmount) VALUES ('$fCrfProjectID' ,'$fCrfDesc' ,'$fCrfDate' ,'$fCrfAmount')";
+
+    /* establishing connection */
+    @include "consql.php";
+
+    /* firing the query through connection */
+    $response = mysqli_query($connection, $query);
+
+    /* Closing DB connection */
+    mysqli_close($connection);
+
+    /* Check result if successful */
+    if ($response) {
+      /* if successful */
+      header("location: change-request.php?success");
+    } else {
+      /* if unsuccessful */
+      header("location: change-request.php?error=".mysqli_connect_error(). " " .mysqli_error($connection));
+    }
+    return;
   }
 
 ?>

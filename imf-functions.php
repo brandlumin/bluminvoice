@@ -36,16 +36,18 @@ if(isset($_REQUEST["prjSearch"])) {
         $result = mysqli_stmt_get_result($statement);
         /* Check number of rows in the result set */
         if(mysqli_num_rows($result) > 0) {
+          $projList = "";
           /* Fetch result rows as an associative array */
           while( $row = mysqli_fetch_array($result, MYSQLI_ASSOC) ) {
-            echo "<p proj-id='$row[prjID]'>$row[prjName]</p>";
+            $projList .= "<p proj-id='$row[prjID]'>$row[prjName]</p>";
           }
         } else {
-          echo "<p onclick='return false;' class=text-danger>No matches found</p>";
+          $projList .= "<p onclick='return false;' class=text-danger>No matches found</p>";
         }
       } else {
-        echo "ERROR: Could not execute $searchQuery. " . mysqli_error($connection);
+        $projList .= "ERROR: Could not execute $searchQuery. " . mysqli_error($connection);
       }
+      echo json_encode($projList);
     }
     /* Close statement */
     mysqli_stmt_close($statement);

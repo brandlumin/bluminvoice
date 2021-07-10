@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                   <label class="input-group-text bg-warning text-body" for="form-imf-proj">Project:</label>
                 </div>
-                <input type="text" class="form-control" id="form-imf-proj" name="form-imf-proj" placeholder="Project's Name*" autofocus />
+                <input type="text" class="form-control" id="form-imf-proj" name="form-imf-proj" placeholder="Project's Name*" required="required" autofocus />
                 <div class="input-group-append">
                   <span class="input-group-text no-border bg-white text-shadow-sm">&#128269;</span>
                 </div>

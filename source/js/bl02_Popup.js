@@ -3,7 +3,6 @@
  *      @param  {String} message THE MESSAGE TO DISPLAY
  *      @param  {Integer} stayDur THE DURATION TO STAY/"sticky"
  *      @param  {Interger} speed   SPEED OF TRANSITION
- *      @return {Boolean}         True
  */
 function fPopup(message, stayDur, speed) {
 
@@ -35,34 +34,40 @@ function fPopup(message, stayDur, speed) {
     msgBoxStyles = {
       maxWidth: "450px",
       maxHeight: "253px",
-      overflow: "auto"
+      overflow: "auto",
     },
 
-    alertBox = $("<div/>", { id: "alertBox" }).appendTo("body").css(alertBoxStyles).hide(),
+    alertBox = $("<div/>", { "id": "alertBox" }).appendTo("body").css(alertBoxStyles).hide(),
 
-    msgBox = $("<div/>", { class: "text-dark text-center", id: "msgBox" }).appendTo(alertBox).css(msgBoxStyles).hide();
+    msgBox = $("<div/>", { "class": "text-dark text-center", "id": "msgBox" }).appendTo(alertBox).css(msgBoxStyles).hide();
   speed = speed || 500;
 
   /* SETTING UP THE MESSAGE */
   (message) && msgBox.html(message);
 
+
   /* FUNCTION: BRINGING IN THE POPUP */
   function inPop(speed) {
-    alertBox.animate({ opacity: "toggle" }, speed);
-    msgBox.animate({ opacity: "toggle" }, speed * 0.85);
-    return alertBox;
+    alertBox.fadeToggle(speed);
+    msgBox.fadeToggle(speed * 1.5);
   }
 
   /* FUNCTION: TAKING OUT THE POPUP */
   function outPop(speed) {
-    msgBox.animate({ opacity: "toggle" }, speed * 0.85);
-    alertBox.animate({ opacity: "toggle" }, speed);
-    return alertBox;
+    msgBox.fadeToggle(speed * 0.5);
+    alertBox.fadeToggle(speed, function () { this.remove(); });
+  }
+
+  function stickyPopupEventListener(event) { /* EVENTLISTENER: click anywhere to dismiss */
+    if (event.target != alertBox.get(0) && event.target != msgBox.get(0)) {
+      outPop(speed);
+      document.removeEventListener("click", stickyPopupEventListener);
+    }
   }
 
   /* ACTION: BRINGING IN THE POPUP */
   inPop(speed);
   /* ACTION: STAYING FOR DURATION AND TAKING OUT THE POPUP*/
-  (stayDur !== "sticky") && setTimeout(function () { outPop(speed).remove(); }, stayDur || 2000);
-  (stayDur === "sticky") && $(document).click(() => outPop(500).remove()); /* click anywhere to dismiss */
+  if (stayDur === "sticky") document.addEventListener("click", stickyPopupEventListener);
+  else setTimeout(function () { outPop(speed); }, stayDur || 2000);
 }

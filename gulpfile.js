@@ -83,18 +83,18 @@ function preloadJS() {
 }
 
 
-function workScriptDev() {
+function workScriptsDev() {
   return src(blScriptFiles, { allowEmpty: true })
     .pipe(sourcemaps.init())
     .pipe(concat("script6es.min.js", { newLine: ";" }))
     .pipe(terser(terserOptionsDev))
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write())
     .pipe(dest("site/scripts/"))
     .pipe(livereload());
 }
 
 
-function workScriptProd() {
+function workScriptsProd() {
   return src(blScriptFiles, { allowEmpty: true })
     .pipe(sourcemaps.init())
     .pipe(concat("script6es.min.js", { newLine: ";" }))
@@ -117,7 +117,7 @@ function bootstrapCSS() {
 }
 
 
-function workStyleDev() {
+function workStylesDev() {
   return src("source/scss/brandlumin/bluminvoice.sass", { allowEmpty: true })
     .pipe(sourcemaps.init())
     .pipe(sass.sync(sassOptionsDev).on("error", sass.logError))
@@ -127,7 +127,7 @@ function workStyleDev() {
 }
 
 
-function workStyleProd() {
+function workStylesProd() {
   return src("source/scss/brandlumin/bluminvoice.sass", { allowEmpty: true })
     .pipe(sourcemaps.init())
     .pipe(sass.sync(sassOptionsProd).on("error", sass.logError))
@@ -148,9 +148,9 @@ function workMinifyFrontEnd() {
 /* WATCH FUNCTION */
 function watchFiles() {
   watch(bootstrapFiles, bootstrapCSS);
-  watch(blStyleFiles, workStyleDev);
+  watch(blStyleFiles, workStylesDev);
   // watch(jsPluginFiles, preloadJS);
-  watch(blScriptFiles, workScriptDev);
+  watch(blScriptFiles, workScriptsDev);
   watch(frontEndFiles, workMinifyFrontEnd);
   console.log(">> Begun watching for changes...");
 }
@@ -171,16 +171,13 @@ function setupServer() {
 exports.default = series(
   bootstrapCSS,
   preloadJS,
-  workStyleDev,
-  workScriptDev,
+  workStylesDev,
+  workScriptsDev,
   workMinifyFrontEnd,
   parallel(setupServer, watchFiles)
 );
-
-
-exports.stylesProd = series(bootstrapCSS, workStyleProd);
-exports.scriptsProd = series(preloadJS, workScriptProd);
-exports.stylesDev = series(bootstrapCSS, workStyleDev);
-exports.scriptsDev = series(preloadJS, workScriptDev);
-exports.frontend = series(workMinifyFrontEnd);
-exports.workMinifyfrontend = series(workMinifyFrontEnd);
+exports.stylesProd = series(bootstrapCSS, workStylesProd);
+exports.scriptsProd = series(preloadJS, workScriptsProd);
+exports.stylesDev = series(bootstrapCSS, workStylesDev);
+exports.scriptsDev = series(preloadJS, workScriptsDev);
+exports.Minifyfrontend = workMinifyFrontEnd;

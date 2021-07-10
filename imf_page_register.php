@@ -4,10 +4,11 @@
   if ($fImfCgst == "") $fImfCgst = 0; if ($fImfSgst == "") $fImfSgst = 0; if ($fImfIgst == "") $fImfIgst = 0;
 
   /* setting the query */
-  $assgMasterQuery = "UPDATE `assgMaster` SET `prjEndDate`= '$fImfDtend', `isInvoiced`=1 WHERE `prjID`= '$fImfProjID'";
+  echo "fImfProjID: " . $fImfProjID . nl2br("<br/>");
+  $assgMasterQuery = "UPDATE assgMaster SET prjEndDate= '$fImfDtend', isInvoiced=1 WHERE prjID= '$fImfProjID'";
   echo "assgMasterQuery: " . $assgMasterQuery . nl2br("<br/>");
 
-  $invMasterQuery = "INSERT INTO `invoiceMaster`(`prjID`, `invDate`, `prjTotalBill`, `cgst`, `sgst`, `igst`, `prjGrandTotal`, `prjBillDetails`) VALUES ('$fImfProjID', '$fImfDtend', '$fImfTotal', '$fImfCgst', '$fImfSgst', '$fImfIgst', '$fImfGtot', '$fImfBilling')";
+  $invMasterQuery = "INSERT INTO invoiceMaster(prjID, invDate, prjTotalBill, cgst, sgst, igst, prjGrandTotal, prjBillDetails) VALUES ('$fImfProjID', '$fImfDtend', '$fImfTotal', '$fImfCgst', '$fImfSgst', '$fImfIgst', '$fImfGtot', '$fImfBilling')";
   echo "invMasterQuery: " . $invMasterQuery;
 
   /* establishing connection */
@@ -31,7 +32,7 @@
     header("location: invoice-master.php?generate=success");
   } else {
     /* if unsuccessful */
-    header("location: invoice-master.php?error=".mysqli_connect_error(). " " .mysqli_error($connection));
+    header("location: invoice-master.php?error=".mysqli_error($connection));
   }
 
 ?>

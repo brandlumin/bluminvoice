@@ -3,14 +3,10 @@
  *    Changes the text on the #toggleBtn
  */
 function fEnableToggler() {
-  $('#toggleBtn').click(function () {
-    /* change the button-text */
-    if ($('#toggleItem').hasClass('d-none')) {
-      $('#toggleBtn').text('Hide List');
-    } else {
-      $('#toggleBtn').text('Show List');
-    }
-    /* toggle the item */
-    $('#toggleItem').toggleClass("d-none");
+  let $_form = $("form");
+  $_form.find("#toggleBtn").click(function () {
+    let theList = $("section#toggleItem", "body"),
+      buttonText = (theList.hasClass("d-none")) ? $_form.find("#toggleBtn").text("Hide List") : $_form.find("#toggleBtn").text("Show List"); /* change the button-text */
+    theList.toggleClass("d-none"); /* toggle the item */
   });
 }

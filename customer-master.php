@@ -109,7 +109,6 @@
           <div class="col">
             <h4 name="subtitle">List of Customers</h4>
             <div class="d-flex flex-row justify-content-between flex-wrap list">
-              <!-- p-2 mb-2 bg-secondary text-white -->
               <?php
                 @include "consql.php";
                 /* Customer List for the Dropdown */

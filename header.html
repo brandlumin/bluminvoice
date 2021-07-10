@@ -69,3 +69,10 @@
         </div>
       </div>
     </header>
+    <?php
+      $toDate = date('Y-m-d');      
+      $toDateMonth = (int)date('m', strtotime( $toDate ));
+      if ($toDateMonth < 4) { $fyYearVal = date("Y",strtotime( $toDate )) - 1;}
+      else { $fyYearVal = date("Y",strtotime( $toDate )); }
+      $minFYDate = $fyYearVal ."-04-01";
+    ?>

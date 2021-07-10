@@ -4,7 +4,7 @@
       <section class="container bl__home_pmf">
         <div class="row">
           <div class="col">
-            <form class="needs-validation p-4" accept-charset="UTF-8" action="./pmf_page.php" method="post" id="form-pmf" name="form-pmf" novalidate>
+            <form class="needs-validation p-4" accept-charset="UTF-8" action="./pmf_functions.php" method="post" id="form-pmf" name="form-pmf" novalidate>
               <h3 class="text-center mb-4 text-white font-weight-bold">Assignment Master Form</h3>
               <div class="row">
                 <!-- CUSTOMER -->
@@ -17,13 +17,20 @@
                     <select class="custom-select" id="form-pmf-cust" name="form-pmf-cust" required aria-describedby="form-pmf-cust-help" required>
                       <?php @include "consql.php";
                         /* get all the customers */
-                        $custList = mysqli_query($connection, "SELECT `custID`, `custName` FROM `customerMaster` ORDER BY `custName` ASC");
+                        $custList = mysqli_query($connection, "SELECT custID, custName FROM customerMaster ORDER BY custName ASC");
                         /* get invoiceCount for later Use */
-                        $projList = mysqli_query($connection, "SELECT DISTINCT `prjID` FROM `assgMaster`");
-
-                        $projNewSerial = mysqli_num_rows($projList) + 62; /* this '62' is starting of this year */
+                        /*$projList = mysqli_query($connection, "SELECT DISTINCT prjID FROM assgMaster");*/
+                              $projList = mysqli_query($connection, "SELECT prjID FROM assgMaster ORDER BY prjID DESC LIMIT 1");
                         /* Closing DB connection */
                         mysqli_close($connection);
+
+                        if(mysqli_num_rows($projList) > 0 ) {
+                          while($recs=mysqli_fetch_array($projList)) {
+                            $projNewSerial = $recs[prjID] + 1;
+                          }
+                        } else {
+                          $projNewSerial = 62; /* '62' is initial serial as 61 invoices are manual. Just make it 1 for customers */
+                        }
                         
                         /* populating the data into options */
                         if(mysqli_num_rows($custList) > 0 ) {
@@ -70,7 +77,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-pmf-invoice">Invoice#</label>
                     </div>
-                    <input type="text" class="form-control" id="form-pmf-invoice" name="form-pmf-invoice" required readonly default="<?php echo $projNewSerial?>"/>
+                    <input type="text" class="form-control" id="form-pmf-invoice" name="form-pmf-invoice" required readonly data-default="<?php echo $projNewSerial?>"/>
                   </div>
                 </div>
               </div>
@@ -101,7 +108,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-pmf-start-date">Start Date:</label>
                     </div>
-                    <input type="date" class="form-control" id="form-pmf-start-date" name="form-pmf-start-date" required value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d'); ?>"/>
+                    <input type="date" class="form-control" id="form-pmf-start-date" name="form-pmf-start-date" required value="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d'); ?>" min="<?php echo $minFYDate ?>"/>
                   </div>
                 </div>
                 <!-- Quoted Amount -->
@@ -127,7 +134,7 @@
         </div>
         <?php
         /**
-         *    This captures the response sent back from pmf_page.php
+         *    This captures the response sent back from pmf_functions.php
          *    and displays the success or failure result accordingly.
          */
           if (isset($_GET["success"])) {

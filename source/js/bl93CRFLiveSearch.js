@@ -2,59 +2,55 @@
  *    CRF LIVESEARCH-AJAX
  */
 function fCRFLiveSearch() {
+  let $_form = $("form"),
+    $_searchBox = $_form.find("#search-box");
+  $_form.find("[type='reset']").off("click", fCRFReset).on("click", fCRFReset);
   /* extracted "input" event from "ON" */
-  $('#form-crf-project[type="text"]').on("keyup", function () {
+  $("#form-crf-project").on("keyup", function () {
     /* Get input value on change  */
     let inputVal = $(this).val();
     if (inputVal.length) {
-      $.get("./crf-livelist.php", { term: inputVal, task: "DropDown" }).done(function (data) {
-        /* Display the returned data in browser */
-        if (data) {
-          $("#search-box").slideDown(300, "linear", function () {
-            $("#search-list").html(data);
+      $.getJSON("./crf-functions.php", { term: inputVal, task: "DropDown" })
+        .done(function (jsonProjNameSearchCRF) {
+          $_searchBox.slideDown(300, "linear", function () {
+            $_searchBox.find("#search-list").html(jsonProjNameSearchCRF);
+            $_searchBox.find("#search-list").off().on("click", "p", fCRFPopulateProject);
           });
-        }
-      });
+        });
     } else {
       /* hiding the dropdown */
-      $("#search-box").slideUp(300, "linear", function () {
-        $("#search-list").empty();
+      $_searchBox.slideUp(300, "linear", function () {
+        $_searchBox.find("#search-list").empty();
       });
     }
   });
 
   /* Set search input value on click of result item */
-  $("#search-list").on("click", "p", function () {
-    fSpinner();
-    let $el = $(this),
-      prjDate = $el.attr("proj-dt"),
-      projD = $el.attr("proj-id");
+
+  function fCRFPopulateProject() {
+    let $_this = $(this),
+      prjDate = $_this.attr("proj-dt"),
+      projD = $_this.attr("proj-id");
     fCRFReset();
 
-    $.get("./crf-livelist.php", { term: projD, task: "LastDate" })
-      .then(function (lastDate) {
-        $("[name=form-crf-custID]").val($el.attr("cust-id")); /* filling cust-id */
-        $("[name=form-crf-projectID]").val($el.attr("proj-id")); /* filling proj-id */
-
-        $("#form-crf-cust").val($el.attr("cust-name")); /* filling cust-name */
-        $("#form-crf-project").val($el.text()); /* filling search-input OR proj-name */
-        $("#form-crf-invoice").val($el.attr("proj-in")); /* filling invoice number */
-        $("#form-crf-date").attr("min", () => lastDate || prjDate);
-        /* optional for #form-crf-date above
-        /* if (lastDate) $("#form-crf-date").attr("min", lastDate);
-        else $("#form-crf-date").attr("min", prjDate); */
-      }, fSpinner)
-      .done(function () {
-        /* enabling the form */
-        $("#form-crf-date, #form-crf-desc, #form-crf-amount").toggleRO("rw");
-        /* hiding the dropdown */
-        $("#search-box").slideUp(300, "linear", function () {
-          $("#search-list").empty();
-          $("#form-crf-desc").focus();
+    $.getJSON("./crf-functions.php", { term: projD, task: "LastDate" })
+      .done(function () { /* hiding the dropdown and enabling the form*/
+        $_searchBox.slideUp(300, "linear", function () {
+          $_searchBox.find("#search-list").empty();
+          $_form.find("#form-crf-desc").focus();
         });
-        fSpinner();
-      }); /* setting minimum date */
-  });
+        $_form.find("#form-crf-date, #form-crf-desc, #form-crf-amount").toggleRO("rw"); /* enabling the form */
+      })
+      .done(function (lastDate) { /* setting minimum date attribute */
+        $_form.find("[name='form-crf-custID']").val($_this.attr("cust-id")); /* filling cust-id */
+        $_form.find("[name='form-crf-projectID']").val($_this.attr("proj-id")); /* filling proj-id */
+
+        $_form.find("#form-crf-cust").val($_this.attr("cust-name")); /* filling cust-name */
+        $_form.find("#form-crf-project").val($_this.text()); /* filling search-input OR proj-name */
+        $_form.find("#form-crf-invoice").val($_this.attr("proj-in")); /* filling invoice number */
+        $_form.find("#form-crf-date").attr("min", () => lastDate || prjDate); /* setting minimum date attribute */
+      });
+  }
 }
 
 /**
@@ -69,11 +65,11 @@ function fCRFLiveSearchWidth() {
  *    @return   resets the form as desired
  */
 function fCRFReset() {
-  /* event.preventDefault(); */
-  $("input, textarea").val(function () {
+  let $_form = $("form");
+  $_form.find("input, textarea").val(function () {
     $(this).toggleRO("ro");
     return "";
   });
-  $("#form-crf-project").toggleRO("rw");
-  $("#form-crf-date").removeAttr("min");
+  $_form.find("#form-crf-project").toggleRO("rw");
+  $_form.find("#form-crf-date").removeAttr("min");
 }

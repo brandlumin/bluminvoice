@@ -3,39 +3,45 @@
  *      @return {[type]} [description]
  */
 function fAPRInvoiceLiveSearch() {
-  $("#form-apr-invoice").toggleRO("rw").on('keyup', fAPRInvoiceTopSearch).focus();
+
+  const $page = new IMFAPRpageObject("#search-box-invoice", "#search-list-invoice");
+  $page.$_invoice.toggleRO("rw").on('keyup', fAPRInvoiceTopSearch).focus();
 
   function fAPRInvoiceTopSearch() {
     let cLiveSearchInvoice = $(this).val();
-    $("[id^='form-apr']").removeClass("text-danger").not("#form-apr-invoice").val("").toggleRO("ro");
-    $("#search-box-invoice").css("width", getWidth => $("#form-apr-invoice").closest('.input-group').outerWidth());
+
+    $.each($page, function (key, value) {
+      (!/form$|modal|search/i.test(key)) && value.removeClass("text-danger").not($page.$_invoice).val("").toggleRO("ro"); /* Reset previously shown values in the form and disable to initial */
+    });
+
+    $page.$_searchBox.css("width", getWidth => $page.$_invoice.closest('.input-group').outerWidth());
     if (cLiveSearchInvoice.length) {
       $.get('./apr-functions.php', { task: "invoiceQuickDetail", prjSearch: cLiveSearchInvoice })
         .done(function (projects) {
-          $("#search-box-invoice").slideDown(300, "linear", function () {
-            $("#search-list-invoice").html(projects);
-            $("#search-list-invoice").off().on("click", "p", fAPRInvoiceDetailSearch);
+          $page.$_searchBox.slideDown(300, "linear", function () {
+            $page.$_searchList.html(projects);
+            $page.$_searchList.off().on("click", "p", fAPRInvoiceDetailSearch);
           });
         });
     } else {
-      fDisappearDropdown("invoice");
+      fDisappearDropdown($page);
     }
   }
 
   function fAPRInvoiceDetailSearch() {
-    $("#form-apr-invoice").off();
-    fDisappearDropdown("invoice");
+    $page.$_invoice.off();
+    fDisappearDropdown($page);
 
     let nLiveSearchID = $(this).attr("proj-id");
 
     $.getJSON({ url: "./apr-functions.php", beforeSend: fSpinner, complete: fSpinner }, { task: "projFullDetail", prjSearch: nLiveSearchID })
       .done(function (jsonPrjDetails) {
         if (jsonPrjDetails.hasOwnProperty('fullPrjInv')) {
-          fAPRFormFill(jsonPrjDetails);
+          fAPRFormFill(jsonPrjDetails, $page); /* ACTIVATING THE FORM */
         } else {
           fPopup("<strong>:: SYSTEM ERROR ::</strong><br/> Please ensure a working internet connection.<br />If that is working fine and you continue to receive this error then please report it.", "sticky");
         }
       })
-      .always(() => { $("#form-apr-invoice").on('keyup', fAPRInvoiceTopSearch).focus(); });
+      .always(() => { $page.$_invoice.on('keyup', fAPRInvoiceTopSearch).focus(); });
   }
 }

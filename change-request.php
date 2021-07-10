@@ -5,7 +5,7 @@
       <section class="container bl__home_crf">
         <div class="row">
           <div class="col">
-            <form class="needs-validation p-4" accept-charset="UTF-8" action="./crf_page.php" method="post" id="form-crf" name="form-crf" novalidate>
+            <form class="needs-validation p-4" accept-charset="UTF-8" action="./crf-functions.php" method="post" id="form-crf" name="form-crf" novalidate>
               <h3 class="text-center mb-4 text-white font-weight-bold">Change Request Form</h3>
               <div class="form-row">
                 <div class="form-group col-md-8">
@@ -14,7 +14,7 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text bg-warning text-body" for="form-crf-project">Project:</label>
                     </div>
-                    <input type="text" class="form-control" id="form-crf-project" name="form-crf-project" placeholder="Project's Name*" autofocus/>
+                    <input type="text" class="form-control" id="form-crf-project" name="form-crf-project" placeholder="Project's Name*" required="required" autofocus/>
                     <div class="input-group-append">
                       <span class="input-group-text no-border bg-white text-shadow-sm">&#128269;</span>
                     </div>

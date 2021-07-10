@@ -1,10 +1,11 @@
 <?php 
   if (isset($_REQUEST["task"])) {
+    /**
+     *      RETURNS CUSTOMER's ADDRESS TO "AMF FORM" UPON SWITCH BUTTON
+     *      TO SET MANAGER's ADDRESS TO BE OF THE CUSTOMER's ADDRESS
+     */
     if(isset($_REQUEST["task"])) {
       $task = $_REQUEST["task"];
-    } else {
-      echo json_encode(array("ERROR"=>"brandlumin reports that TASK was not passed to this module."));
-      return;
     }
     if(isset($_REQUEST["custSearch"])) {
       $value = $_REQUEST["custSearch"];
@@ -24,6 +25,10 @@
     /* Returning the object */
     echo json_encode($custAddressResult);
   } else {
+    /**
+     *      ADDS NEW MANAGER TO THE DATABASE AND CONDITIONALLY CHECKS
+     *      OR SETS MANAGER's ADDRESS TO BE OF THE CUSTOMER's ADDRESS
+     */
     /* capturing data in variables  */
     $fAmfCust = $_POST["form-amf-cust"]; $fAmfName = $_POST["form-amf-name"]; $fAmfDesig = $_POST["form-amf-desig"]; $fAmfAddr1 = $_POST["form-amf-addr1"]; $fAmfAddr2 = $_POST["form-amf-addr2"];
     if (isset($_POST["form-amf-addr3"])) { $fAmfAddr3 = $_POST["form-amf-addr3"];} 
